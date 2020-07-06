@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=south,lit=false": { "model": "decorative:block/christmas_lights_off", "uvlock": true },
+        "facing=west,lit=false":  { "model": "decorative:block/christmas_lights_off", "uvlock": true, "y": 90 },
+        "facing=north,lit=false": { "model": "decorative:block/christmas_lights_off", "uvlock": true, "y": 180 },
+        "facing=east,lit=false":  { "model": "decorative:block/christmas_lights_off", "uvlock": true, "y": 270 },
+		"facing=south,lit=true": { "model": "decorative:block/christmas_lights_on", "uvlock": true },
+        "facing=west,lit=true":  { "model": "decorative:block/christmas_lights_on", "uvlock": true, "y": 90 },
+        "facing=north,lit=true": { "model": "decorative:block/christmas_lights_on", "uvlock": true, "y": 180 },
+        "facing=east,lit=true":  { "model": "decorative:block/christmas_lights_on", "uvlock": true, "y": 270 }
+    }
+}

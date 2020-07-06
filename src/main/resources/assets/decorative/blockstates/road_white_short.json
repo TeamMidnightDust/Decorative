@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "decorative:block/road_white_short" },
+        "facing=west": { "model": "decorative:block/road_white_short", "y": 90 },
+        "facing=north": { "model": "decorative:block/road_white_short", "y": 180 },
+        "facing=east": { "model": "decorative:block/road_white_short", "y": 270 }
+    }
+}

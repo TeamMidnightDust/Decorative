@@ -1,0 +1,18 @@
+{
+  "name": "Road with long white stripe",
+  "icon": "decorative:road_white_long",
+  "category": "decorative:traffic",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:road_white_long",
+      "title": "Road with long white stripe",
+      "link_recipe": false,
+      "text": "A road with a long white stripe in the middle."
+    },
+	{
+      "type": "stonecutting",
+      "recipe": "decorative:road_to_road_white_long_stonecutting"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Magenta Doppellampe",
+  "icon": "decorative:magenta_double_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:magenta_double_lamp",
+      "title": "Magenta Doppellampe",
+      "link_recipe": false,
+      "text": "Eine große magenta Doppellampe."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:magenta_double_lamp"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Pink Double Lamp",
+  "icon": "decorative:pink_double_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:pink_double_lamp",
+      "title": "Pink Double Lamp",
+      "link_recipe": false,
+      "text": "A tall pink double lamp."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:pink_double_lamp"
+    }
+  ]
+}

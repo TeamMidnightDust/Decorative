@@ -1,0 +1,18 @@
+{
+  "name": "Fernseher",
+  "icon": "decorative:television",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:television",
+      "title": "Fernseher",
+      "link_recipe": false,
+      "text": "Ein funktionierender moderner Flachbildschirm."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:television"
+    }
+  ]
+}

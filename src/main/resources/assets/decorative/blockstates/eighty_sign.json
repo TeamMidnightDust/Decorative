@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "decorative:block/eighty_sign" },
+        "facing=west":  { "model": "decorative:block/eighty_sign", "y": 90 },
+        "facing=north": { "model": "decorative:block/eighty_sign", "y": 180 },
+        "facing=east":  { "model": "decorative:block/eighty_sign", "y": 270 }
+    }
+}

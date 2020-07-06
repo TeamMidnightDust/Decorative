@@ -1,0 +1,18 @@
+{
+  "name": "Old Television",
+  "icon": "decorative:old_television",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:old_television",
+      "title": "Old Television",
+      "link_recipe": false,
+      "text": "The good old times..."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:old_television"
+    }
+  ]
+}

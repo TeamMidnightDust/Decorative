@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "lit=true": { "model": "decorative:block/white_lamp_on" },
+        "lit=false":  { "model": "decorative:block/white_lamp_off" }
+    }
+}

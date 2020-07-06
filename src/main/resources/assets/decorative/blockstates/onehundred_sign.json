@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "decorative:block/onehundred_sign" },
+        "facing=west":  { "model": "decorative:block/onehundred_sign", "y": 90 },
+        "facing=north": { "model": "decorative:block/onehundred_sign", "y": 180 },
+        "facing=east":  { "model": "decorative:block/onehundred_sign", "y": 270 }
+    }
+}

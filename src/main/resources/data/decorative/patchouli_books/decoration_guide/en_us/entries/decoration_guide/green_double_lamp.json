@@ -1,0 +1,18 @@
+{
+  "name": "Green Double Lamp",
+  "icon": "decorative:green_double_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:green_double_lamp",
+      "title": "Green Double Lamp",
+      "link_recipe": false,
+      "text": "A tall green double lamp."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:green_double_lamp"
+    }
+  ]
+}

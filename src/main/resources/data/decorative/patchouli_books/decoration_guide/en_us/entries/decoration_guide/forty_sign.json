@@ -1,0 +1,18 @@
+{
+  "name": "Speed Limit: 40 km/h",
+  "icon": "decorative:forty_sign",
+  "category": "decorative:traffic",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:forty_sign",
+      "title": "Speed Limit: 40 km/h",
+      "link_recipe": false,
+      "text": "Used for regulating speed of cars."
+    },
+	{
+      "type": "stonecutting",
+      "recipe": "decorative:empty_sign_to_forty_sign_stonecutting"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Traffic Cone",
+  "icon": "decorative:traffic_cone",
+  "category": "decorative:traffic",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:traffic_cone",
+      "title": "Traffic Cone",
+      "link_recipe": false,
+      "text": "A little pyramid shaped item used for blocking roads."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:traffic_cone"
+    }
+  ]
+}

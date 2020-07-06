@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "level=0": { "model": "decorative:block/bird_bath" },
+        "level=1": { "model": "decorative:block/bird_bath_level1" },
+        "level=2": { "model": "decorative:block/bird_bath_level2" },
+        "level=3": { "model": "decorative:block/bird_bath_level3" }
+    }
+}

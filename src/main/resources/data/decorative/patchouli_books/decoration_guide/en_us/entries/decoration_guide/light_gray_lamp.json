@@ -1,0 +1,18 @@
+{
+  "name": "Light Gray Lamp",
+  "icon": "decorative:light_gray_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:light_gray_lamp",
+      "title": "Light Gray Lamp",
+      "link_recipe": false,
+      "text": "A small light gray lamp."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:light_gray_lamp"
+    }
+  ]
+}

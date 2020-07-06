@@ -1,0 +1,18 @@
+{
+  "name": "Leitplanke",
+  "icon": "decorative:guardrail",
+  "category": "decorative:traffic",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:guardrail",
+      "title": "Leitplanke",
+      "link_recipe": false,
+      "text": "Wird benutzt, um die Breite einer Straße zu regulieren."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:guardrail"
+    }
+  ]
+}

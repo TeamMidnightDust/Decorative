@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#R#",
+        " B "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:light_blue_wool"
+        },
+        "R": {
+            "item": "minecraft:redstone_lamp"
+        },
+        "B": {
+            "item": "minecraft:black_terracotta"
+        }
+    },
+    "result": {
+        "item": "decorative:light_blue_lamp",
+        "count": 1
+    }
+}

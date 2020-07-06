@@ -1,0 +1,18 @@
+{
+  "name": "Dark Oak Log with Axe",
+  "icon": "decorative:dark_oak_log_with_axe",
+  "category": "decorative:garden",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:dark_oak_log_with_axe",
+      "title": "Dark Oak Log with Axe",
+      "link_recipe": false,
+      "text": "A dark oak log with an axe stuck inside it."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:dark_oak_log_with_axe"
+    }
+  ]
+}

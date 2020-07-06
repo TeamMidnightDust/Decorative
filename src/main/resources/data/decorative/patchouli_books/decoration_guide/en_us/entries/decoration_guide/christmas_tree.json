@@ -1,0 +1,18 @@
+{
+  "name": "Christmas Tree",
+  "icon": "decorative:christmas_tree",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:christmas_tree",
+      "title": "Christmas Tree",
+      "link_recipe": false,
+      "text": "A Christmas Tree with some presents."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:christmas_tree"
+    }
+  ]
+}

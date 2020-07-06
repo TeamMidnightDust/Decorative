@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:heavy_weighted_pressure_plate"
+        },
+        "I": {
+            "item": "minecraft:iron_bars"
+        }
+    },
+    "result": {
+        "item": "decorative:guardrail",
+        "count": 1
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Magenta Double Lamp",
+  "icon": "decorative:magenta_double_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:magenta_double_lamp",
+      "title": "Magenta Double Lamp",
+      "link_recipe": false,
+      "text": "A tall magenta double lamp."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:magenta_double_lamp"
+    }
+  ]
+}

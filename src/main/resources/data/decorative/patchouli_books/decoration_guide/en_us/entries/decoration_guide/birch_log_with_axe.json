@@ -1,0 +1,18 @@
+{
+  "name": "Birch Log with Axe",
+  "icon": "decorative:birch_log_with_axe",
+  "category": "decorative:garden",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:birch_log_with_axe",
+      "title": "Birch Log with Axe",
+      "link_recipe": false,
+      "text": "A birch log with an axe stuck inside it."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:birch_log_with_axe"
+    }
+  ]
+}

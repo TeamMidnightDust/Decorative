@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "lit=true": { "model": "decorative:block/ceilingfan_activated" },
+        "lit=false":  { "model": "decorative:block/ceilingfan" }
+    }
+}

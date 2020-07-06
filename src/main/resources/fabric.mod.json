@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "decorative",
+  "version": "1.0.0",
+
+  "name": "Decorative",
+  "description": "Adds many cool new decorative items with 3d models!",
+  "authors": [
+    "Motschen",
+    "TeamMidnightDust"
+  ],
+  "contact": {
+    "homepage": "https://www.midnightdust.eu/",
+    "sources": "https://github.com/TeamMidnightDust/StylishDecoration"
+  },
+
+  "license": "MIT",
+  "icon": "assets/decorative/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "eu.midnightdust.motschen.decorative.DecorativeMain"
+    ],
+    "client": [
+      "eu.midnightdust.motschen.decorative.DecorativeClient"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.7.2",
+    "fabric": "*"
+  },
+  "suggests": {
+    "dishes": "*",
+    "patchouli": "*"
+  }
+}

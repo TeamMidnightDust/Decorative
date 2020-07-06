@@ -1,0 +1,18 @@
+{
+  "name": "Speed Limit: 30 km/h",
+  "icon": "decorative:thirty_sign",
+  "category": "decorative:traffic",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:thirty_sign",
+      "title": "Speed Limit: 30 km/h",
+      "link_recipe": false,
+      "text": "Used for regulating speed of cars."
+    },
+	{
+      "type": "stonecutting",
+      "recipe": "decorative:empty_sign_to_thirty_sign_stonecutting"
+    }
+  ]
+}

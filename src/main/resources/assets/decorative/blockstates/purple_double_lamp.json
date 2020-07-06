@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "half=lower,lit=false": { "model": "decorative:block/double_lamp_bottom" },
+        "half=upper,lit=false": { "model": "decorative:block/purple_double_lamp_off_top" },
+		"half=lower,lit=true": { "model": "decorative:block/double_lamp_bottom" },
+        "half=upper,lit=true": { "model": "decorative:block/purple_double_lamp_on_top" }
+    }
+}

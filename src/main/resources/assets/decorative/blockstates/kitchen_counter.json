@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=down,open=false": { "model": "decorative:block/kitchen_counter", "x": 180 },
+        "facing=up,open=false": { "model": "decorative:block/kitchen_counter" },
+        "facing=north,open=false": { "model": "decorative:block/kitchen_counter", "x": 90 },
+        "facing=south,open=false": { "model": "decorative:block/kitchen_counter", "x": 0, "y": 90 },
+        "facing=west,open=false": { "model": "decorative:block/kitchen_counter", "x": 90, "y": 270 },
+        "facing=east,open=false": { "model": "decorative:block/kitchen_counter", "x": 90, "y": 90 },
+        "facing=down,open=true": { "model": "decorative:block/kitchen_counter_open", "x": 180 },
+        "facing=up,open=true": { "model": "decorative:block/kitchen_counter_open" },
+        "facing=north,open=true": { "model": "decorative:block/kitchen_counter_open", "x": 90 },
+        "facing=south,open=true": { "model": "decorative:block/kitchen_counter_open", "x": 0, "y": 90 },
+        "facing=west,open=true": { "model": "decorative:block/kitchen_counter_open", "x": 90, "y": 270 },
+        "facing=east,open=true": { "model": "decorative:block/kitchen_counter_open", "x": 90, "y": 90 }
+    }
+}

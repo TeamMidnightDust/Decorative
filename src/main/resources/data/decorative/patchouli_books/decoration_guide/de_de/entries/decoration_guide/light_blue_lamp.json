@@ -1,0 +1,18 @@
+{
+  "name": "Hellblaue Lampe",
+  "icon": "decorative:light_blue_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:light_blue_lamp",
+      "title": "Hellblaue Lampe",
+      "link_recipe": false,
+      "text": "Eine kleine hellblaue Lampe."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:light_blue_lamp"
+    }
+  ]
+}

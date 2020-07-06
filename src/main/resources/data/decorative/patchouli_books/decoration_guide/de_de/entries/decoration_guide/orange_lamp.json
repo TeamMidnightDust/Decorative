@@ -1,0 +1,18 @@
+{
+  "name": "Orangene Lampe",
+  "icon": "decorative:orange_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:orange_lamp",
+      "title": "Orangene Lampe",
+      "link_recipe": false,
+      "text": "Eine kleine orangene Lampe."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:orange_lamp"
+    }
+  ]
+}

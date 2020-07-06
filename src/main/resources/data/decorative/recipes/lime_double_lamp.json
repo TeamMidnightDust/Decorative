@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "decorative:lime_lamp"
+        }
+    },
+    "result": {
+        "item": "decorative:lime_double_lamp",
+        "count": 1
+    }
+}

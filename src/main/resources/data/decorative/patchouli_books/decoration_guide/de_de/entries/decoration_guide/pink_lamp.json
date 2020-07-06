@@ -1,0 +1,18 @@
+{
+  "name": "Pinke Lampe",
+  "icon": "decorative:pink_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:pink_lamp",
+      "title": "Pinke Lampe",
+      "link_recipe": false,
+      "text": "Eine kleine pinke Lampe."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:pink_lamp"
+    }
+  ]
+}

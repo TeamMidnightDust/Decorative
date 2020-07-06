@@ -1,0 +1,18 @@
+{
+  "name": "Brown Lamp",
+  "icon": "decorative:brown_lamp",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:brown_lamp",
+      "title": "Brown Lamp",
+      "link_recipe": false,
+      "text": "A small brown lamp."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:brown_lamp"
+    }
+  ]
+}
