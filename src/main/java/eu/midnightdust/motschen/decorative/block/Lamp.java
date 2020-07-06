@@ -2,6 +2,7 @@ package eu.midnightdust.motschen.decorative.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -18,7 +19,7 @@ public class Lamp extends RedstoneLampBlock {
     private static final VoxelShape SHAPE;
 
     public Lamp() {
-        super(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP).nonOpaque());
     }
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.setBlockState(pos, state.with(LIT, Boolean.valueOf(!state.get(LIT))));
@@ -26,7 +27,7 @@ public class Lamp extends RedstoneLampBlock {
         return ActionResult.SUCCESS;
     }
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
         return SHAPE;
     }
     static {

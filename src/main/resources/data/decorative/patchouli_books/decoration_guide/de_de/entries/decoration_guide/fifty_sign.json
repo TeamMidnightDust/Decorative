@@ -9,10 +9,6 @@
       "title": "Speed Limit: 50 km/h",
       "link_recipe": false,
       "text": "Used for regulating speed of cars."
-    },
-	{
-      "type": "stonecutting",
-      "recipe": "decorative:empty_sign_to_fifty_sign_stonecutting"
     }
   ]
 }

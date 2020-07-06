@@ -2,6 +2,7 @@ package eu.midnightdust.motschen.decorative.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -14,7 +15,7 @@ public class BirdBath extends CauldronBlock {
     private static final VoxelShape SHAPE;
 
     public BirdBath() {
-        super(FabricBlockSettings.copy(Blocks.CAULDRON).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.CAULDRON).nonOpaque());
         this.setDefaultState(this.stateManager.getDefaultState().with(LEVEL, 0));
     }
 
@@ -30,7 +31,7 @@ public class BirdBath extends CauldronBlock {
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
             return SHAPE;
     }
     static {

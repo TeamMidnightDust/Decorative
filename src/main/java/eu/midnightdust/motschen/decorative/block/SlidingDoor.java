@@ -3,6 +3,7 @@ package eu.midnightdust.motschen.decorative.block;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoorHinge;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -31,7 +32,7 @@ public class SlidingDoor extends DoorBlock {
     private static final VoxelShape WEST_SHAPE_OPEN;
 
     public SlidingDoor() {
-        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque());
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -41,7 +42,7 @@ public class SlidingDoor extends DoorBlock {
         return ActionResult.SUCCESS;
     }
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, EntityContext context) {
         state.get(FACING);
         boolean bl = !state.get(OPEN);
         boolean bl2 = state.get(HINGE) == DoorHinge.RIGHT;

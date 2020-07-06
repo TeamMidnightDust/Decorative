@@ -2,6 +2,7 @@ package eu.midnightdust.motschen.decorative.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -21,7 +22,7 @@ public class CeilingFan extends RedstoneLampBlock {
     private static final VoxelShape SHAPE;
 
     public CeilingFan() {
-        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque());
         this.setDefaultState(this.stateManager.getDefaultState().with(LIT, true));
     }
 
@@ -41,7 +42,7 @@ public class CeilingFan extends RedstoneLampBlock {
         builder.add(LIT);
     }
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
         return SHAPE;
     }
     static {

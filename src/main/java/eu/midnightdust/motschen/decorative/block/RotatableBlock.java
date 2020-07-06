@@ -15,7 +15,7 @@ import net.minecraft.world.WorldView;
 public class RotatableBlock extends HorizontalFacingBlock {
 
     public RotatableBlock() {
-        super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque());
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
@@ -28,6 +28,10 @@ public class RotatableBlock extends HorizontalFacingBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+    }
+
+    public boolean canPlaceAt(BlockState state, WorldView worldView, BlockPos pos) {
+        return !worldView.isAir(pos.down());
     }
 
 }

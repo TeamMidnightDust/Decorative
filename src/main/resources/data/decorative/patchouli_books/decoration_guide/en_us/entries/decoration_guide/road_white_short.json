@@ -9,10 +9,6 @@
       "title": "Road with short white stripe",
       "link_recipe": false,
       "text": "A road with a short white stripe in the middle."
-    },
-	{
-      "type": "stonecutting",
-      "recipe": "decorative:road_to_road_white_short_stonecutting"
     }
   ]
 }

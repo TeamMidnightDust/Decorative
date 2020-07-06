@@ -9,10 +9,6 @@
       "title": "Speed Limit: 80 km/h",
       "link_recipe": false,
       "text": "Wird benutzt, um die Geschwindigkeit von Autos zu regulieren."
-    },
-	{
-      "type": "stonecutting",
-      "recipe": "decorative:empty_sign_to_eighty_sign_stonecutting"
     }
   ]
 }

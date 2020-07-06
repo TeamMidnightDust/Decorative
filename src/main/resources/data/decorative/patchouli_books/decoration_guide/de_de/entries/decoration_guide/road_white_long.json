@@ -9,10 +9,6 @@
       "title": "Straße mit langem weißem Streifen",
       "link_recipe": false,
       "text": "Eine Straße mit einem langem weißem Streifen in der Mitte."
-    },
-	{
-      "type": "stonecutting",
-      "recipe": "decorative:road_to_road_white_long_stonecutting"
     }
   ]
 }

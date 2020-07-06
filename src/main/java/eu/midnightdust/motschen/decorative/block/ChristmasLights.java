@@ -2,6 +2,7 @@ package eu.midnightdust.motschen.decorative.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -29,7 +30,7 @@ public class ChristmasLights extends HorizontalFacingBlock {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
     public ChristmasLights() {
-        super(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP).nonOpaque());
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(LIT, Boolean.FALSE));
     }
 
@@ -52,7 +53,7 @@ public class ChristmasLights extends HorizontalFacingBlock {
         builder.add(LIT);
     }
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
         switch (state.get(FACING)) {
             case NORTH: return NORTH_SHAPE;
             case EAST: return EAST_SHAPE;

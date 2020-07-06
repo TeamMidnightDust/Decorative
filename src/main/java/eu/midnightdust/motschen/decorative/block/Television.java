@@ -4,6 +4,7 @@ import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.Program;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -31,7 +32,7 @@ public class Television extends HorizontalFacingBlock {
     private static final EnumProperty<Program> PROGRAM = DecorativeMain.PROGRAM;
 
     public Television() {
-        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque());
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(PROGRAM, Program.OFF));
     }
 
@@ -69,7 +70,7 @@ public class Television extends HorizontalFacingBlock {
         builder.add(PROGRAM);
     }
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
         switch (state.get(FACING)) {
             case NORTH: return NORTH_SHAPE;
             case EAST: return EAST_SHAPE;

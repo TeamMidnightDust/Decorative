@@ -9,18 +9,6 @@
       "title": "Road",
       "link_recipe": false,
       "text": "A road is a surface ideal for driving on it."
-    },
-	{
-      "type": "stonecutting",
-      "recipe": "decorative:rocky_asphalt_to_road_stonecutting"
-    },
-	{
-      "type": "stonecutting",
-      "recipe": "decorative:road_to_road_white_short_stonecutting"
-    },
-	{
-      "type": "stonecutting",
-      "recipe": "decorative:road_to_road_white_short_stonecutting"
     }
   ]
 }

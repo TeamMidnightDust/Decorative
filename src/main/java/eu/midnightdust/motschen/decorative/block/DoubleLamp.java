@@ -1,14 +1,13 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import blue.endless.jankson.annotation.Nullable;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -23,7 +22,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 public class DoubleLamp extends RedstoneLampBlock {
@@ -34,7 +32,7 @@ public class DoubleLamp extends RedstoneLampBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
 
     public DoubleLamp() {
-        super(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP).nonOpaque());
         this.setDefaultState(this.stateManager.getDefaultState().with(LIT, false).with(HALF, DoubleBlockHalf.LOWER));
     }
 
@@ -45,7 +43,6 @@ public class DoubleLamp extends RedstoneLampBlock {
     }
 
     @Override
-    @Nullable
     public BlockState getPlacementState(ItemPlacementContext arg) {
         return this.getDefaultState().with(LIT, arg.getWorld().isReceivingRedstonePower(arg.getBlockPos()));
     }
@@ -54,36 +51,30 @@ public class DoubleLamp extends RedstoneLampBlock {
     public void onPlaced(World arg, BlockPos arg2, BlockState arg3, LivingEntity arg4, ItemStack arg5) {
         arg.setBlockState(arg2.up(), arg3.with(HALF, DoubleBlockHalf.UPPER), 3);
     }
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState arg, Direction arg2, BlockState arg3, WorldAccess arg4, BlockPos arg5, BlockPos arg6) {
-        DoubleBlockHalf lv = arg.get(HALF);
-        if (arg2.getAxis() == Direction.Axis.Y && lv == DoubleBlockHalf.LOWER == (arg2 == Direction.UP)) {
-            if (arg3.isOf(this) && arg3.get(HALF) != lv) {
-                return (arg.with(LIT, arg3.get(LIT)));
-            }
-            return Blocks.AIR.getDefaultState();
+    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos, boolean moved) {
+        boolean bl = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.offset(state.get(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
+        if (block != this && bl != state.get(LIT)) {
+            world.setBlockState(pos, state.with(LIT, bl), 2);
         }
-        if (lv == DoubleBlockHalf.LOWER && arg2 == Direction.DOWN && !arg.canPlaceAt(arg4, arg5)) {
-            return Blocks.AIR.getDefaultState();
-        }
-        return super.getStateForNeighborUpdate(arg, arg2, arg3, arg4, arg5, arg6);
+
     }
 
-    @Override
-    public boolean canPlaceAt(BlockState arg, WorldView arg2, BlockPos arg3) {
-        BlockPos lv = arg3.down();
-        BlockState lv2 = arg2.getBlockState(lv);
-        if (arg.get(HALF) == DoubleBlockHalf.LOWER) {
-            return lv2.isSideSolidFullSquare(arg2, lv, Direction.UP);
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        BlockPos blockPos = pos.down();
+        BlockState blockState = world.getBlockState(blockPos);
+        if (state.get(HALF) == DoubleBlockHalf.LOWER) {
+            return blockState.isSideSolidFullSquare(world, blockPos, Direction.UP);
+        } else {
+            return blockState.getBlock() == this;
         }
-        return lv2.isOf(this);
     }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> arg) {
         arg.add(LIT);
         arg.add(HALF);
     }
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, EntityContext context) {
         boolean bl = state.get(HALF) == DoubleBlockHalf.UPPER;
         return bl ? SHAPE_TOP : SHAPE_BOTTOM;
     }

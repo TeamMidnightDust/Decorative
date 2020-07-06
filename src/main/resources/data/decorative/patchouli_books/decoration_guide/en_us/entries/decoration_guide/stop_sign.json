@@ -9,10 +9,6 @@
       "title": "Stop Sign",
       "link_recipe": false,
       "text": "Used for regulating traffic."
-    },
-	{
-      "type": "stonecutting",
-      "recipe": "decorative:empty_sign_to_stop_sign_stonecutting"
     }
   ]
 }

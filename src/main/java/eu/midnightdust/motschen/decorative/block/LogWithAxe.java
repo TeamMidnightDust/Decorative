@@ -12,7 +12,7 @@ import net.minecraft.world.WorldView;
 public class LogWithAxe extends HorizontalFacingBlock {
 
     public LogWithAxe() {
-        super(FabricBlockSettings.copy(Blocks.OAK_PLANKS).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.OAK_PLANKS).nonOpaque());
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
