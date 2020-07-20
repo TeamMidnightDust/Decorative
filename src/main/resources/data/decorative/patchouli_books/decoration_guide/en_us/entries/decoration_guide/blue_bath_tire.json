@@ -1,0 +1,18 @@
+{
+  "name": "Blue Bath Tire",
+  "icon": "decorative:blue_bath_tire",
+  "category": "decorative:pool",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:blue_bath_tire",
+      "title": "Blue Bath Tire",
+      "link_recipe": false,
+      "text": "A nice toy for summer days."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:blue_bath_tire"
+    }
+  ]
+}

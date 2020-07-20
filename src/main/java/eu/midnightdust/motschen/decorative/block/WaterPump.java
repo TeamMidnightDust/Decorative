@@ -2,18 +2,11 @@ package eu.midnightdust.motschen.decorative.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BannerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.potion.Potions;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -38,7 +31,7 @@ public class WaterPump extends HorizontalFacingBlock {
     }
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (!itemStack.isEmpty()) {
+        if (!itemStack.isEmpty() && hand==Hand.MAIN_HAND) {
             if (itemStack.getItem() == Items.BUCKET) {
                 if (!world.isClient) {
                     if (!player.abilities.creativeMode) {

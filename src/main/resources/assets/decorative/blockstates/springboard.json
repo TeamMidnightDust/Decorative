@@ -1,0 +1,12 @@
+{
+    "variants": {
+		"facing=north,part=back": { "model": "decorative:block/springboard_back", "y": 90 },
+        "facing=north,part=front": { "model": "decorative:block/springboard_front", "y": 90 },
+		"facing=east,part=back": { "model": "decorative:block/springboard_back", "y": 180 },
+        "facing=east,part=front": { "model": "decorative:block/springboard_front", "y": 180 },
+		"facing=south,part=back": { "model": "decorative:block/springboard_back", "y": 270 },
+        "facing=south,part=front": { "model": "decorative:block/springboard_front", "y": 270 },
+		"facing=west,part=back": { "model": "decorative:block/springboard_back" },
+        "facing=west,part=front": { "model": "decorative:block/springboard_front" }
+    }
+}

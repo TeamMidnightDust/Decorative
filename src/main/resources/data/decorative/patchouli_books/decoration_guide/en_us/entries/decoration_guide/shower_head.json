@@ -1,0 +1,18 @@
+{
+  "name": "Shower Head",
+  "icon": "decorative:shower_head",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:shower_head",
+      "title": "Shower Head",
+      "link_recipe": false,
+      "text": "Everyone sometimes needs a shower."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:shower_head"
+    }
+  ]
+}

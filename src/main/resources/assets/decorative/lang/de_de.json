@@ -2,7 +2,7 @@
     // ItemGroups //
 	"itemGroup.decorative.indoor":"Decorative - Innen",
 	"itemGroup.decorative.traffic":"Decorative - Verkehr",
-	"itemGroup.decorative.garden":"Decorative - Garden",
+	"itemGroup.decorative.garden":"Decorative - Garten",
 	
 	"text.decorative.landing_text":"Das ist eine Anleitung, wie du die verschiedenen Dekorationen der Mod Decorative herstellst. Es gibt Lampen, Fernseher, Deckenventillatoren und vieles mehr.",
 	"book.decorative.decoration_guide":"Dekorationshandbuch",
@@ -81,5 +81,31 @@
 	"block.decorative.eighty_sign":"Tempo Limit: 80 km/h",
 	"block.decorative.ninety_sign":"Tempo Limit: 90 km/h",
 	"block.decorative.onehundred_sign":"Tempo Limit: 100 km/h",
-	"block.decorative.onehundredten_sign":"Tempo Limit: 110 km/h"
+	"block.decorative.onehundredten_sign":"Tempo Limit: 110 km/h",
+	
+	//* 2.0 - Summer 2020 Update *//
+	"itemGroup.decorative.pool":"Decorative - Pool",
+	"item.decorative.white_bath_tire":"Weißer Schwimmreifen",
+	"item.decorative.orange_bath_tire":"Orangener Schwimmreifen",
+	"item.decorative.magenta_bath_tire":"Magenta Schwimmreifen",
+	"item.decorative.light_blue_bath_tire":"Hellblauer Schwimmreifen",
+	"item.decorative.yellow_bath_tire":"Gelber Schwimmreifen",
+	"item.decorative.lime_bath_tire":"Hellgrüner Schwimmreifen",
+	"item.decorative.pink_bath_tire":"Pinker Schwimmreifen",
+	"item.decorative.gray_bath_tire":"Grauer Schwimmreifen",
+	"item.decorative.light_gray_bath_tire":"Hellgrauer Schwimmreifen",
+	"item.decorative.cyan_bath_tire":"Cyanener Schwimmreifen",
+	"item.decorative.purple_bath_tire":"Lila Schwimmreifen",
+	"item.decorative.blue_bath_tire":"Blauer Schwimmreifen",
+	"item.decorative.brown_bath_tire":"Brauner Schwimmreifen",
+	"item.decorative.green_bath_tire":"Grüner Schwimmreifen",
+	"item.decorative.red_bath_tire":"Roter Schwimmreifen",
+	"item.decorative.black_bath_tire":"Schwarzer Schwimmreifen",
+	"item.decorative.duck_bath_tire":"Enten-Schwimmreifen",
+	
+	"item.decorative.beach_ball":"Beach Ball",
+	"block.decorative.pool_wall":"Poolwand",
+	"block.decorative.springboard":"Sprungbrett",
+	"block.decorative.pool_sprinkler":"Wasserspeier",
+	"block.decorative.shower_head":"Duschkopf"
 }

@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:white_concrete"
+        },
+        {
+            "item": "minecraft:white_concrete"
+        },
+        {
+            "item": "minecraft:white_concrete"
+        }
+    ],
+    "result": {
+        "item": "decorative:pool_wall",
+        "count": 6
+    }
+}

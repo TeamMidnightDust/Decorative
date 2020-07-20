@@ -33,7 +33,7 @@ public class FireHydrant extends HorizontalFacingBlock {
     }
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (!itemStack.isEmpty()) {
+        if (!itemStack.isEmpty() && hand==Hand.MAIN_HAND) {
             if (itemStack.getItem() == Items.BUCKET) {
                 if (!world.isClient) {
                     if (!player.abilities.creativeMode) {

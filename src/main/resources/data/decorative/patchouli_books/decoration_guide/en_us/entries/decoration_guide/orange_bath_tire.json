@@ -1,0 +1,18 @@
+{
+  "name": "Orange Bath Tire",
+  "icon": "decorative:orange_bath_tire",
+  "category": "decorative:pool",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:orange_bath_tire",
+      "title": "Orange Bath Tire",
+      "link_recipe": false,
+      "text": "A nice toy for summer days."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:orange_bath_tire"
+    }
+  ]
+}

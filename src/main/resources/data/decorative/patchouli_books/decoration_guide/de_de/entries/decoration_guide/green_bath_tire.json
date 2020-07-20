@@ -1,0 +1,18 @@
+{
+  "name": "Grüner Schwimmreifen",
+  "icon": "decorative:green_bath_tire",
+  "category": "decorative:pool",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:green_bath_tire",
+      "title": "Grüner Schwimmreifen",
+      "link_recipe": false,
+      "text": "Ein schöner Reifen für deinen Pool."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:green_bath_tire"
+    }
+  ]
+}

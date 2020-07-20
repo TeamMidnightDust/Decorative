@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=east,shape=straight":  { "model": "decorative:block/pool_wall" },
+        "facing=west,shape=straight":  { "model": "decorative:block/pool_wall", "y": 180, "uvlock": true },
+        "facing=south,shape=straight": { "model": "decorative:block/pool_wall", "y": 90, "uvlock": true },
+        "facing=north,shape=straight": { "model": "decorative:block/pool_wall", "y": 270, "uvlock": true },
+        "facing=east,shape=inner_left":  { "model": "decorative:block/pool_wall_corner" },
+        "facing=west,shape=inner_left":  { "model": "decorative:block/pool_wall_corner", "y": 180, "uvlock": true },
+        "facing=south,shape=inner_left": { "model": "decorative:block/pool_wall_corner", "y": 90, "uvlock": true },
+        "facing=north,shape=inner_left": { "model": "decorative:block/pool_wall_corner", "y": 270, "uvlock": true },
+        "facing=east,shape=inner_right":  { "model": "decorative:block/pool_wall_corner", "y": 90, "uvlock": true },
+        "facing=west,shape=inner_right":  { "model": "decorative:block/pool_wall_corner", "y": 270, "uvlock": true },
+        "facing=south,shape=inner_right": { "model": "decorative:block/pool_wall_corner", "y": 180, "uvlock": true },
+        "facing=north,shape=inner_right": { "model": "decorative:block/pool_wall_corner" }
+    }
+}

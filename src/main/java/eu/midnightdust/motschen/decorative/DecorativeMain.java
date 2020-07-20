@@ -20,7 +20,10 @@ public class DecorativeMain implements ModInitializer {
     public static final ItemGroup IndoorGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "indoor"), () -> new ItemStack(DecorativeMain.Television));
     public static final ItemGroup TrafficGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "traffic"), () -> new ItemStack(DecorativeMain.TrafficCone));
     public static final ItemGroup GardenGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "garden"), () -> new ItemStack(LogsWithAxes.OakLogWithAxe));
+    public static final ItemGroup PoolGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "pool"), () -> new ItemStack(Pool.BEACH_BALL_ITEM));
     public static final EnumProperty<Program> PROGRAM = EnumProperty.of("program", Program.class);
+    public static final EnumProperty<PoolShape> POOL_SHAPE = EnumProperty.of("shape", PoolShape.class);
+    public static final EnumProperty<Part> PART = EnumProperty.of("part", Part.class);
     public static Block RockyAsphalt = new Block(FabricBlockSettings.copyOf(Blocks.COAL_ORE));
     public static Block Road = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
     public static Block RoadWhiteShort = new RotatableBlock();
@@ -38,9 +41,11 @@ public class DecorativeMain implements ModInitializer {
     public static Block BirdBath = new BirdBath();
     public static Block ChristmasTree = new ChristmasTree();
     public static Block ChristmasLights = new ChristmasLights();
+    public static Block ShowerHead = new ShowerHead();
 
     @Override
     public void onInitialize() {
+        BlockEntities.init();
         // Traffic //
         Registry.register(Registry.BLOCK, new Identifier("decorative","rocky_asphalt"), RockyAsphalt);
         Registry.register(Registry.ITEM, new Identifier("decorative","rocky_asphalt"), new BlockItem(RockyAsphalt, new Item.Settings().group(DecorativeMain.TrafficGroup)));
@@ -66,6 +71,7 @@ public class DecorativeMain implements ModInitializer {
         Registry.register(Registry.BLOCK, new Identifier("decorative","water_pump"), WaterPump);
         Registry.register(Registry.ITEM, new Identifier("decorative","water_pump"), new BlockItem(WaterPump, new Item.Settings().group(DecorativeMain.GardenGroup)));
         LogsWithAxes.init();
+        Pool.init();
         
         //Furniture//
         Registry.register(Registry.BLOCK, new Identifier("decorative","kitchen_tiles"), KitchenTiles);
@@ -76,6 +82,8 @@ public class DecorativeMain implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("decorative","old_television"), new BlockItem(OldTelevision, new Item.Settings().group(DecorativeMain.IndoorGroup)));
         Registry.register(Registry.BLOCK, new Identifier("decorative","ceilingfan"), CeilingFan);
         Registry.register(Registry.ITEM, new Identifier("decorative","ceilingfan"), new BlockItem(CeilingFan, new Item.Settings().group(DecorativeMain.IndoorGroup)));
+        Registry.register(Registry.BLOCK, new Identifier("decorative","shower_head"), ShowerHead);
+        Registry.register(Registry.ITEM, new Identifier("decorative","shower_head"), new BlockItem(ShowerHead, new Item.Settings().group(DecorativeMain.IndoorGroup)));
         Registry.register(Registry.BLOCK, new Identifier("decorative","sliding_door"), SlidingDoor);
         Registry.register(Registry.ITEM, new Identifier("decorative","sliding_door"), new BlockItem(SlidingDoor, new Item.Settings().group(DecorativeMain.IndoorGroup)));
         Registry.register(Registry.BLOCK, new Identifier("decorative","christmas_tree"), ChristmasTree);

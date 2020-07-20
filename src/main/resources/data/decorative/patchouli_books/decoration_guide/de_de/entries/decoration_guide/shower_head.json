@@ -1,0 +1,18 @@
+{
+  "name": "Duschkopf",
+  "icon": "decorative:shower_head",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:shower_head",
+      "title": "Duschkopf",
+      "link_recipe": false,
+      "text": "Jeder braucht manchmal eine Dusche."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:shower_head"
+    }
+  ]
+}

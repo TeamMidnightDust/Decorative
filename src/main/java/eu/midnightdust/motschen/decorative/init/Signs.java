@@ -1,7 +1,6 @@
 package eu.midnightdust.motschen.decorative.init;
 
 import eu.midnightdust.motschen.decorative.DecorativeMain;
-import eu.midnightdust.motschen.decorative.block.LogWithAxe;
 import eu.midnightdust.motschen.decorative.block.Sign;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;

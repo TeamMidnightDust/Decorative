@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "decorative:block/shower_head", "y": 90 },
+        "facing=west":  { "model": "decorative:block/shower_head", "y": 180 },
+        "facing=north": { "model": "decorative:block/shower_head", "y": 270 },
+        "facing=east":  { "model": "decorative:block/shower_head" }
+    }
+}

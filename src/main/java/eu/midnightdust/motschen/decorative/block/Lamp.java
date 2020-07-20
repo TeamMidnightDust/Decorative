@@ -20,6 +20,7 @@ public class Lamp extends RedstoneLampBlock {
     public Lamp() {
         super(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP).nonOpaque().sounds(BlockSoundGroup.STONE));
     }
+
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.setBlockState(pos, state.with(LIT, Boolean.valueOf(!state.get(LIT))));
         world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 0.5f);

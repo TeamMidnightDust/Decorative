@@ -1,0 +1,6 @@
+{
+	"parent": "decorative:item/bath_tire",
+	"textures": {
+		"0": "minecraft:block/cyan_concrete"
+	}
+}

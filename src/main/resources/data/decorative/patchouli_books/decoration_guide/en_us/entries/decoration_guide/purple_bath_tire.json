@@ -1,0 +1,18 @@
+{
+  "name": "Purple Bath Tire",
+  "icon": "decorative:purple_bath_tire",
+  "category": "decorative:pool",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:purple_bath_tire",
+      "title": "Purple Bath Tire",
+      "link_recipe": false,
+      "text": "A nice toy for summer days."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:purple_bath_tire"
+    }
+  ]
+}

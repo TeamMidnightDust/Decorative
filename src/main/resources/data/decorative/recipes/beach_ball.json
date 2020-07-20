@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#YL",
+        "#YL",
+        "#YL"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:red_concrete"
+        },
+        "Y": {
+            "item": "minecraft:yellow_concrete"
+        },
+        "L": {
+            "item": "minecraft:light_blue_concrete"
+        }
+    },
+    "result": {
+        "item": "decorative:beach_ball",
+        "count": 1
+    }
+}

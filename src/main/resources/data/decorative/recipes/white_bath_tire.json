@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "# #",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:white_concrete"
+        }
+    },
+    "result": {
+        "item": "decorative:white_bath_tire",
+        "count": 1
+    }
+}

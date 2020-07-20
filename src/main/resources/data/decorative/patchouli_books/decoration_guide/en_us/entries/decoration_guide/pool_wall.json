@@ -1,0 +1,18 @@
+{
+  "name": "Pool Wall",
+  "icon": "decorative:pool_wall",
+  "category": "decorative:pool",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:pool_wall",
+      "title": "Pool Wall",
+      "link_recipe": false,
+      "text": "Can be used to create very nice looking pools."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:pool_wall"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
 	"credit": "made by Motschen",
-	"parent": "block",
+	"parent": "block/block",
 	"textures": {
 		"0": "block/glass",
 		"1": "block/white_concrete",

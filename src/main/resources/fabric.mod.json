@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "decorative",
-  "version": "1.0.0",
+  "version": "2.0.0 - Summer 2020 Update",
 
   "name": "Decorative",
   "description": "Adds many cool new decorative items with 3d models!",
@@ -11,7 +11,7 @@
   ],
   "contact": {
     "homepage": "https://www.midnightdust.eu/",
-    "sources": "https://github.com/TeamMidnightDust/StylishDecoration"
+    "issues": "https://github.com/TeamMidnightDust/Decorative/issues"
   },
 
   "license": "MIT",

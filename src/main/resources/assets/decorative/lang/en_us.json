@@ -81,5 +81,31 @@
 	"block.decorative.eighty_sign":"Tempo Limit: 80 km/h",
 	"block.decorative.ninety_sign":"Tempo Limit: 90 km/h",
 	"block.decorative.onehundred_sign":"Tempo Limit: 100 km/h",
-	"block.decorative.onehundredten_sign":"Tempo Limit: 110 km/h"
+	"block.decorative.onehundredten_sign":"Tempo Limit: 110 km/h",
+	
+	//* 2.0 - Summer 2020 Update *//
+	"itemGroup.decorative.pool":"Decorative - Pool",
+	"item.decorative.white_bath_tire":"White Bath Tire",
+	"item.decorative.orange_bath_tire":"Orange Bath Tire",
+	"item.decorative.magenta_bath_tire":"Magenta Bath Tire",
+	"item.decorative.light_blue_bath_tire":"Light Blue Bath Tire",
+	"item.decorative.yellow_bath_tire":"Yellow Bath Tire",
+	"item.decorative.lime_bath_tire":"Lime Bath Tire",
+	"item.decorative.pink_bath_tire":"Pink Bath Tire",
+	"item.decorative.gray_bath_tire":"Gray Bath Tire",
+	"item.decorative.light_gray_bath_tire":"Light Gray Bath Tire",
+	"item.decorative.cyan_bath_tire":"Cyan Bath Tire",
+	"item.decorative.purple_bath_tire":"Purple Bath Tire",
+	"item.decorative.blue_bath_tire":"Blue Bath Tire",
+	"item.decorative.brown_bath_tire":"Brown Bath Tire",
+	"item.decorative.green_bath_tire":"Green Bath Tire",
+	"item.decorative.red_bath_tire":"Red Bath Tire",
+	"item.decorative.black_bath_tire":"Black Bath Tire",
+	"item.decorative.duck_bath_tire":"Duck Bath Tire",
+	
+	"item.decorative.beach_ball":"Beach Ball",
+	"block.decorative.pool_wall":"Pool Wall",
+	"block.decorative.springboard":"Springboard",
+	"block.decorative.pool_sprinkler":"Pool Sprinkler",
+	"block.decorative.shower_head":"Shower Head"
 }
