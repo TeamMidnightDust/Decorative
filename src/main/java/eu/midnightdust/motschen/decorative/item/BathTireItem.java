@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -42,7 +43,7 @@ public class BathTireItem extends Item {
                 return TypedActionResult.pass(itemStack);
             } else if (world.canPlayerModifyAt(user, blockPos) && user.canPlaceOn(blockPos, blockHitResult.getSide(), itemStack)) {
                 EntityType<?> entityType = this.getEntityType(itemStack.getTag());
-                if (entityType.spawnFromItemStack(world, itemStack, user, blockPos.up(1), SpawnReason.SPAWN_EGG, false, false) == null) {
+                if (entityType.spawnFromItemStack((ServerWorld) world, itemStack, user, blockPos.up(1), SpawnReason.SPAWN_EGG, false, false) == null) {
                     return TypedActionResult.pass(itemStack);
                 } else {
                     if (!user.abilities.creativeMode) {

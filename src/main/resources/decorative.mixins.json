@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "eu.midnightdust.motschen.decorative.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "DefaultBiomeFeaturesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

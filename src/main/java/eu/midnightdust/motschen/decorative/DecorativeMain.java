@@ -90,30 +90,9 @@ public class DecorativeMain implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("decorative","christmas_tree"), new BlockItem(ChristmasTree, new Item.Settings().group(DecorativeMain.IndoorGroup)));
         Registry.register(Registry.BLOCK, new Identifier("decorative","christmas_lights"), ChristmasLights);
         Registry.register(Registry.ITEM, new Identifier("decorative","christmas_lights"), new BlockItem(ChristmasLights, new Item.Settings().group(DecorativeMain.IndoorGroup)));
+
         Lamps.init();
         DoubleLamps.init();
-        eu.midnightdust.motschen.decorative.world.RockyAsphalt.initBiomeFeatures();
-    }
-    public enum Ores implements ItemConvertible {
-        RockyAsphalt(7, 20, 14, 200);
-
-        public final String name;
-        public final int veinSize;
-        public final int veinsPerChunk;
-        public final int minY;
-        public final int maxY;
-
-        Ores(int veinSize, int veinsPerChunk, int minY, int maxY) {
-            name = this.toString().toLowerCase(Locale.ROOT);
-            this.veinSize = veinSize;
-            this.veinsPerChunk = veinsPerChunk;
-            this.minY = minY;
-            this.maxY = maxY;
-        }
-
-        @Override
-        public Item asItem() {
-            return RockyAsphalt.asItem();
-        }
+        OreFeatures.init();
     }
 }
