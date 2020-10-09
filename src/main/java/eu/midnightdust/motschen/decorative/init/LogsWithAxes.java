@@ -1,7 +1,7 @@
 package eu.midnightdust.motschen.decorative.init;
 
 import eu.midnightdust.motschen.decorative.DecorativeMain;
-import eu.midnightdust.motschen.decorative.block.LogWithAxe;
+import eu.midnightdust.motschen.decorative.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -9,25 +9,25 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class LogsWithAxes {
-    public static Block OakLogWithAxe = new LogWithAxe();
-    public static Block SpruceLogWithAxe = new LogWithAxe();
-    public static Block BirchLogWithAxe = new LogWithAxe();
-    public static Block AcaciaLogWithAxe = new LogWithAxe();
-    public static Block JungleLogWithAxe = new LogWithAxe();
-    public static Block DarkOakLogWithAxe = new LogWithAxe();
+    public static Block OakChoppingLog = new OakChoppingLog();
+    public static Block SpruceChoppingLog = new SpruceChoppingLog();
+    public static Block BirchChoppingLog = new BirchChoppingLog();
+    public static Block AcaciaChoppingLog = new AcaciaChoppingLog();
+    public static Block JungleChoppingLog = new JungleChoppingLog();
+    public static Block DarkOakChoppingLog = new DarkOakChoppingLog();
 
     public static void init() {
-        Registry.register(Registry.BLOCK, new Identifier("decorative","oak_log_with_axe"), OakLogWithAxe);
-        Registry.register(Registry.ITEM, new Identifier("decorative","oak_log_with_axe"), new BlockItem(OakLogWithAxe, new Item.Settings().group(DecorativeMain.GardenGroup)));
-        Registry.register(Registry.BLOCK, new Identifier("decorative","spruce_log_with_axe"), SpruceLogWithAxe);
-        Registry.register(Registry.ITEM, new Identifier("decorative","spruce_log_with_axe"), new BlockItem(SpruceLogWithAxe, new Item.Settings().group(DecorativeMain.GardenGroup)));
-        Registry.register(Registry.BLOCK, new Identifier("decorative","birch_log_with_axe"), BirchLogWithAxe);
-        Registry.register(Registry.ITEM, new Identifier("decorative","birch_log_with_axe"), new BlockItem(BirchLogWithAxe, new Item.Settings().group(DecorativeMain.GardenGroup)));
-        Registry.register(Registry.BLOCK, new Identifier("decorative","acacia_log_with_axe"), AcaciaLogWithAxe);
-        Registry.register(Registry.ITEM, new Identifier("decorative","acacia_log_with_axe"), new BlockItem(AcaciaLogWithAxe, new Item.Settings().group(DecorativeMain.GardenGroup)));
-        Registry.register(Registry.BLOCK, new Identifier("decorative","jungle_log_with_axe"), JungleLogWithAxe);
-        Registry.register(Registry.ITEM, new Identifier("decorative","jungle_log_with_axe"), new BlockItem(JungleLogWithAxe, new Item.Settings().group(DecorativeMain.GardenGroup)));
-        Registry.register(Registry.BLOCK, new Identifier("decorative","dark_oak_log_with_axe"), DarkOakLogWithAxe);
-        Registry.register(Registry.ITEM, new Identifier("decorative","dark_oak_log_with_axe"), new BlockItem(DarkOakLogWithAxe, new Item.Settings().group(DecorativeMain.GardenGroup)));
+        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"oak_log_with_axe"), OakChoppingLog);
+        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"oak_log_with_axe"), new BlockItem(OakChoppingLog, new Item.Settings().group(DecorativeMain.GardenGroup)));
+        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"spruce_log_with_axe"), SpruceChoppingLog);
+        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"spruce_log_with_axe"), new BlockItem(SpruceChoppingLog, new Item.Settings().group(DecorativeMain.GardenGroup)));
+        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"birch_log_with_axe"), BirchChoppingLog);
+        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"birch_log_with_axe"), new BlockItem(BirchChoppingLog, new Item.Settings().group(DecorativeMain.GardenGroup)));
+        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"acacia_log_with_axe"), AcaciaChoppingLog);
+        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"acacia_log_with_axe"), new BlockItem(AcaciaChoppingLog, new Item.Settings().group(DecorativeMain.GardenGroup)));
+        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"jungle_log_with_axe"), JungleChoppingLog);
+        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"jungle_log_with_axe"), new BlockItem(JungleChoppingLog, new Item.Settings().group(DecorativeMain.GardenGroup)));
+        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"dark_oak_log_with_axe"), DarkOakChoppingLog);
+        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"dark_oak_log_with_axe"), new BlockItem(DarkOakChoppingLog, new Item.Settings().group(DecorativeMain.GardenGroup)));
     }
 }

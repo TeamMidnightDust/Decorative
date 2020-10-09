@@ -1,11 +1,14 @@
 package eu.midnightdust.motschen.decorative;
 
+import eu.midnightdust.motschen.decorative.block.render.*;
 import eu.midnightdust.motschen.decorative.entity.client.renderer.*;
 import eu.midnightdust.motschen.decorative.init.BathTires;
+import eu.midnightdust.motschen.decorative.init.BlockEntities;
 import eu.midnightdust.motschen.decorative.init.Pool;
 import eu.midnightdust.motschen.decorative.init.Signs;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.block.Block;
@@ -17,6 +20,7 @@ public class DecorativeClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+
         EntityRendererRegistry.INSTANCE.register(Pool.BEACH_BALL, (dispatcher, context) -> new BeachBallRenderer(dispatcher));
 
         EntityRendererRegistry.INSTANCE.register(BathTires.WHITE_BATH_TIRE, (dispatcher, context) -> new WhiteBathTireRenderer(dispatcher));
@@ -61,6 +65,15 @@ public class DecorativeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.CeilingFan);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.SlidingDoor);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),DecorativeMain.BirdBath);
+
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.CeilingFanBlockEntity, CeilingFanRenderer::new);
+
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.OakChoppingLogBlockEntity, OakChoppingLogBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.SpruceChoppingLogBlockEntity, SpruceChoppingLogBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.BirchChoppingLogBlockEntity, BirchChoppingLogBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.AcaciaChoppingLogBlockEntity, AcaciaChoppingLogBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.JungleChoppingLogBlockEntity, JungleChoppingLogBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.DarkOakChoppingLogBlockEntity, DarkOakChoppingLogBlockEntityRenderer::new);
 
     }
     public void registerBlockColor(Block block, Block templateBlock) {

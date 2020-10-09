@@ -1,7 +1,7 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import eu.midnightdust.motschen.decorative.DecorativeMain;
-import eu.midnightdust.motschen.decorative.Program;
+import eu.midnightdust.motschen.decorative.blockstates.Program;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,6 +22,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
+import java.util.function.ToIntFunction;
+
 public class OldTelevision extends HorizontalFacingBlock {
 
     private static final VoxelShape NORTH_SHAPE;
@@ -31,7 +33,7 @@ public class OldTelevision extends HorizontalFacingBlock {
     private static final EnumProperty<Program> PROGRAM = DecorativeMain.PROGRAM;
 
     public OldTelevision() {
-        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).lightLevel(createLightLevelFromBlockState(15)));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(PROGRAM, Program.OFF));
     }
 
@@ -100,6 +102,17 @@ public class OldTelevision extends HorizontalFacingBlock {
     }
     public boolean canPlaceAt(BlockState state, WorldView worldView, BlockPos pos) {
         return !worldView.isAir(pos.down());
+    }
+
+    private static ToIntFunction<BlockState> createLightLevelFromBlockState(int litLevel) {
+        return (blockState) -> {
+            if (blockState.get(PROGRAM) == Program.OFF) {
+                return 0;
+            }
+            else {
+                return 11;
+            }
+        };
     }
 
 }

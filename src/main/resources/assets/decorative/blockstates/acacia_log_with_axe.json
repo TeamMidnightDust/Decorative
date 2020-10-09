@@ -1,8 +1,5 @@
 {
     "variants": {
-        "facing=south": { "model": "decorative:block/acacia_log_with_axe" },
-        "facing=west":  { "model": "decorative:block/acacia_log_with_axe", "y": 90 },
-        "facing=north": { "model": "decorative:block/acacia_log_with_axe", "y": 180 },
-        "facing=east":  { "model": "decorative:block/acacia_log_with_axe", "y": 270 }
+        "": { "model": "block/acacia_log" }
     }
 }

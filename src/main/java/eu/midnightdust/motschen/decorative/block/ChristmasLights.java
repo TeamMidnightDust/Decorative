@@ -26,7 +26,7 @@ public class ChristmasLights extends HorizontalFacingBlock {
     private static final VoxelShape EAST_SHAPE;
     private static final VoxelShape SOUTH_SHAPE;
     private static final VoxelShape WEST_SHAPE;
-    public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
+    public static final BooleanProperty LIT = RedstoneLampBlock.LIT;
 
     public ChristmasLights() {
         super(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP).nonOpaque().sounds(BlockSoundGroup.STONE));

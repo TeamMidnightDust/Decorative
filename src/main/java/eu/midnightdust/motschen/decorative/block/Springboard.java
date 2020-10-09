@@ -1,7 +1,7 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import eu.midnightdust.motschen.decorative.DecorativeMain;
-import eu.midnightdust.motschen.decorative.Part;
+import eu.midnightdust.motschen.decorative.blockstates.Part;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;

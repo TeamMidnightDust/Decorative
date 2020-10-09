@@ -3,7 +3,7 @@
   "package": "eu.midnightdust.motschen.decorative.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "DefaultBiomeFeaturesMixin"
+    "GenerationSettingsAccessorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

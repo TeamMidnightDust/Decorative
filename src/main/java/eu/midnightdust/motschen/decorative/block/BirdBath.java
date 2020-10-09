@@ -15,18 +15,12 @@ public class BirdBath extends CauldronBlock {
 
     public BirdBath() {
         super(FabricBlockSettings.copy(Blocks.CAULDRON).nonOpaque().sounds(BlockSoundGroup.STONE));
-        this.setDefaultState(this.stateManager.getDefaultState().with(LEVEL, 0));
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
         return super.getPlacementState(itemPlacementContext)
                 .with(LEVEL, 0);
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(LEVEL);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import blue.endless.jankson.annotation.Nullable;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
@@ -8,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -26,11 +26,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-public class DoubleLamp extends RedstoneLampBlock {
+import java.util.Random;
+
+public class DoubleLamp extends Block {
     private static final VoxelShape SHAPE_TOP;
     private static final VoxelShape SHAPE_BOTTOM;
 
-    public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
+    public static final BooleanProperty LIT = RedstoneLampBlock.LIT;
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
 
     public DoubleLamp() {
@@ -45,7 +47,6 @@ public class DoubleLamp extends RedstoneLampBlock {
     }
 
     @Override
-    @Nullable
     public BlockState getPlacementState(ItemPlacementContext arg) {
         return this.getDefaultState().with(LIT, arg.getWorld().isReceivingRedstonePower(arg.getBlockPos()));
     }

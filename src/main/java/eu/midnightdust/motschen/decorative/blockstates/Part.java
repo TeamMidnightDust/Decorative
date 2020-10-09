@@ -1,17 +1,14 @@
-package eu.midnightdust.motschen.decorative;
+package eu.midnightdust.motschen.decorative.blockstates;
 
 import net.minecraft.util.StringIdentifiable;
 
-public enum Program implements StringIdentifiable {
-    OFF("off"),
-    NYANCAT("nyancat"),
-    CREEPER("creeper"),
-    WOODYS("woodys"),
-    TATER("tater");
+public enum Part implements StringIdentifiable {
+    FRONT("front"),
+    BACK("back");
 
     private final String name;
 
-    Program(String name) {
+    Part(String name) {
         this.name = name;
     }
 

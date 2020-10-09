@@ -1,18 +1,21 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import eu.midnightdust.motschen.decorative.block.blockentity.BirchChoppingLogBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
-public class LogWithAxe extends HorizontalFacingBlock {
+public class BirchChoppingLog extends HorizontalFacingBlock implements BlockEntityProvider {
 
-    public LogWithAxe() {
-        super(FabricBlockSettings.copy(Blocks.OAK_PLANKS).nonOpaque().sounds(BlockSoundGroup.STONE));
+    public BirchChoppingLog() {
+        super(FabricBlockSettings.copy(Blocks.OAK_PLANKS).nonOpaque().sounds(BlockSoundGroup.WOOD));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
@@ -29,6 +32,11 @@ public class LogWithAxe extends HorizontalFacingBlock {
 
     public boolean canPlaceAt(BlockState state, WorldView worldView, BlockPos pos) {
         return !worldView.isAir(pos.down());
+    }
+
+    @Override
+    public BlockEntity createBlockEntity(BlockView view) {
+        return new BirchChoppingLogBlockEntity();
     }
 
 }
