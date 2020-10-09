@@ -27,10 +27,6 @@
     ]
   },
 
-  "mixins": [
-    "decorative.mixins.json"
-  ],
-
   "depends": {
     "fabricloader": ">=0.7.2",
     "fabric": "*"

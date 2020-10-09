@@ -6,8 +6,6 @@ import eu.midnightdust.motschen.decorative.blockstates.Part;
 import eu.midnightdust.motschen.decorative.blockstates.PoolShape;
 import eu.midnightdust.motschen.decorative.blockstates.Program;
 import eu.midnightdust.motschen.decorative.init.*;
-import eu.midnightdust.motschen.decorative.world.OreFeatureInjector;
-import eu.midnightdust.motschen.decorative.world.OreFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -17,6 +15,8 @@ import net.minecraft.item.*;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+
+import java.util.Locale;
 
 public class DecorativeMain implements ModInitializer {
     public static final String MOD_ID = "decorative";
@@ -98,7 +98,28 @@ public class DecorativeMain implements ModInitializer {
 
         Lamps.init();
         DoubleLamps.init();
-        OreFeatures.init();
-        OreFeatureInjector.init();
+        eu.midnightdust.motschen.decorative.world.RockyAsphalt.initBiomeFeatures();
+    }
+    public enum Ores implements ItemConvertible {
+        RockyAsphalt(7, 20, 14, 200);
+
+        public final String name;
+        public final int veinSize;
+        public final int veinsPerChunk;
+        public final int minY;
+        public final int maxY;
+
+        Ores(int veinSize, int veinsPerChunk, int minY, int maxY) {
+            name = this.toString().toLowerCase(Locale.ROOT);
+            this.veinSize = veinSize;
+            this.veinsPerChunk = veinsPerChunk;
+            this.minY = minY;
+            this.maxY = maxY;
+        }
+
+        @Override
+        public Item asItem() {
+            return RockyAsphalt.asItem();
+        }
     }
 }
