@@ -16,7 +16,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.RayTraceContext;
+import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 public class BathTireItem extends Item {
@@ -31,7 +31,7 @@ public class BathTireItem extends Item {
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        HitResult hitResult = rayTrace(world, user, RayTraceContext.FluidHandling.SOURCE_ONLY);
+        HitResult hitResult = raycast(world, user, RaycastContext.FluidHandling.SOURCE_ONLY);
         if (hitResult.getType() != HitResult.Type.BLOCK) {
             return TypedActionResult.pass(itemStack);
         } else if (world.isClient) {

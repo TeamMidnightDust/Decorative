@@ -18,14 +18,25 @@ public class PoolSprinklerBlockEntity extends BlockEntity implements Tickable {
     @Override
     public void tick() {
         BlockPos pos = this.pos;
-        BlockState state = this.world.getBlockState(pos);
-        if (world != null && state.get(PoolSprinkler.POWERED) == true) {
-            switch (state.get(PoolSprinkler.FACING)) {
-                case NORTH: world.addParticle(ParticleTypes.DRIPPING_WATER,pos.getX()+0.5,pos.getY()+0.5,pos.getZ()-0.34,1,1,1); return;
-                case EAST: world.addParticle(ParticleTypes.DRIPPING_WATER,pos.getX()+1.34,pos.getY()+0.5,pos.getZ()+0.5,1,1,1); return;
-                case SOUTH: world.addParticle(ParticleTypes.DRIPPING_WATER,pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+1.34,1,1,1); return;
-                case WEST: world.addParticle(ParticleTypes.DRIPPING_WATER,pos.getX()-0.34,pos.getY()+0.5,pos.getZ()+0.5,1,1,1); return;
-                default: return;
+        if (world != null) {
+            BlockState state = this.world.getBlockState(pos);
+            if (state.get(PoolSprinkler.POWERED)) {
+                switch (state.get(PoolSprinkler.FACING)) {
+                    case NORTH:
+                        world.addParticle(ParticleTypes.DRIPPING_WATER, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() - 0.34, 1, 1, 1);
+                        return;
+                    case EAST:
+                        world.addParticle(ParticleTypes.DRIPPING_WATER, pos.getX() + 1.34, pos.getY() + 0.5, pos.getZ() + 0.5, 1, 1, 1);
+                        return;
+                    case SOUTH:
+                        world.addParticle(ParticleTypes.DRIPPING_WATER, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 1.34, 1, 1, 1);
+                        return;
+                    case WEST:
+                        world.addParticle(ParticleTypes.DRIPPING_WATER, pos.getX() - 0.34, pos.getY() + 0.5, pos.getZ() + 0.5, 1, 1, 1);
+                        return;
+                    default:
+                        return;
+                }
             }
         }
     }

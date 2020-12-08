@@ -24,6 +24,9 @@
     ],
     "client": [
       "eu.midnightdust.motschen.decorative.DecorativeClient"
+    ],
+    "modmenu": [
+      "eu.midnightdust.motschen.decorative.config.ModMenuIntegration"
     ]
   },
 

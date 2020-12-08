@@ -8,6 +8,7 @@ import eu.midnightdust.motschen.decorative.init.Pool;
 import eu.midnightdust.motschen.decorative.init.Signs;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -15,6 +16,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.model.UnbakedModel;
+import net.minecraft.command.argument.ItemEnchantmentArgumentType;
+
+import java.util.function.Supplier;
 
 public class DecorativeClient implements ClientModInitializer {
 
@@ -64,17 +69,15 @@ public class DecorativeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.ChristmasTree);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.CeilingFan);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.SlidingDoor);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.WallClock);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),DecorativeMain.BirdBath);
 
         BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.CeilingFanBlockEntity, CeilingFanRenderer::new);
 
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.OakChoppingLogBlockEntity, OakChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.SpruceChoppingLogBlockEntity, SpruceChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.BirchChoppingLogBlockEntity, BirchChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.AcaciaChoppingLogBlockEntity, AcaciaChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.JungleChoppingLogBlockEntity, JungleChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.DarkOakChoppingLogBlockEntity, DarkOakChoppingLogBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.ChoppingLogBlockEntity, ChoppingLogBlockEntityRenderer::new);
 
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.WallClockBlockEntity, WallClockRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.DigitalClockBlockEntity, DigitalClockRenderer::new);
     }
     public void registerBlockColor(Block block, Block templateBlock) {
         ColorProviderRegistry.BLOCK.register((type, pos, world, layer) -> {

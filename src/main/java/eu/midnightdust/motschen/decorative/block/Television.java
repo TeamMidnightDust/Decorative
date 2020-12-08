@@ -34,7 +34,7 @@ public class Television extends HorizontalFacingBlock {
     private static final EnumProperty<Program> PROGRAM = DecorativeMain.PROGRAM;
 
     public Television() {
-        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).lightLevel(createLightLevelFromBlockState(15)));
+        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).luminance(createLightLevelFromBlockState()));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(PROGRAM, Program.OFF));
     }
 
@@ -105,7 +105,7 @@ public class Television extends HorizontalFacingBlock {
         return !worldView.isAir(pos.down());
     }
 
-    private static ToIntFunction<BlockState> createLightLevelFromBlockState(int litLevel) {
+    private static ToIntFunction<BlockState> createLightLevelFromBlockState() {
         return (blockState) -> {
             if (blockState.get(PROGRAM) == Program.OFF) {
                 return 0;

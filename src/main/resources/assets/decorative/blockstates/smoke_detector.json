@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "active=true": { "model": "decorative:block/smoke_detector_on" },
+        "active=false":  { "model": "decorative:block/smoke_detector_off" }
+    }
+}

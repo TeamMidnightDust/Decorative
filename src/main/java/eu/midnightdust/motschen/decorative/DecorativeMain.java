@@ -5,9 +5,13 @@ import eu.midnightdust.motschen.decorative.blockstates.CeilingFanStage;
 import eu.midnightdust.motschen.decorative.blockstates.Part;
 import eu.midnightdust.motschen.decorative.blockstates.PoolShape;
 import eu.midnightdust.motschen.decorative.blockstates.Program;
+import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import eu.midnightdust.motschen.decorative.init.*;
+import eu.midnightdust.motschen.decorative.sound.DecorativeSoundEvents;
 import eu.midnightdust.motschen.decorative.world.OreFeatureInjector;
 import eu.midnightdust.motschen.decorative.world.OreFeatures;
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
+import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -20,6 +24,7 @@ import net.minecraft.util.registry.Registry;
 
 public class DecorativeMain implements ModInitializer {
     public static final String MOD_ID = "decorative";
+    public static DecorativeConfig DECORATIVE_CONFIG;
 
     public static final ItemGroup IndoorGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "indoor"), () -> new ItemStack(DecorativeMain.Television));
     public static final ItemGroup TrafficGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "traffic"), () -> new ItemStack(DecorativeMain.TrafficCone));
@@ -47,9 +52,14 @@ public class DecorativeMain implements ModInitializer {
     public static Block ChristmasTree = new ChristmasTree();
     public static Block ChristmasLights = new ChristmasLights();
     public static Block ShowerHead = new ShowerHead();
+    public static Block WallClock = new WallClock();
+    public static Block SmokeDetector = new SmokeDetector();
 
     @Override
     public void onInitialize() {
+        AutoConfig.register(DecorativeConfig.class, JanksonConfigSerializer::new);
+        DECORATIVE_CONFIG = AutoConfig.getConfigHolder(DecorativeConfig.class).getConfig();
+
         BlockEntities.init();
         // Traffic //
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"rocky_asphalt"), RockyAsphalt);
@@ -81,6 +91,8 @@ public class DecorativeMain implements ModInitializer {
         //Furniture//
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"kitchen_tiles"), KitchenTiles);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID,"kitchen_tiles"), new BlockItem(KitchenTiles, new Item.Settings().group(DecorativeMain.IndoorGroup)));
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"wall_clock"), WallClock);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"wall_clock"), new BlockItem(WallClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"television"), Television);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID,"television"), new BlockItem(Television, new Item.Settings().group(DecorativeMain.IndoorGroup)));
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"old_television"), OldTelevision);
@@ -95,10 +107,14 @@ public class DecorativeMain implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID,"christmas_tree"), new BlockItem(ChristmasTree, new Item.Settings().group(DecorativeMain.IndoorGroup)));
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"christmas_lights"), ChristmasLights);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID,"christmas_lights"), new BlockItem(ChristmasLights, new Item.Settings().group(DecorativeMain.IndoorGroup)));
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"smoke_detector"), SmokeDetector);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"smoke_detector"), new BlockItem(SmokeDetector, new Item.Settings().group(DecorativeMain.IndoorGroup)));
 
         Lamps.init();
         DoubleLamps.init();
+        Clocks.init();
         OreFeatures.init();
         OreFeatureInjector.init();
+        new DecorativeSoundEvents();
     }
 }
