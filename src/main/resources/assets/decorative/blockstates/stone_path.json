@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+			{"model": "decorative:block/stone_path"},
+			{"model": "decorative:block/stone_path", "y": 90},
+			{"model": "decorative:block/stone_path", "y": 180},
+			{"model": "decorative:block/stone_path", "y": 270}
+		]
+    }
+}

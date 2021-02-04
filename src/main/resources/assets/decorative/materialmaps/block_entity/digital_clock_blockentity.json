@@ -1,0 +1,12 @@
+{
+    "map": [
+        {
+            "predicate": {
+                "materialPredicate": {
+                    "renderLayerName": "text"
+                }
+            },
+            "material": "canvas:emissive_transform"
+        }
+    ]
+}

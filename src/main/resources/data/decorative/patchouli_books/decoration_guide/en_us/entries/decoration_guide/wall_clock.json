@@ -1,0 +1,18 @@
+{
+  "name": "Wall Clock",
+  "icon": "decorative:wall_clock",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:wall_clock",
+      "title": "Wall Clock",
+      "link_recipe": false,
+      "text": "Tick, tock, tick, tock..."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:wall_clock"
+    }
+  ]
+}

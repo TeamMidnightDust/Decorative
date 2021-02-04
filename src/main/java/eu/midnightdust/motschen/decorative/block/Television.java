@@ -34,7 +34,7 @@ public class Television extends HorizontalFacingBlock {
     private static final EnumProperty<Program> PROGRAM = DecorativeMain.PROGRAM;
 
     public Television() {
-        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).lightLevel(createLightLevelFromBlockState(15)));
+        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).luminance(createLightLevelFromBlockState()));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(PROGRAM, Program.OFF));
     }
 
@@ -46,10 +46,10 @@ public class Television extends HorizontalFacingBlock {
                 case NYANCAT: world.setBlockState(pos, state.with(PROGRAM, Program.CREEPER));
                     world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
                     return ActionResult.SUCCESS;
-                case CREEPER: world.setBlockState(pos, state.with(PROGRAM, Program.WOODYS));
+                case CREEPER: world.setBlockState(pos, state.with(PROGRAM, Program.CRABRAVE));
                     world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
                     return ActionResult.SUCCESS;
-                case WOODYS: world.setBlockState(pos, state.with(PROGRAM, Program.TATER));
+                case CRABRAVE: world.setBlockState(pos, state.with(PROGRAM, Program.TATER));
                     world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
                     return ActionResult.SUCCESS;
                 case TATER: world.setBlockState(pos, state.with(PROGRAM, Program.OFF));
@@ -105,7 +105,7 @@ public class Television extends HorizontalFacingBlock {
         return !worldView.isAir(pos.down());
     }
 
-    private static ToIntFunction<BlockState> createLightLevelFromBlockState(int litLevel) {
+    private static ToIntFunction<BlockState> createLightLevelFromBlockState() {
         return (blockState) -> {
             if (blockState.get(PROGRAM) == Program.OFF) {
                 return 0;

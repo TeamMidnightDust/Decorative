@@ -1,0 +1,18 @@
+{
+  "name": "Red Digital Clock",
+  "icon": "decorative:red_digital_clock",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:red_digital_clock",
+      "title": "Red Digital Clock",
+      "link_recipe": false,
+      "text": "A digital clock that shows the real life time at your location."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:red_digital_clock"
+    }
+  ]
+}

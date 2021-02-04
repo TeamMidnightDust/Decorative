@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "decorative:block/gray_digital_clock", "y": 180 },
+        "facing=west":  { "model": "decorative:block/gray_digital_clock", "y": 270 },
+        "facing=north": { "model": "decorative:block/gray_digital_clock" },
+        "facing=east":  { "model": "decorative:block/gray_digital_clock", "y": 90 }
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Light Blue Digital Clock",
+  "icon": "decorative:light_blue_digital_clock",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:light_blue_digital_clock",
+      "title": "Light Blue Digital Clock",
+      "link_recipe": false,
+      "text": "A digital clock that shows the real life time at your location."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:light_blue_digital_clock"
+    }
+  ]
+}

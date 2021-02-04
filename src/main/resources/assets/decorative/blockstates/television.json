@@ -15,10 +15,10 @@
         "facing=north,program=creeper": { "model": "decorative:block/television_creeper", "uvlock": true, "y": 180 },
         "facing=east,program=creeper":  { "model": "decorative:block/television_creeper", "uvlock": true, "y": 270 },
 		
-		"facing=south,program=woodys": { "model": "decorative:block/television_woodys", "uvlock": true },
-        "facing=west,program=woodys":  { "model": "decorative:block/television_woodys", "uvlock": true, "y": 90 },
-        "facing=north,program=woodys": { "model": "decorative:block/television_woodys", "uvlock": true, "y": 180 },
-        "facing=east,program=woodys":  { "model": "decorative:block/television_woodys", "uvlock": true, "y": 270 },
+		"facing=south,program=crabrave": { "model": "decorative:block/television_crabrave", "uvlock": true },
+        "facing=west,program=crabrave":  { "model": "decorative:block/television_crabrave", "uvlock": true, "y": 90 },
+        "facing=north,program=crabrave": { "model": "decorative:block/television_crabrave", "uvlock": true, "y": 180 },
+        "facing=east,program=crabrave":  { "model": "decorative:block/television_crabrave", "uvlock": true, "y": 270 },
 		
 		"facing=south,program=tater": { "model": "decorative:block/television_tater", "uvlock": true },
         "facing=west,program=tater":  { "model": "decorative:block/television_tater", "uvlock": true, "y": 90 },

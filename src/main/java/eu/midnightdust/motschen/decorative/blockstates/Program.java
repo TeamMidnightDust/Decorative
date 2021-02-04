@@ -6,7 +6,7 @@ public enum Program implements StringIdentifiable {
     OFF("off"),
     NYANCAT("nyancat"),
     CREEPER("creeper"),
-    WOODYS("woodys"),
+    CRABRAVE("crabrave"),
     TATER("tater");
 
     private final String name;

@@ -1,0 +1,18 @@
+{
+  "name": "Light Gray Digital Clock",
+  "icon": "decorative:light_gray_digital_clock",
+  "category": "decorative:indoor",
+  "pages": [
+	{
+      "type": "spotlight",
+      "item": "decorative:light_gray_digital_clock",
+      "title": "Light Gray Digital Clock",
+      "link_recipe": false,
+      "text": "A digital clock that shows the real life time at your location."
+    },
+	{
+      "type": "crafting",
+      "recipe": "decorative:light_gray_digital_clock"
+    }
+  ]
+}

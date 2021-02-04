@@ -1,4 +1,8 @@
 {
+	// Config //
+	"text.autoconfig.decorative.title":"Decorative Config",
+	"text.autoconfig.decorative.option.timeFormat":"Time Format",
+	
     // ItemGroups //
 	"itemGroup.decorative.indoor":"Decorative - Indoor",
 	"itemGroup.decorative.traffic":"Decorative - Traffic",
@@ -107,5 +111,26 @@
 	"block.decorative.pool_wall":"Pool Wall",
 	"block.decorative.springboard":"Springboard",
 	"block.decorative.pool_sprinkler":"Pool Sprinkler",
-	"block.decorative.shower_head":"Shower Head"
+	"block.decorative.shower_head":"Shower Head",
+	
+	//* 3.0 - Clock Update *//
+	"block.decorative.wall_clock":"Wall Clock",
+	"block.decorative.white_digital_clock":"White Digital Clock",
+	"block.decorative.orange_digital_clock":"Orange Digital Clock",
+	"block.decorative.magenta_digital_clock":"Magenta Digital Clock",
+	"block.decorative.light_blue_digital_clock":"Light Blue Digital Clock",
+	"block.decorative.yellow_digital_clock":"Yellow Digital Clock",
+	"block.decorative.lime_digital_clock":"Lime Digital Clock",
+	"block.decorative.pink_digital_clock":"Pink Digital Clock",
+	"block.decorative.gray_digital_clock":"Gray Digital Clock",
+	"block.decorative.light_gray_digital_clock":"Light Gray Digital Clock",
+	"block.decorative.cyan_digital_clock":"Cyan Digital Clock",
+	"block.decorative.purple_digital_clock":"Purple Digital Clock",
+	"block.decorative.blue_digital_clock":"Blue Digital Clock",
+	"block.decorative.brown_digital_clock":"Brown Digital Clock",
+	"block.decorative.green_digital_clock":"Green Digital Clock",
+	"block.decorative.red_digital_clock":"Red Digital Clock",
+	"block.decorative.black_digital_clock":"Black Digital Clock",
+	"block.decorative.stone_path":"Stone Path"
+	
 }

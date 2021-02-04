@@ -1,8 +1,16 @@
 {
-"ceiling_fan.ambient": {
+  "ceiling_fan.ambient": {
     "sounds": [
       {
         "name": "decorative:block/ceiling_fan_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "smoke_detector.beep": {
+    "sounds": [
+      {
+        "name": "decorative:block/smoke_detector_beep",
         "stream": false
       }
     ]

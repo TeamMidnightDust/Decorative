@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#B#",
+        "#C#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:orange_concrete"
+        },
+        "B": {
+            "item": "minecraft:black_concrete"
+        },
+        "C": {
+            "item": "minecraft:clock"
+        }
+    },
+    "result": {
+        "item": "decorative:orange_digital_clock",
+        "count": 1
+    }
+}

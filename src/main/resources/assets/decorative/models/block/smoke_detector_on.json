@@ -1,0 +1,6 @@
+{
+	"parent": "decorative:block/smoke_detector_off",
+	"textures": {
+		"3": "decorative:block/alarm_light_on"
+	}
+}

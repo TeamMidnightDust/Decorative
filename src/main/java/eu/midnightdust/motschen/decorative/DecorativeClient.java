@@ -64,17 +64,15 @@ public class DecorativeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.ChristmasTree);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.CeilingFan);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.SlidingDoor);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.WallClock);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),DecorativeMain.BirdBath);
 
         BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.CeilingFanBlockEntity, CeilingFanRenderer::new);
 
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.OakChoppingLogBlockEntity, OakChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.SpruceChoppingLogBlockEntity, SpruceChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.BirchChoppingLogBlockEntity, BirchChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.AcaciaChoppingLogBlockEntity, AcaciaChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.JungleChoppingLogBlockEntity, JungleChoppingLogBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.DarkOakChoppingLogBlockEntity, DarkOakChoppingLogBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.ChoppingLogBlockEntity, ChoppingLogBlockEntityRenderer::new);
 
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.WallClockBlockEntity, WallClockRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntities.DigitalClockBlockEntity, DigitalClockRenderer::new);
     }
     public void registerBlockColor(Block block, Block templateBlock) {
         ColorProviderRegistry.BLOCK.register((type, pos, world, layer) -> {

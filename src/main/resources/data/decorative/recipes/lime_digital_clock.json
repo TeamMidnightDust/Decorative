@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#B#",
+        "#C#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lime_concrete"
+        },
+        "B": {
+            "item": "minecraft:black_concrete"
+        },
+        "C": {
+            "item": "minecraft:clock"
+        }
+    },
+    "result": {
+        "item": "decorative:lime_digital_clock",
+        "count": 1
+    }
+}

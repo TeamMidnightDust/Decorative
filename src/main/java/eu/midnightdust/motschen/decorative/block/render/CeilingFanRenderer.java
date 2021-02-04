@@ -3,13 +3,11 @@ package eu.midnightdust.motschen.decorative.block.render;
 import eu.midnightdust.motschen.decorative.block.blockentity.CeilingFanBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.DoorBlock;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -18,7 +16,6 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class CeilingFanRenderer extends BlockEntityRenderer<CeilingFanBlockEntity> {
-    private static int rot;
     private final ModelPart blades;
     private final ModelPart point;
 
@@ -43,16 +40,11 @@ public class CeilingFanRenderer extends BlockEntityRenderer<CeilingFanBlockEntit
 
     @Override
     public void render(CeilingFanBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-
         matrices.push();
-        int lightAtBlock = WorldRenderer.getLightmapCoordinates(blockEntity.getWorld(), blockEntity.getPos());
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(new Identifier("decorative:textures/block/ceilingfan.png")));
         matrices.translate(0.5,0.31,0.5);
-
         matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.getRot()));
-
-
-        blades.render(matrices, vertexConsumer, lightAtBlock, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+        blades.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
         matrices.pop();
     }
 }

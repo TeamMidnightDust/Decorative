@@ -1,7 +1,5 @@
 package eu.midnightdust.motschen.decorative.item;
 
-import com.google.common.collect.Maps;
-import java.util.Map;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -16,22 +14,20 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.RayTraceContext;
+import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 public class BathTireItem extends Item {
-    private static final Map<EntityType<?>, BathTireItem> SPAWN_EGGS = Maps.newIdentityHashMap();
     private final EntityType<?> type;
 
     public BathTireItem(EntityType<?> type, Item.Settings settings) {
         super(settings);
         this.type = type;
-        SPAWN_EGGS.put(type, this);
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        HitResult hitResult = rayTrace(world, user, RayTraceContext.FluidHandling.SOURCE_ONLY);
+        HitResult hitResult = raycast(world, user, RaycastContext.FluidHandling.SOURCE_ONLY);
         if (hitResult.getType() != HitResult.Type.BLOCK) {
             return TypedActionResult.pass(itemStack);
         } else if (world.isClient) {

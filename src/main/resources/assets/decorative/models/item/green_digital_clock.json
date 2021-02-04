@@ -1,0 +1,6 @@
+{
+	"parent": "decorative:block/digital_clock",
+	"textures": {
+		"2": "block/green_concrete"
+	}
+}
