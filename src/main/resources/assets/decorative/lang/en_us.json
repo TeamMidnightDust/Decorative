@@ -1,7 +1,9 @@
 {
 	// Config //
-	"text.autoconfig.decorative.title":"Decorative Config",
-	"text.autoconfig.decorative.option.timeFormat":"Time Format",
+	"decorative.midnightconfig.title":"Decorative Config",
+	"decorative.midnightconfig.timeFormat":"Time Format",
+	"decorative.midnightconfig.enum.TimeFormat.h12":"12h",
+	"decorative.midnightconfig.enum.TimeFormat.h24":"24h",
 	
     // ItemGroups //
 	"itemGroup.decorative.indoor":"Decorative - Indoor",

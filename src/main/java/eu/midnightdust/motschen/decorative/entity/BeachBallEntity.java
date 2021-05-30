@@ -23,11 +23,6 @@ public class BeachBallEntity extends PigEntity {
     }
 
     @Override
-    protected int getCurrentExperience(PlayerEntity player) {
-        return 0;
-    }
-
-    @Override
     protected SoundEvent getAmbientSound() {
         return null;
     }
@@ -107,7 +102,7 @@ public class BeachBallEntity extends PigEntity {
     public ActionResult interactAt(PlayerEntity player, Vec3d hitPos, Hand hand) {
         if(!player.getEntityWorld().isClient && player.getStackInHand(hand)== ItemStack.EMPTY && hand==Hand.MAIN_HAND && player.isSneaking())
         {
-            remove();
+            this.remove(RemovalReason.DISCARDED);
             player.setStackInHand(hand, new ItemStack(Pool.BEACH_BALL_ITEM));
             return ActionResult.SUCCESS;
         }

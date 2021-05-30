@@ -1,6 +1,11 @@
 package eu.midnightdust.motschen.decorative;
 
 import eu.midnightdust.motschen.decorative.block.render.*;
+import eu.midnightdust.motschen.decorative.block.render.model.CeilingFanBladesModel;
+import eu.midnightdust.motschen.decorative.block.render.model.WallClockHandsModel;
+import eu.midnightdust.motschen.decorative.entity.client.model.BathTireModel;
+import eu.midnightdust.motschen.decorative.entity.client.model.BeachBallModel;
+import eu.midnightdust.motschen.decorative.entity.client.model.DuckBathTireModel;
 import eu.midnightdust.motschen.decorative.entity.client.renderer.*;
 import eu.midnightdust.motschen.decorative.init.BathTires;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
@@ -9,38 +14,47 @@ import eu.midnightdust.motschen.decorative.init.Signs;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.util.DyeColor;
 
+@SuppressWarnings({"deprecation", "UnstableApiUsage"})
 public class DecorativeClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        EntityModelLayerRegistry.registerModelLayer(BathTireModel.BATH_TIRE_MODEL_LAYER, BathTireModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(DuckBathTireModel.DUCK_BATH_TIRE_MODEL_LAYER, DuckBathTireModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(BeachBallModel.BEACH_BALL_MODEL_LAYER, BeachBallModel::getTexturedModelData);
 
-        EntityRendererRegistry.INSTANCE.register(Pool.BEACH_BALL, (dispatcher, context) -> new BeachBallRenderer(dispatcher));
+        EntityModelLayerRegistry.registerModelLayer(CeilingFanBladesModel.CEILING_FAN_MODEL_LAYER, CeilingFanBladesModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(WallClockHandsModel.CLOCK_HANDS_MODEL_LAYER, WallClockHandsModel::getTexturedModelData);
 
-        EntityRendererRegistry.INSTANCE.register(BathTires.WHITE_BATH_TIRE, (dispatcher, context) -> new WhiteBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.ORANGE_BATH_TIRE, (dispatcher, context) -> new OrangeBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.MAGENTA_BATH_TIRE, (dispatcher, context) -> new MagentaBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.LIGHT_BLUE_BATH_TIRE, (dispatcher, context) -> new LightBlueBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.YELLOW_BATH_TIRE, (dispatcher, context) -> new YellowBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.LIME_BATH_TIRE, (dispatcher, context) -> new LimeBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.PINK_BATH_TIRE, (dispatcher, context) -> new PinkBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.GRAY_BATH_TIRE, (dispatcher, context) -> new GrayBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.LIGHT_GRAY_BATH_TIRE, (dispatcher, context) -> new LightGrayBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.CYAN_BATH_TIRE, (dispatcher, context) -> new CyanBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.PURPLE_BATH_TIRE, (dispatcher, context) -> new PurpleBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.BLUE_BATH_TIRE, (dispatcher, context) -> new BlueBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.BROWN_BATH_TIRE, (dispatcher, context) -> new BrownBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.GREEN_BATH_TIRE, (dispatcher, context) -> new GreenBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.RED_BATH_TIRE, (dispatcher, context) -> new RedBathTireRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(BathTires.BLACK_BATH_TIRE, (dispatcher, context) -> new BlackBathTireRenderer(dispatcher));
+        EntityRendererRegistry.INSTANCE.register(Pool.BEACH_BALL, BeachBallRenderer::new);
 
-        EntityRendererRegistry.INSTANCE.register(BathTires.DUCK_BATH_TIRE, (dispatcher, context) -> new DuckBathTireRenderer(dispatcher));
+        EntityRendererRegistry.INSTANCE.register(BathTires.WHITE_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.WHITE));
+        EntityRendererRegistry.INSTANCE.register(BathTires.ORANGE_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.ORANGE));
+        EntityRendererRegistry.INSTANCE.register(BathTires.MAGENTA_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.MAGENTA));
+        EntityRendererRegistry.INSTANCE.register(BathTires.LIGHT_BLUE_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.LIGHT_BLUE));
+        EntityRendererRegistry.INSTANCE.register(BathTires.YELLOW_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.YELLOW));
+        EntityRendererRegistry.INSTANCE.register(BathTires.LIME_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.LIME));
+        EntityRendererRegistry.INSTANCE.register(BathTires.PINK_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.PINK));
+        EntityRendererRegistry.INSTANCE.register(BathTires.GRAY_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.GRAY));
+        EntityRendererRegistry.INSTANCE.register(BathTires.LIGHT_GRAY_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.LIGHT_GRAY));
+        EntityRendererRegistry.INSTANCE.register(BathTires.CYAN_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.CYAN));
+        EntityRendererRegistry.INSTANCE.register(BathTires.PURPLE_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.PURPLE));
+        EntityRendererRegistry.INSTANCE.register(BathTires.BLUE_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.BLUE));
+        EntityRendererRegistry.INSTANCE.register(BathTires.BROWN_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.BROWN));
+        EntityRendererRegistry.INSTANCE.register(BathTires.GREEN_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.GREEN));
+        EntityRendererRegistry.INSTANCE.register(BathTires.RED_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.RED));
+        EntityRendererRegistry.INSTANCE.register(BathTires.BLACK_BATH_TIRE, (context) -> new BathTireRenderer(context, DyeColor.BLACK));
+
+        EntityRendererRegistry.INSTANCE.register(BathTires.DUCK_BATH_TIRE, DuckBathTireRenderer::new);
 
 
         registerBlockColor(DecorativeMain.BirdBath, Blocks.WATER);

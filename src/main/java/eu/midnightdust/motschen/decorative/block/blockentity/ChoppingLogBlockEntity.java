@@ -4,48 +4,40 @@ import eu.midnightdust.motschen.decorative.init.BlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.Tickable;
+import net.minecraft.block.entity.JukeboxBlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 
-public class ChoppingLogBlockEntity extends BlockEntity implements Tickable {
+public class ChoppingLogBlockEntity extends BlockEntity {
     private int facing;
     private double axe_x;
     private double axe_z;
 
-    public ChoppingLogBlockEntity() {
-        super(BlockEntities.ChoppingLogBlockEntity);
+    public ChoppingLogBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockEntities.ChoppingLogBlockEntity, pos, state);
     }
 
-    @Override
-    public void tick() {
-
-        BlockPos pos = this.pos;
-        BlockState state = this.world.getBlockState(pos);
-
-        if (world != null && state.get(HorizontalFacingBlock.FACING) == Direction.EAST) {
-            facing = 180;
-            axe_x = 0.2D;
-            axe_z = 0.5D;
-            return;
+    public static void tick(World world, BlockPos pos, BlockState state, ChoppingLogBlockEntity blockEntity) {
+        if (state.get(HorizontalFacingBlock.FACING) == Direction.EAST) {
+            blockEntity.facing = 180;
+            blockEntity.axe_x = 0.2D;
+            blockEntity.axe_z = 0.5D;
         }
-        if (world != null && state.get(HorizontalFacingBlock.FACING) == Direction.SOUTH) {
-            facing = 90;
-            axe_x = 0.5D;
-            axe_z = 0.2D;
-            return;
+        else if (state.get(HorizontalFacingBlock.FACING) == Direction.SOUTH) {
+            blockEntity.facing = 90;
+            blockEntity.axe_x = 0.5D;
+            blockEntity.axe_z = 0.2D;
         }
-        if (world != null && state.get(HorizontalFacingBlock.FACING) == Direction.WEST) {
-            facing = 0;
-            axe_x = 0.8D;
-            axe_z = 0.5D;
-            return;
+        else if (state.get(HorizontalFacingBlock.FACING) == Direction.WEST) {
+            blockEntity.facing = 0;
+            blockEntity.axe_x = 0.8D;
+            blockEntity.axe_z = 0.5D;
         }
         else {
-            facing = 270;
-            axe_x = 0.5D;
-            axe_z = 0.8D;
-            return;
+            blockEntity.facing = 270;
+            blockEntity.axe_x = 0.5D;
+            blockEntity.axe_z = 0.8D;
         }
     }
 

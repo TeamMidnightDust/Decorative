@@ -7,17 +7,19 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.util.math.Vector3f;
+import net.minecraft.util.math.Vec3f;
+
 import java.time.LocalTime;
 
 @Environment(EnvType.CLIENT)
-public class DigitalClockRenderer extends BlockEntityRenderer<DigitalClockBlockEntity> {
+public class DigitalClockRenderer implements BlockEntityRenderer<DigitalClockBlockEntity> {
+    private final TextRenderer textRenderer;
 
-    public DigitalClockRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher) {
-        super(blockEntityRenderDispatcher);
+    public DigitalClockRenderer(BlockEntityRendererFactory.Context ctx) {
+        textRenderer = ctx.getTextRenderer();
     }
 
     private int getHour12hFormat() {
@@ -33,7 +35,7 @@ public class DigitalClockRenderer extends BlockEntityRenderer<DigitalClockBlockE
         String minute;
 
         // Hour
-        if (DecorativeMain.DECORATIVE_CONFIG.timeFormat.equals(DecorativeConfig.TimeFormat.h12)) {
+        if (DecorativeConfig.timeFormat.equals(DecorativeConfig.TimeFormat.h12)) {
             if (getHour12hFormat() <= 9) {
                 hour = "0" + getHour12hFormat();
             } else {
@@ -56,22 +58,20 @@ public class DigitalClockRenderer extends BlockEntityRenderer<DigitalClockBlockE
             minute = "" + LocalTime.now().getMinute();
         }
 
-        String time = hour +":"+ minute;
-        return time;
+        return hour +":"+ minute;
     }
 
 
     @Override
     public void render(DigitalClockBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
-        TextRenderer textRenderer = dispatcher.getTextRenderer();
         matrices.translate(blockEntity.getX(),0.35,blockEntity.getZ());
 
         matrices.scale(0.025f, 0.025f, 0.025f);
-        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.getFacing()));
+        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.getFacing()));
         matrices.translate(0,0,-0.1);
-        matrices.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(180));
-        textRenderer.draw(getTime(), 0, 0, 16382457, false, matrices.peek().getModel(), vertexConsumers, false, 0, 15);
+        matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180));
+        textRenderer.draw(getTime(), 0, 0, 16382457, false, matrices.peek().getModel(), vertexConsumers, false, 0, light);
         matrices.pop();
     }
 }

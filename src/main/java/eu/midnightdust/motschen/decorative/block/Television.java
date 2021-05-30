@@ -23,6 +23,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
+import java.util.Objects;
 import java.util.function.ToIntFunction;
 
 public class Television extends HorizontalFacingBlock {
@@ -39,29 +40,39 @@ public class Television extends HorizontalFacingBlock {
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-            switch (state.get(PROGRAM)) {
-                case OFF: world.setBlockState(pos, state.with(PROGRAM, Program.NYANCAT));
-                    world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                    return ActionResult.SUCCESS;
-                case NYANCAT: world.setBlockState(pos, state.with(PROGRAM, Program.CREEPER));
-                    world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                    return ActionResult.SUCCESS;
-                case CREEPER: world.setBlockState(pos, state.with(PROGRAM, Program.CRABRAVE));
-                    world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                    return ActionResult.SUCCESS;
-                case CRABRAVE: world.setBlockState(pos, state.with(PROGRAM, Program.TATER));
-                    world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                    return ActionResult.SUCCESS;
-                case TATER: world.setBlockState(pos, state.with(PROGRAM, Program.OFF));
-                    world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                    return ActionResult.SUCCESS;
+        switch (state.get(PROGRAM)) {
+            case OFF -> {
+                world.setBlockState(pos, state.with(PROGRAM, Program.NYANCAT));
+                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
+                return ActionResult.SUCCESS;
             }
+            case NYANCAT -> {
+                world.setBlockState(pos, state.with(PROGRAM, Program.CREEPER));
+                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
+                return ActionResult.SUCCESS;
+            }
+            case CREEPER -> {
+                world.setBlockState(pos, state.with(PROGRAM, Program.CRABRAVE));
+                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
+                return ActionResult.SUCCESS;
+            }
+            case CRABRAVE -> {
+                world.setBlockState(pos, state.with(PROGRAM, Program.TATER));
+                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
+                return ActionResult.SUCCESS;
+            }
+            case TATER -> {
+                world.setBlockState(pos, state.with(PROGRAM, Program.OFF));
+                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
+                return ActionResult.SUCCESS;
+            }
+        }
             return ActionResult.SUCCESS;
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
+        return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
                 .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite())
                 .with(PROGRAM, Program.OFF);
     }
@@ -73,13 +84,13 @@ public class Television extends HorizontalFacingBlock {
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH: return NORTH_SHAPE;
-            case EAST: return EAST_SHAPE;
-            case SOUTH: return SOUTH_SHAPE;
-            case WEST: return WEST_SHAPE;
-            default: return super.getOutlineShape(state, view, pos, context);
-        }
+        return switch (state.get(FACING)) {
+            case NORTH -> NORTH_SHAPE;
+            case EAST -> EAST_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case WEST -> WEST_SHAPE;
+            default -> super.getOutlineShape(state, view, pos, context);
+        };
     }
     static {
         VoxelShape shape = createCuboidShape(-7, 4, 7, 22, 22, 9);

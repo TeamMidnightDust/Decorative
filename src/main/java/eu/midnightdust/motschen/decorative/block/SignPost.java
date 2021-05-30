@@ -23,9 +23,7 @@ public class SignPost extends Block {
         return SHAPE;
     }
     static {
-        VoxelShape shape = createCuboidShape(7, 0, 7, 9, 16, 9);
-
-        SHAPE = shape;
+        SHAPE = createCuboidShape(7, 0, 7, 9, 16, 9);
     }
 
     public boolean canPlaceAt(BlockState state, WorldView worldView, BlockPos pos) {

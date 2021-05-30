@@ -19,6 +19,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
+import java.util.Objects;
+
 public class WaterPump extends HorizontalFacingBlock {
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
@@ -34,30 +36,19 @@ public class WaterPump extends HorizontalFacingBlock {
         if (!itemStack.isEmpty() && hand==Hand.MAIN_HAND) {
             if (itemStack.getItem() == Items.BUCKET) {
                 if (!world.isClient) {
-                    if (!player.abilities.creativeMode) {
-                        itemStack.decrement(1);
-                        if (itemStack.isEmpty()) {
-                            player.setStackInHand(hand, new ItemStack(Items.WATER_BUCKET));
-                        } else if (!player.inventory.insertStack(new ItemStack(Items.WATER_BUCKET))) {
-                            player.dropItem(new ItemStack(Items.WATER_BUCKET), false);
-                        }
-                    }
+                    ItemUsage.exchangeStack(itemStack, player, new ItemStack(Items.BUCKET));
                     world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
                 return ActionResult.SUCCESS;
             }
-            else {
-                return ActionResult.PASS;
-            }
-        }
-        if (itemStack.isEmpty()) {
             return ActionResult.PASS;
-        } return ActionResult.PASS;
+        }
+        return ActionResult.PASS;
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
+        return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
                 .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
     }
 
@@ -67,13 +58,13 @@ public class WaterPump extends HorizontalFacingBlock {
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH: return NORTH_SHAPE;
-            case EAST: return EAST_SHAPE;
-            case SOUTH: return SOUTH_SHAPE;
-            case WEST: return WEST_SHAPE;
-            default: return super.getOutlineShape(state, view, pos, context);
-        }
+        return switch (state.get(FACING)) {
+            case NORTH -> NORTH_SHAPE;
+            case EAST -> EAST_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case WEST -> WEST_SHAPE;
+            default -> super.getOutlineShape(state, view, pos, context);
+        };
     }
     static {
         VoxelShape shape = createCuboidShape(4.25, 0, 0, 11.75, 24, 14);

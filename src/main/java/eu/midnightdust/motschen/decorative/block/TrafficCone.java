@@ -20,9 +20,7 @@ public class TrafficCone extends Block {
         return SHAPE;
     }
     static {
-        VoxelShape shape = createCuboidShape(4, 0, 4, 12, 11.5, 12);
-
-        SHAPE = shape;
+        SHAPE = createCuboidShape(4, 0, 4, 12, 11.5, 12);
     }
 
     public boolean canPlaceAt(BlockState state, WorldView worldView, BlockPos pos) {

@@ -5,55 +5,45 @@ import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
 import eu.midnightdust.motschen.decorative.sound.DecorativeSoundEvents;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BrewingStandBlock;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BrewingStandBlockEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.time.LocalTime;
 
-public class CeilingFanBlockEntity extends BlockEntity implements Tickable {
+public class CeilingFanBlockEntity extends BlockEntity {
     private int rot;
     private int second;
 
-    public CeilingFanBlockEntity() {
-        super(BlockEntities.CeilingFanBlockEntity);
+    public CeilingFanBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockEntities.CeilingFanBlockEntity, pos, state);
     }
 
-
-
-    @Override
-    public void tick() {
-
-        BlockPos pos = this.pos;
-        BlockState state = this.world.getBlockState(pos);
-        if (world != null && state.get(DecorativeMain.STAGE) == CeilingFanStage.LEVEL_1) {
-            if (LocalTime.now().getSecond() != second) {
-                second = LocalTime.now().getSecond();
+    public static void tick(World world, BlockPos pos, BlockState state, CeilingFanBlockEntity blockEntity) {
+        if (state.get(DecorativeMain.STAGE) == CeilingFanStage.LEVEL_1) {
+            if (LocalTime.now().getSecond() != blockEntity.second) {
+                blockEntity.second = LocalTime.now().getSecond();
                 world.playSound(null,pos, DecorativeSoundEvents.CEILINGFAN_AMBIENT, SoundCategory.BLOCKS, 0.1f, 1.0f);
             }
-            rot = rot + 6;
-            return;
+            blockEntity.rot = blockEntity.rot + 6;
         }
-        if (world != null && state.get(DecorativeMain.STAGE) == CeilingFanStage.LEVEL_2) {
-            if (LocalTime.now().getSecond() != second) {
-                second = LocalTime.now().getSecond();
+        else if (state.get(DecorativeMain.STAGE) == CeilingFanStage.LEVEL_2) {
+            if (LocalTime.now().getSecond() != blockEntity.second) {
+                blockEntity.second = LocalTime.now().getSecond();
                 world.playSound(null,pos, DecorativeSoundEvents.CEILINGFAN_AMBIENT, SoundCategory.BLOCKS, 0.2f, 1.0f);
             }
-            rot = rot + 10;
-            return;
+            blockEntity.rot = blockEntity.rot + 10;
         }
-        if (world != null && state.get(DecorativeMain.STAGE) == CeilingFanStage.LEVEL_3) {
-            if (LocalTime.now().getSecond() != second) {
-                second = LocalTime.now().getSecond();
+        else if (state.get(DecorativeMain.STAGE) == CeilingFanStage.LEVEL_3) {
+            if (LocalTime.now().getSecond() != blockEntity.second) {
+                blockEntity.second = LocalTime.now().getSecond();
                 world.playSound(null,pos, DecorativeSoundEvents.CEILINGFAN_AMBIENT, SoundCategory.BLOCKS, 0.3f, 1.0f);
             }
 
-            rot = rot + 14;
-            return;
-        }
-        else {
-            return;
+            blockEntity.rot = blockEntity.rot + 14;
         }
     }
     public int getRot() {

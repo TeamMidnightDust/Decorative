@@ -37,8 +37,7 @@
 
   "depends": {
     "fabric": "*",
-    "autoconfig1u": "*",
-    "cloth-config2": "*"
+    "midnightlib": "*"
   },
   "suggests": {
     "patchouli": "*"

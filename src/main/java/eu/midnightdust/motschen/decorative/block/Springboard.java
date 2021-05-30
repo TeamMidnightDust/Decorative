@@ -24,6 +24,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
+import java.util.Objects;
+
 public class Springboard extends HorizontalFacingBlock {
     private static final VoxelShape NORTH_SHAPE_FRONT;
     private static final VoxelShape EAST_SHAPE_FRONT;
@@ -43,68 +45,52 @@ public class Springboard extends HorizontalFacingBlock {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!world.isClient) {
             if (itemStack.isEmpty() && hand==Hand.MAIN_HAND) {
-                switch (state.get(PART)) {
-                    case FRONT:
-                        if (player.getY() >= pos.getY()+0.1 && player.squaredDistanceTo(pos.getX(), pos.getY(), pos.getZ()) <= 1.0) {
-                            player.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 10, 10));
-                            return ActionResult.SUCCESS;
-                        }
-                        else return ActionResult.FAIL;
-                    default:
-                        return ActionResult.FAIL;
+                if (state.get(PART) == Part.FRONT) {
+                    if (player.getY() >= pos.getY() + 0.1 && player.squaredDistanceTo(pos.getX(), pos.getY(), pos.getZ()) <= 1.0) {
+                        player.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 10, 10));
+                        return ActionResult.SUCCESS;
+                    }
                 }
             }
-            else return ActionResult.FAIL;
         }
-        else return ActionResult.FAIL;
+        return ActionResult.FAIL;
     }
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
+        return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
                 .with(FACING, itemPlacementContext.getPlayerFacing())
                 .with(PART, Part.BACK);
     }
 
     @Override
     public void onPlaced(World arg, BlockPos pos, BlockState state, LivingEntity arg4, ItemStack arg5) {
-        switch (state.get(PART)) {
-            case BACK: switch (state.get(FACING)) {
+        if (state.get(PART) == Part.BACK) {
+            switch (state.get(FACING)) {
                 case NORTH:
                     if (!arg.getBlockState(pos.north()).isAir()) {
                         arg.breakBlock(pos, true);
+                    } else {
+                        arg.setBlockState(pos.north(), state.with(PART, Part.FRONT).with(FACING, Direction.NORTH));
                     }
-                    else {
-                    arg.setBlockState(pos.north(), state.with(PART, Part.FRONT).with(FACING, Direction.NORTH));
-                    }
-                    return;
                 case EAST:
                     if (!arg.getBlockState(pos.east()).isAir()) {
                         arg.breakBlock(pos, true);
+                    } else {
+                        arg.setBlockState(pos.east(), state.with(PART, Part.FRONT).with(FACING, Direction.EAST));
                     }
-                    else {
-                    arg.setBlockState(pos.east(), state.with(PART, Part.FRONT).with(FACING, Direction.EAST));
-                    }
-                    return;
                 case SOUTH:
                     if (!arg.getBlockState(pos.south()).isAir()) {
                         arg.breakBlock(pos, true);
+                    } else {
+                        arg.setBlockState(pos.south(), state.with(PART, Part.FRONT).with(FACING, Direction.SOUTH));
                     }
-                    else {
-                    arg.setBlockState(pos.south(), state.with(PART, Part.FRONT).with(FACING, Direction.SOUTH));
-                    }
-                    return;
                 case WEST:
                     if (!arg.getBlockState(pos.west()).isAir()) {
                         arg.breakBlock(pos, true);
+                    } else {
+                        arg.setBlockState(pos.west(), state.with(PART, Part.FRONT).with(FACING, Direction.WEST));
                     }
-                    else {
-                    arg.setBlockState(pos.west(), state.with(PART, Part.FRONT).with(FACING, Direction.WEST));
-                    }
-                    return;
-                default:
-                    return;
             }
-            default: return;
         }
     }
     @Override
@@ -113,37 +99,23 @@ public class Springboard extends HorizontalFacingBlock {
             case BACK: switch (state.get(FACING)) {
                 case NORTH:
                     if (world.getBlockState(pos.north()).contains(PART)) { world.breakBlock(pos.north(), true);}
-                    return;
                 case EAST:
                     if (world.getBlockState(pos.east()).contains(PART)) { world.breakBlock(pos.east(), true);}
-                    return;
                 case SOUTH:
                     if (world.getBlockState(pos.south()).contains(PART)) { world.breakBlock(pos.south(), true);}
-
-                    return;
                 case WEST:
                     if (world.getBlockState(pos.west()).contains(PART)) { world.breakBlock(pos.west(), true);}
-                    return;
-                default:
-                    return;
             }
             case FRONT: switch (state.get(FACING)) {
                 case NORTH:
                     if (world.getBlockState(pos.south()).contains(PART)) { world.breakBlock(pos.south(), true); }
-                    return;
                 case EAST:
                     if (world.getBlockState(pos.west()).contains(PART)) { world.breakBlock(pos.south(), true); }
-                    return;
                 case SOUTH:
                     if (world.getBlockState(pos.north()).contains(PART)) { world.breakBlock(pos.south(), true); }
-                    return;
                 case WEST:
                     if (world.getBlockState(pos.east()).contains(PART)) { world.breakBlock(pos.south(), true); }
-                    return;
-                default:
-                    return;
             }
-            default: return;
         }
     }
 
@@ -154,13 +126,25 @@ public class Springboard extends HorizontalFacingBlock {
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH: switch (state.get(PART)) { case FRONT: return NORTH_SHAPE_FRONT; case BACK: return NORTH_SHAPE_BACK;}
-            case EAST: switch (state.get(PART)) { case FRONT: return EAST_SHAPE_FRONT; case BACK: return EAST_SHAPE_BACK;}
-            case SOUTH: switch (state.get(PART)) { case FRONT: return SOUTH_SHAPE_FRONT; case BACK: return SOUTH_SHAPE_BACK;}
-            case WEST: switch (state.get(PART)) { case FRONT: return WEST_SHAPE_FRONT; case BACK: return WEST_SHAPE_BACK;}
-            default: return super.getOutlineShape(state, view, pos, context);
-        }
+        return switch (state.get(FACING)) {
+            case NORTH -> switch (state.get(PART)) {
+                case FRONT -> NORTH_SHAPE_FRONT;
+                case BACK -> NORTH_SHAPE_BACK;
+            };
+            case EAST -> switch (state.get(PART)) {
+                case FRONT -> EAST_SHAPE_FRONT;
+                case BACK -> EAST_SHAPE_BACK;
+            };
+            case SOUTH -> switch (state.get(PART)) {
+                case FRONT -> SOUTH_SHAPE_FRONT;
+                case BACK -> SOUTH_SHAPE_BACK;
+            };
+            case WEST -> switch (state.get(PART)) {
+                case FRONT -> WEST_SHAPE_FRONT;
+                case BACK -> WEST_SHAPE_BACK;
+            };
+            default -> super.getOutlineShape(state, view, pos, context);
+        };
     }
     static {
         //long_plank

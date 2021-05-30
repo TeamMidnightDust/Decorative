@@ -5,6 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -36,14 +37,7 @@ public class FireHydrant extends HorizontalFacingBlock {
         if (!itemStack.isEmpty() && hand==Hand.MAIN_HAND) {
             if (itemStack.getItem() == Items.BUCKET) {
                 if (!world.isClient) {
-                    if (!player.abilities.creativeMode) {
-                        itemStack.decrement(1);
-                        if (itemStack.isEmpty()) {
-                            player.setStackInHand(hand, new ItemStack(Items.WATER_BUCKET));
-                        } else if (!player.inventory.insertStack(new ItemStack(Items.WATER_BUCKET))) {
-                            player.dropItem(new ItemStack(Items.WATER_BUCKET), false);
-                        }
-                    }
+                    ItemUsage.exchangeStack(itemStack, player, new ItemStack(Items.BUCKET));
                     world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
                 return ActionResult.SUCCESS;

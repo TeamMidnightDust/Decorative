@@ -43,16 +43,12 @@ public class SlidingDoor extends DoorBlock {
         state.get(FACING);
         boolean bl = !state.get(OPEN);
         boolean bl2 = state.get(HINGE) == DoorHinge.RIGHT;
-        switch(state.get(FACING)) {
-            default:
-                return bl ? WEST_SHAPE : (bl2 ? EAST_SHAPE_OPEN : WEST_SHAPE_OPEN);
-            case NORTH:
-                return bl ? NORTH_SHAPE : (bl2 ? SOUTH_SHAPE_OPEN : NORTH_SHAPE_OPEN);
-            case EAST:
-                return bl ? EAST_SHAPE : (bl2 ? WEST_SHAPE_OPEN : EAST_SHAPE_OPEN);
-            case SOUTH:
-                return bl ? SOUTH_SHAPE : (bl2 ? NORTH_SHAPE_OPEN : SOUTH_SHAPE_OPEN);
-        }
+        return switch (state.get(FACING)) {
+            default -> bl ? WEST_SHAPE : (bl2 ? EAST_SHAPE_OPEN : WEST_SHAPE_OPEN);
+            case NORTH -> bl ? NORTH_SHAPE : (bl2 ? SOUTH_SHAPE_OPEN : NORTH_SHAPE_OPEN);
+            case EAST -> bl ? EAST_SHAPE : (bl2 ? WEST_SHAPE_OPEN : EAST_SHAPE_OPEN);
+            case SOUTH -> bl ? SOUTH_SHAPE : (bl2 ? NORTH_SHAPE_OPEN : SOUTH_SHAPE_OPEN);
+        };
     }
     static {
         VoxelShape shape = createCuboidShape(0, 0, 7, 16, 16, 9);

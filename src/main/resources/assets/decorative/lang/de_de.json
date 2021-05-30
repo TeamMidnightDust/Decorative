@@ -1,4 +1,8 @@
 {
+	// Config //
+	"decorative.midnightconfig.title":"Decorative Konfiguration",
+	"decorative.midnightconfig.timeFormat":"Zeitformat",
+
     // ItemGroups //
 	"itemGroup.decorative.indoor":"Decorative - Innen",
 	"itemGroup.decorative.traffic":"Decorative - Verkehr",

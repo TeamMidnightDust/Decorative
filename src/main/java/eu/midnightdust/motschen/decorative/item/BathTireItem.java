@@ -6,7 +6,8 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
@@ -42,7 +43,7 @@ public class BathTireItem extends Item {
                 if (entityType.spawnFromItemStack((ServerWorld) world, itemStack, user, blockPos.up(1), SpawnReason.SPAWN_EGG, false, false) == null) {
                     return TypedActionResult.pass(itemStack);
                 } else {
-                    if (!user.abilities.creativeMode) {
+                    if (!user.getAbilities().creativeMode) {
                         itemStack.decrement(1);
                     }
 
@@ -55,9 +56,9 @@ public class BathTireItem extends Item {
         }
     }
 
-    public EntityType<?> getEntityType(CompoundTag tag) {
+    public EntityType<?> getEntityType(NbtCompound tag) {
         if (tag != null && tag.contains("EntityTag", 10)) {
-            CompoundTag compoundTag = tag.getCompound("EntityTag");
+            NbtCompound compoundTag = tag.getCompound("EntityTag");
             if (compoundTag.contains("id", 8)) {
                 return EntityType.get(compoundTag.getString("id")).orElse(this.type);
             }

@@ -22,11 +22,6 @@ public class BathTireEntity extends PigEntity {
     }
 
     @Override
-    protected int getCurrentExperience(PlayerEntity player) {
-        return 0;
-    }
-
-    @Override
     protected SoundEvent getAmbientSound() {
         return null;
     }

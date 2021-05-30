@@ -4,57 +4,52 @@ import eu.midnightdust.motschen.decorative.init.BlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 
 import java.time.LocalTime;
 
-public class DigitalClockBlockEntity extends BlockEntity implements Tickable {
+public class DigitalClockBlockEntity extends BlockEntity {
     private int facing;
     private double x;
     private double z;
     private int second;
 
-    public DigitalClockBlockEntity() {
-        super(BlockEntities.DigitalClockBlockEntity);
+    public DigitalClockBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockEntities.DigitalClockBlockEntity, pos, state);
     }
 
-    @Override
-    public void tick() {
-        if (LocalTime.now().getSecond() != second) {
-            second = LocalTime.now().getSecond();
+    public static void tick(World world, BlockPos pos, BlockState state, DigitalClockBlockEntity blockEntity) {
+        if (LocalTime.now().getSecond() != blockEntity.second) {
+            blockEntity.second = LocalTime.now().getSecond();
         }
-
-        BlockPos pos = this.pos;
-        BlockState state = this.world.getBlockState(pos);
-
-
-        if (world != null && state.get(HorizontalFacingBlock.FACING) == Direction.EAST) {
-            facing = 270;
-            x = 0.626;
-            z = 0.825;
-            return;
+        switch (state.get(HorizontalFacingBlock.FACING)) {
+            case NORTH: {
+                blockEntity.facing = 0;
+                blockEntity.x = 0.825;
+                blockEntity.z = 0.374;
+                break;
+            }
+            case EAST:{
+                blockEntity.facing = 270;
+                blockEntity.x = 0.626;
+                blockEntity.z = 0.825;
+                break;
+            }
+            case SOUTH:{
+                blockEntity.facing = 180;
+                blockEntity.x = 0.175;
+                blockEntity.z = 0.626;
+                break;
+            }
+            case WEST:{
+                blockEntity.facing = 90;
+                blockEntity.x = 0.374;
+                blockEntity.z = 0.175;
+                break;
+            }
+            default: break;
         }
-        if (world != null && state.get(HorizontalFacingBlock.FACING) == Direction.SOUTH) {
-            facing = 180;
-            x = 0.175;
-            z = 0.626;
-            return;
-        }
-        if (world != null && state.get(HorizontalFacingBlock.FACING) == Direction.WEST) {
-            facing = 90;
-            x = 0.374;
-            z = 0.175;
-            return;
-        }
-        else {
-            facing = 0;
-            x = 0.825;
-            z = 0.374;
-            return;
-        }
-
     }
     public int getFacing() {
         return facing;

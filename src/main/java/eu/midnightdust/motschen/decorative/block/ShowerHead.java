@@ -1,9 +1,12 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import eu.midnightdust.motschen.decorative.block.blockentity.ShowerHeadBlockEntity;
+import eu.midnightdust.motschen.decorative.init.BlockEntities;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -11,6 +14,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -21,14 +25,16 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
 
-public class ShowerHead extends HorizontalFacingBlock implements BlockEntityProvider {
-
+public class ShowerHead extends BlockWithEntity implements BlockEntityProvider {
+    private static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final BooleanProperty POWERED = DoorBlock.POWERED;
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
     private static final VoxelShape SOUTH_SHAPE;
     private static final VoxelShape WEST_SHAPE;
-    public static final BooleanProperty POWERED = DoorBlock.POWERED;
+
 
     public ShowerHead() {
         super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
@@ -36,7 +42,7 @@ public class ShowerHead extends HorizontalFacingBlock implements BlockEntityProv
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        world.setBlockState(pos, state.with(POWERED, Boolean.valueOf(!state.get(POWERED))));
+        world.setBlockState(pos, state.with(POWERED, !state.get(POWERED)));
         world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 0.5f);
         return ActionResult.SUCCESS;
     }
@@ -91,8 +97,17 @@ public class ShowerHead extends HorizontalFacingBlock implements BlockEntityProv
         return !worldView.isAir(pos.north()) | !worldView.isAir(pos.east()) | !worldView.isAir(pos.south()) | !worldView.isAir(pos.west());
     }
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new ShowerHeadBlockEntity();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new ShowerHeadBlockEntity(pos, state);
+    }
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, BlockEntities.ShowerHeadBlockEntity, ShowerHeadBlockEntity::tick);
+    }
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
 }

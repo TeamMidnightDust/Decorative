@@ -1,5 +1,6 @@
 package eu.midnightdust.motschen.decorative;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import eu.midnightdust.motschen.decorative.block.*;
 import eu.midnightdust.motschen.decorative.blockstates.CeilingFanStage;
 import eu.midnightdust.motschen.decorative.blockstates.Part;
@@ -10,8 +11,6 @@ import eu.midnightdust.motschen.decorative.init.*;
 import eu.midnightdust.motschen.decorative.sound.DecorativeSoundEvents;
 import eu.midnightdust.motschen.decorative.world.OreFeatureInjector;
 import eu.midnightdust.motschen.decorative.world.OreFeatures;
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -22,9 +21,9 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+
 public class DecorativeMain implements ModInitializer {
     public static final String MOD_ID = "decorative";
-    public static DecorativeConfig DECORATIVE_CONFIG;
 
     public static final ItemGroup IndoorGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "indoor"), () -> new ItemStack(DecorativeMain.Television));
     public static final ItemGroup TrafficGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "traffic"), () -> new ItemStack(DecorativeMain.TrafficCone));
@@ -57,10 +56,10 @@ public class DecorativeMain implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        AutoConfig.register(DecorativeConfig.class, JanksonConfigSerializer::new);
-        DECORATIVE_CONFIG = AutoConfig.getConfigHolder(DecorativeConfig.class).getConfig();
+        MidnightConfig.init("decorative", DecorativeConfig.class);
 
         BlockEntities.init();
+
         // Traffic //
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"rocky_asphalt"), RockyAsphalt);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID,"rocky_asphalt"), new BlockItem(RockyAsphalt, new Item.Settings().group(DecorativeMain.TrafficGroup)));

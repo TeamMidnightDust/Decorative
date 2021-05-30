@@ -1,9 +1,12 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import eu.midnightdust.motschen.decorative.block.blockentity.PoolSprinklerBlockEntity;
+import eu.midnightdust.motschen.decorative.init.BlockEntities;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -11,6 +14,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -21,14 +25,18 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
 
-public class PoolSprinkler extends HorizontalFacingBlock implements BlockEntityProvider {
+import java.util.Objects;
 
+public class PoolSprinkler extends BlockWithEntity implements BlockEntityProvider {
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final BooleanProperty POWERED = DoorBlock.POWERED;
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
     private static final VoxelShape SOUTH_SHAPE;
     private static final VoxelShape WEST_SHAPE;
-    public static final BooleanProperty POWERED = DoorBlock.POWERED;
+
 
     public PoolSprinkler() {
         super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
@@ -36,14 +44,14 @@ public class PoolSprinkler extends HorizontalFacingBlock implements BlockEntityP
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        world.setBlockState(pos, state.with(POWERED, Boolean.valueOf(!state.get(POWERED))));
+        world.setBlockState(pos, state.with(POWERED, !state.get(POWERED)));
         world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 0.5f);
         return ActionResult.SUCCESS;
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
+        return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
                 .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite())
                 .with(POWERED, Boolean.FALSE);
     }
@@ -89,8 +97,17 @@ public class PoolSprinkler extends HorizontalFacingBlock implements BlockEntityP
         return !worldView.isAir(pos.down());
     }
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new PoolSprinklerBlockEntity();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new PoolSprinklerBlockEntity(pos, state);
+    }
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, BlockEntities.PoolSprinklerBlockEntity, PoolSprinklerBlockEntity::tick);
+    }
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
 }

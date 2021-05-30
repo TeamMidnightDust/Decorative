@@ -1,19 +1,28 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import eu.midnightdust.motschen.decorative.block.blockentity.WallClockBlockEntity;
+import eu.midnightdust.motschen.decorative.init.BlockEntities;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public class WallClock extends HorizontalFacingBlock implements BlockEntityProvider {
+import java.util.Objects;
+
+public class WallClock extends BlockWithEntity implements BlockEntityProvider {
+    private static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
     private static final VoxelShape SOUTH_SHAPE;
@@ -25,8 +34,17 @@ public class WallClock extends HorizontalFacingBlock implements BlockEntityProvi
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView view) {
-        return new WallClockBlockEntity();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new WallClockBlockEntity(pos, state);
+    }
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, BlockEntities.WallClockBlockEntity, WallClockBlockEntity::tick);
+    }
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Override
@@ -36,27 +54,27 @@ public class WallClock extends HorizontalFacingBlock implements BlockEntityProvi
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
+        return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
                 .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH: return NORTH_SHAPE;
-            case EAST: return EAST_SHAPE;
-            case SOUTH: return SOUTH_SHAPE;
-            case WEST: return WEST_SHAPE;
-            default: return super.getOutlineShape(state, view, pos, context);
-        }
+        return switch (state.get(FACING)) {
+            case NORTH -> NORTH_SHAPE;
+            case EAST -> EAST_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case WEST -> WEST_SHAPE;
+            default -> super.getOutlineShape(state, view, pos, context);
+        };
     }
     static {
         VoxelShape shape = createCuboidShape(0, 0, 15, 16, 16, 16);
 
         NORTH_SHAPE = shape;
-        WEST_SHAPE = rotate(Direction.EAST, Direction.NORTH, shape);
-        EAST_SHAPE = rotate(Direction.EAST, Direction.SOUTH, shape);
-        SOUTH_SHAPE = rotate(Direction.EAST, Direction.WEST, shape);
+        WEST_SHAPE = rotate(Direction.NORTH, Direction.WEST, shape);
+        EAST_SHAPE = rotate(Direction.NORTH, Direction.EAST, shape);
+        SOUTH_SHAPE = rotate(Direction.NORTH, Direction.SOUTH, shape);
     }
     private static VoxelShape rotate(Direction from, Direction to, VoxelShape shape) {
         VoxelShape[] buffer = new VoxelShape[]{ shape, VoxelShapes.empty() };
