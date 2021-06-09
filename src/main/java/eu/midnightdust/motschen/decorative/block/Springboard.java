@@ -72,24 +72,28 @@ public class Springboard extends HorizontalFacingBlock {
                     } else {
                         arg.setBlockState(pos.north(), state.with(PART, Part.FRONT).with(FACING, Direction.NORTH));
                     }
+                    break;
                 case EAST:
                     if (!arg.getBlockState(pos.east()).isAir()) {
                         arg.breakBlock(pos, true);
                     } else {
                         arg.setBlockState(pos.east(), state.with(PART, Part.FRONT).with(FACING, Direction.EAST));
                     }
+                    break;
                 case SOUTH:
                     if (!arg.getBlockState(pos.south()).isAir()) {
                         arg.breakBlock(pos, true);
                     } else {
                         arg.setBlockState(pos.south(), state.with(PART, Part.FRONT).with(FACING, Direction.SOUTH));
                     }
+                    break;
                 case WEST:
                     if (!arg.getBlockState(pos.west()).isAir()) {
                         arg.breakBlock(pos, true);
                     } else {
                         arg.setBlockState(pos.west(), state.with(PART, Part.FRONT).with(FACING, Direction.WEST));
                     }
+                    break;
             }
         }
     }
@@ -98,23 +102,47 @@ public class Springboard extends HorizontalFacingBlock {
         switch (state.get(PART)) {
             case BACK: switch (state.get(FACING)) {
                 case NORTH:
-                    if (world.getBlockState(pos.north()).contains(PART)) { world.breakBlock(pos.north(), true);}
+                    if (world.getBlockState(pos.north()).contains(PART)) {
+                        world.breakBlock(pos.north(), true);
+                        break;
+                    }
                 case EAST:
-                    if (world.getBlockState(pos.east()).contains(PART)) { world.breakBlock(pos.east(), true);}
+                    if (world.getBlockState(pos.east()).contains(PART)) {
+                        world.breakBlock(pos.east(), true);
+                        break;
+                    }
                 case SOUTH:
-                    if (world.getBlockState(pos.south()).contains(PART)) { world.breakBlock(pos.south(), true);}
+                    if (world.getBlockState(pos.south()).contains(PART)) {
+                        world.breakBlock(pos.south(), true);
+                        break;
+                    }
                 case WEST:
-                    if (world.getBlockState(pos.west()).contains(PART)) { world.breakBlock(pos.west(), true);}
+                    if (world.getBlockState(pos.west()).contains(PART)) {
+                        world.breakBlock(pos.west(), true);
+                        break;
+                    }
             }
             case FRONT: switch (state.get(FACING)) {
                 case NORTH:
-                    if (world.getBlockState(pos.south()).contains(PART)) { world.breakBlock(pos.south(), true); }
+                    if (world.getBlockState(pos.south()).contains(PART)) {
+                        world.breakBlock(pos.south(), true);
+                        break;
+                    }
                 case EAST:
-                    if (world.getBlockState(pos.west()).contains(PART)) { world.breakBlock(pos.south(), true); }
+                    if (world.getBlockState(pos.west()).contains(PART)) {
+                        world.breakBlock(pos.west(), true);
+                        break;
+                    }
                 case SOUTH:
-                    if (world.getBlockState(pos.north()).contains(PART)) { world.breakBlock(pos.south(), true); }
+                    if (world.getBlockState(pos.north()).contains(PART)) {
+                        world.breakBlock(pos.north(), true);
+                        break;
+                    }
                 case WEST:
-                    if (world.getBlockState(pos.east()).contains(PART)) { world.breakBlock(pos.south(), true); }
+                    if (world.getBlockState(pos.east()).contains(PART)) {
+                        world.breakBlock(pos.east(), true);
+                        break;
+                    }
             }
         }
     }
@@ -213,7 +241,7 @@ public class Springboard extends HorizontalFacingBlock {
     }
 
     public boolean canPlaceAt(BlockState state, WorldView worldView, BlockPos pos) {
-        return !worldView.isAir(pos.down());
+        return !worldView.isAir(pos.down()) && worldView.getBlockState(pos.offset(state.get(FACING))) == Blocks.AIR.getDefaultState();
     }
 
 }

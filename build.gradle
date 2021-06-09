@@ -17,6 +17,9 @@ repositories {
 	maven { url "https://jitpack.io" }
 	maven { url "https://maven.blamejared.com" }
 	maven { url "https://maven.terraformersmc.com/releases" }
+	flatDir {
+		dirs 'local_maven'
+	}
 }
 
 dependencies {
@@ -36,8 +39,8 @@ dependencies {
         exclude module: "fabric-api"
     }
 	
-	modImplementation "com.github.TeamMidnightDust:MidnightLib:${midnightlib_version}"
-    include "com.github.TeamMidnightDust:MidnightLib:${midnightlib_version}"
+	modImplementation "com.github.TeamMidnightDust:midnightlib:${midnightlib_version}"
+    include "com.github.TeamMidnightDust:midnightlib:${midnightlib_version}"
 }
 
 processResources {

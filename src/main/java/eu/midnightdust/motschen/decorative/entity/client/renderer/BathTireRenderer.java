@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class BathTireRenderer extends MobEntityRenderer<BathTireEntity, BathTireModel> {
-    private static Identifier TEXTURE;
+    private final Identifier TEXTURE;
     public BathTireRenderer(EntityRendererFactory.Context context, DyeColor color) {
         super(context, new BathTireModel(context.getPart(BathTireModel.BATH_TIRE_MODEL_LAYER)), 0.5F);
         TEXTURE = Identifier.tryParse("textures/block/"+color.getName()+"_concrete.png");
