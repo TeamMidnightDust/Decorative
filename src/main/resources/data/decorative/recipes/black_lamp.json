@@ -7,7 +7,7 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:white_wool"
+            "item": "minecraft:black_wool"
         },
         "R": {
             "item": "minecraft:redstone_lamp"
@@ -17,7 +17,7 @@
         }
     },
     "result": {
-        "item": "minecraft:white_concrete_powder",
+        "item": "decorative:black_lamp",
         "count": 1
     }
 }
