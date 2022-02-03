@@ -39,7 +39,7 @@ public class BathTireItem extends Item {
             if (!(world.getBlockState(blockPos).getBlock() instanceof FluidBlock)) {
                 return TypedActionResult.pass(itemStack);
             } else if (world.canPlayerModifyAt(user, blockPos) && user.canPlaceOn(blockPos, blockHitResult.getSide(), itemStack)) {
-                EntityType<?> entityType = this.getEntityType(itemStack.getTag());
+                EntityType<?> entityType = this.getEntityType(itemStack.getNbt());
                 if (entityType.spawnFromItemStack((ServerWorld) world, itemStack, user, blockPos.up(1), SpawnReason.SPAWN_EGG, false, false) == null) {
                     return TypedActionResult.pass(itemStack);
                 } else {

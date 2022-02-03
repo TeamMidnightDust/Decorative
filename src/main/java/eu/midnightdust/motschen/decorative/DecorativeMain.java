@@ -9,7 +9,6 @@ import eu.midnightdust.motschen.decorative.blockstates.Program;
 import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import eu.midnightdust.motschen.decorative.init.*;
 import eu.midnightdust.motschen.decorative.sound.DecorativeSoundEvents;
-import eu.midnightdust.motschen.decorative.world.OreFeatureInjector;
 import eu.midnightdust.motschen.decorative.world.OreFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -113,7 +112,6 @@ public class DecorativeMain implements ModInitializer {
         DoubleLamps.init();
         Clocks.init();
         OreFeatures.init();
-        OreFeatureInjector.init();
         new DecorativeSoundEvents();
     }
 }

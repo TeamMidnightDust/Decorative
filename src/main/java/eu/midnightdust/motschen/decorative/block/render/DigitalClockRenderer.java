@@ -71,7 +71,7 @@ public class DigitalClockRenderer implements BlockEntityRenderer<DigitalClockBlo
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.getFacing()));
         matrices.translate(0,0,-0.1);
         matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180));
-        textRenderer.draw(getTime(), 0, 0, 16382457, false, matrices.peek().getModel(), vertexConsumers, false, 0, light);
+        textRenderer.draw(getTime(), 0, 0, 16382457, false, matrices.peek().getPositionMatrix(), vertexConsumers, false, 0, light);
         matrices.pop();
     }
 }

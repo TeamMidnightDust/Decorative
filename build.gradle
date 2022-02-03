@@ -1,10 +1,10 @@
 plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'fabric-loom' version '0.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_16
-targetCompatibility = JavaVersion.VERSION_16
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -17,8 +17,8 @@ repositories {
 	maven { url "https://jitpack.io" }
 	maven { url "https://maven.blamejared.com" }
 	maven { url "https://maven.terraformersmc.com/releases" }
-	flatDir {
-		dirs 'local_maven'
+	maven {
+		url = "https://api.modrinth.com/maven"
 	}
 }
 
@@ -31,16 +31,16 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	
-// 	modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}"){
-//         exclude module: "fabric-api"
-//     }
+ 	modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}"){
+        exclude module: "fabric-api"
+    }
 	
 	modImplementation ("com.terraformersmc:modmenu:${project.mod_menu_version}"){
         exclude module: "fabric-api"
     }
 	
-	modImplementation "com.github.TeamMidnightDust:midnightlib:${midnightlib_version}"
-    include "com.github.TeamMidnightDust:midnightlib:${midnightlib_version}"
+	modImplementation "maven.modrinth:midnightlib:${midnightlib_version}"
+	include "maven.modrinth:midnightlib:${midnightlib_version}"
 }
 
 processResources {
@@ -59,7 +59,7 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.encoding = "UTF-8"
 
 	// Minecraft 1.17 (21w19a) upwards uses Java 16.
-	it.options.release = 16
+	it.options.release = 17
 }
 
 java {
