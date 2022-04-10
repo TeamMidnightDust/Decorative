@@ -7,13 +7,16 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class BathTireEntity extends PigEntity {
@@ -45,7 +48,7 @@ public class BathTireEntity extends PigEntity {
     }
 
     @Override
-    protected void swimUpward(Tag<Fluid> fluid) {
+    protected void swimUpward(TagKey<Fluid> fluid) {
         if (this.getNavigation().canSwim()) {
             super.swimUpward(fluid);
         } else {
@@ -60,7 +63,7 @@ public class BathTireEntity extends PigEntity {
     }
 
     @Override
-    public boolean canWalkOnFluid(Fluid fluid) {
+    public boolean canWalkOnFluid(FluidState fluid) {
         return true;
     }
 
@@ -104,7 +107,14 @@ public class BathTireEntity extends PigEntity {
 
     @Override
     public ActionResult interactAt(PlayerEntity player, Vec3d hitPos, Hand hand) {
-        if(!player.getEntityWorld().isClient && player.getStackInHand(hand)== ItemStack.EMPTY && hand==Hand.MAIN_HAND)
+        if (!player.getEntityWorld().isClient && player.getStackInHand(hand)== ItemStack.EMPTY && hand==Hand.MAIN_HAND && player.isSneaking())
+        {
+            this.remove(RemovalReason.DISCARDED);
+            System.out.println(Identifier.tryParse(this.getType().getUntranslatedName()));
+            player.setStackInHand(hand, new ItemStack(Registry.ITEM.get(Identifier.tryParse("decorative:"+this.getType().getUntranslatedName()))));
+            return ActionResult.SUCCESS;
+        }
+        else if (!player.getEntityWorld().isClient && player.getStackInHand(hand)== ItemStack.EMPTY && hand==Hand.MAIN_HAND && !player.isSneaking())
         {
             player.startRiding(this,true);
             return ActionResult.SUCCESS;
@@ -120,5 +130,8 @@ public class BathTireEntity extends PigEntity {
         }
     }
 
-
+    @Override
+    protected int getXpToDrop(PlayerEntity player) {
+        return 0;
+    }
 }

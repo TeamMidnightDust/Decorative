@@ -8,9 +8,10 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -46,7 +47,7 @@ public class BeachBallEntity extends PigEntity {
     }
 
     @Override
-    protected void swimUpward(Tag<Fluid> fluid) {
+    protected void swimUpward(TagKey<Fluid> fluid) {
             this.setVelocity(this.getVelocity().add(0.0D, 1.0D, 0.0D));
     }
 
@@ -56,7 +57,7 @@ public class BeachBallEntity extends PigEntity {
     }
 
     @Override
-    public boolean canWalkOnFluid(Fluid fluid) {
+    public boolean canWalkOnFluid(FluidState fluid) {
         return true;
     }
 
