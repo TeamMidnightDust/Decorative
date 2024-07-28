@@ -1,8 +1,12 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import com.mojang.serialization.MapCodec;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayBirdBathModel;
+import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.*;
 import net.minecraft.block.cauldron.CauldronBehavior;
+import net.minecraft.block.enums.BlockFace;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.PotionContentsComponent;
@@ -13,9 +17,12 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potions;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -24,10 +31,11 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class BirdBath extends AbstractCauldronBlock {
+public class BirdBath extends AbstractCauldronBlock implements FactoryBlock {
     private static final VoxelShape SHAPE;
     public static final IntProperty LEVEL = IntProperty.of("level",0,3);
 
@@ -119,4 +127,18 @@ public class BirdBath extends AbstractCauldronBlock {
         return !worldView.isAir(pos.down());
     }
 
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
+    }
+    @Override
+    public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
+        return Blocks.COBBLESTONE.getDefaultState();
+    }
+
+    @Override
+    public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return new ItemDisplayBirdBathModel(initialBlockState, pos, world);
+    }
 }

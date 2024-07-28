@@ -8,6 +8,8 @@ import eu.midnightdust.motschen.decorative.blockstates.PoolShape;
 import eu.midnightdust.motschen.decorative.blockstates.Program;
 import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import eu.midnightdust.motschen.decorative.init.*;
+import eu.midnightdust.motschen.decorative.polymer.PolymerSupport;
+import eu.midnightdust.motschen.decorative.polymer.TexturedSimpleBlock;
 import eu.midnightdust.motschen.decorative.sound.DecorativeSoundEvents;
 import eu.midnightdust.motschen.decorative.util.RegistryUtil;
 import eu.midnightdust.motschen.decorative.world.OreFeatures;
@@ -44,14 +46,14 @@ public class DecorativeMain implements ModInitializer {
     public static final EnumProperty<PoolShape> POOL_SHAPE = EnumProperty.of("shape", PoolShape.class);
     public static final EnumProperty<Part> PART = EnumProperty.of("part", Part.class);
     public static final EnumProperty<CeilingFanStage> STAGE = EnumProperty.of("stage", CeilingFanStage.class);
-    public static Block RockyAsphalt = simpleBlock(Blocks.COAL_ORE);
-    public static Block Road = simpleBlock(Blocks.STONE);
+    public static Block RockyAsphalt = new TexturedSimpleBlock(Blocks.COAL_ORE);
+    public static Block Road = new TexturedSimpleBlock(Blocks.STONE);
     public static Block RoadWhiteShort = new RotatableBlock();
     public static Block RoadWhiteLong = new RotatableBlock();
     public static Block TrafficCone = new TrafficCone();
     public static Block Guardrail = new Guardrail();
     public static Block SignPost = new SignPost();
-    public static Block KitchenTiles = simpleBlock(Blocks.STONE);
+    public static Block KitchenTiles = new TexturedSimpleBlock(Blocks.STONE);
     public static Block Television = new Television();
     public static Block OldTelevision = new OldTelevision();
     public static Block CeilingFan = new CeilingFan();
@@ -68,6 +70,7 @@ public class DecorativeMain implements ModInitializer {
     @Override
     public void onInitialize() {
         MidnightConfig.init(MOD_ID, DecorativeConfig.class);
+        PolymerSupport.init();
 
         IndoorGroup = createGroup(id("indoor"), DecorativeMain.Television);
         TrafficGroup = createGroup(id("traffic"), DecorativeMain.TrafficCone);
@@ -134,9 +137,5 @@ public class DecorativeMain implements ModInitializer {
             Registry.register(Registries.ITEM_GROUP, id, group);
         }
         return group;
-    }
-    public static Block simpleBlock(Block base) {
-        if (DecorativeConfig.polymerIntegration) return new SimplePolymerBlock(AbstractBlock.Settings.copy(base), base);
-        else return new Block(AbstractBlock.Settings.copy(base));
     }
 }

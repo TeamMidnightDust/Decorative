@@ -1,6 +1,7 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import com.mojang.serialization.MapCodec;
+import eu.pb4.polymer.blocks.api.PolymerTexturedBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,7 +12,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.Direction;
 
-public class RotatableBlock extends HorizontalFacingBlock {
+public class RotatableBlock extends HorizontalFacingBlock implements PolymerTexturedBlock {
 
     public RotatableBlock() {
         super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
@@ -31,5 +32,11 @@ public class RotatableBlock extends HorizontalFacingBlock {
     @Override
     protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
         return null;
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 }

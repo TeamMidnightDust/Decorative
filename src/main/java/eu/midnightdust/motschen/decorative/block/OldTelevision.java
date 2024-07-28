@@ -3,6 +3,7 @@ package eu.midnightdust.motschen.decorative.block;
 import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.blockstates.Program;
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,7 +29,7 @@ import net.minecraft.world.WorldView;
 
 import java.util.function.ToIntFunction;
 
-public class OldTelevision extends HorizontalFacingBlock {
+public class OldTelevision extends HorizontalFacingBlock implements FactoryBlock {
 
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
@@ -106,5 +107,11 @@ public class OldTelevision extends HorizontalFacingBlock {
     @Override
     protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
         return null;
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 }

@@ -1,6 +1,7 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import com.mojang.serialization.MapCodec;
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,7 +27,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class ChristmasLights extends HorizontalFacingBlock {
+public class ChristmasLights extends HorizontalFacingBlock implements FactoryBlock {
 
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
@@ -94,5 +95,11 @@ public class ChristmasLights extends HorizontalFacingBlock {
     @Override
     protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
         return null;
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 }

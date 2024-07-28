@@ -45,7 +45,10 @@ public class RegistryUtil {
     }
 
     public static Item blockItem(Block block) {
-        if (DecorativeConfig.polymerIntegration) return new FactoryBlockItem((Block & PolymerBlock) block, new Item.Settings());
+        if (DecorativeConfig.polymerIntegration) {
+            if (block instanceof PolymerBlock) return new FactoryBlockItem((Block & PolymerBlock) block, new Item.Settings());
+            else System.out.println(block);
+        }
         return new BlockItem(block, new Item.Settings());
     }
 

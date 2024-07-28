@@ -5,6 +5,7 @@ import eu.midnightdust.motschen.decorative.blockstates.CeilingFanStage;
 import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.block.blockentity.CeilingFanBlockEntity;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -32,7 +33,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-public class CeilingFan extends BlockWithEntity implements BlockEntityProvider {
+public class CeilingFan extends BlockWithEntity implements BlockEntityProvider, FactoryBlock {
     private static final VoxelShape SHAPE;
     private static final EnumProperty<CeilingFanStage> STAGE = DecorativeMain.STAGE;
 
@@ -86,6 +87,12 @@ public class CeilingFan extends BlockWithEntity implements BlockEntityProvider {
     }
     public boolean canPlaceAt(BlockState state, WorldView worldView, BlockPos pos) {
         return !worldView.isAir(pos.up());
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 
 }

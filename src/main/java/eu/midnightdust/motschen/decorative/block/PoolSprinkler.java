@@ -3,6 +3,7 @@ package eu.midnightdust.motschen.decorative.block;
 import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.block.blockentity.PoolSprinklerBlockEntity;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -37,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class PoolSprinkler extends BlockWithEntity implements BlockEntityProvider {
+public class PoolSprinkler extends BlockWithEntity implements BlockEntityProvider, FactoryBlock {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty POWERED = DoorBlock.POWERED;
     private static final VoxelShape NORTH_SHAPE;
@@ -123,6 +124,12 @@ public class PoolSprinkler extends BlockWithEntity implements BlockEntityProvide
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 
 }

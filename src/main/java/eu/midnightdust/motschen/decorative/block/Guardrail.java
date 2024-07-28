@@ -1,6 +1,7 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import com.mojang.serialization.MapCodec;
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,7 +18,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
-public class Guardrail extends HorizontalFacingBlock {
+public class Guardrail extends HorizontalFacingBlock implements FactoryBlock {
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
     private static final VoxelShape SOUTH_SHAPE;
@@ -75,5 +76,11 @@ public class Guardrail extends HorizontalFacingBlock {
     @Override
     protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
         return null;
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 }

@@ -3,6 +3,7 @@ package eu.midnightdust.motschen.decorative.block;
 import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.block.blockentity.ChoppingLogBlockEntity;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class ChoppingLog extends BlockWithEntity implements BlockEntityProvider {
+public class ChoppingLog extends BlockWithEntity implements BlockEntityProvider, FactoryBlock {
     private static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public ChoppingLog() {
@@ -67,6 +68,12 @@ public class ChoppingLog extends BlockWithEntity implements BlockEntityProvider 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 
 }

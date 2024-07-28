@@ -3,6 +3,7 @@ package eu.midnightdust.motschen.decorative.block;
 import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.block.blockentity.WallClockBlockEntity;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -29,7 +30,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class WallClock extends BlockWithEntity implements BlockEntityProvider {
+public class WallClock extends BlockWithEntity implements BlockEntityProvider, FactoryBlock {
     private static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
@@ -101,5 +102,11 @@ public class WallClock extends BlockWithEntity implements BlockEntityProvider {
         }
 
         return buffer[0];
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 }

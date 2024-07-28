@@ -1,5 +1,6 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,7 +22,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class Lamp extends Block {
+public class Lamp extends Block implements FactoryBlock {
     private static final VoxelShape SHAPE;
     public static final BooleanProperty LIT = RedstoneLampBlock.LIT;
 
@@ -50,5 +51,11 @@ public class Lamp extends Block {
     static {
         VoxelShape shape = createCuboidShape(4, 0, 4, 12, 10, 12);
         SHAPE = shape;
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 }

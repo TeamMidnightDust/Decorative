@@ -1,5 +1,6 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,7 +13,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
-public class StonePath extends Block {
+public class StonePath extends Block implements FactoryBlock {
     private static final VoxelShape SHAPE;
 
     public StonePath() {
@@ -31,4 +32,9 @@ public class StonePath extends Block {
         return worldView.getBlockState(pos.down()).isSideSolidFullSquare(worldView,pos,Direction.UP);
     }
 
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
+    }
 }

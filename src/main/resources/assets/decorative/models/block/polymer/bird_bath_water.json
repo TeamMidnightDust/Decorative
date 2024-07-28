@@ -1,0 +1,17 @@
+{
+	"credit": "made by Motschen",
+	"parent": "block/block",
+	"textures": {
+		"water": "block/water_still"
+	},
+	"elements": [
+		{
+			"from": [5, 8.5, 5],
+			"to": [11, 8.6, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 16, 14]},
+			"faces": {
+				"up": {"uv": [0, 0, 6, 6], "texture": "#water", "tintindex": 0}
+			}
+		}
+	]
+}

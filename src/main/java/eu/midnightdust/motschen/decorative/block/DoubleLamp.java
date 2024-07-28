@@ -1,5 +1,6 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import eu.pb4.factorytools.api.block.FactoryBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-public class DoubleLamp extends Block {
+public class DoubleLamp extends Block implements FactoryBlock {
     private static final VoxelShape SHAPE_TOP;
     private static final VoxelShape SHAPE_BOTTOM;
 
@@ -95,5 +96,11 @@ public class DoubleLamp extends Block {
         VoxelShape shape_bottom = createCuboidShape(4, 0, 4, 12, 26, 12);
         SHAPE_TOP = shape_top;
         SHAPE_BOTTOM = shape_bottom;
+    }
+
+    // Polymer
+    @Override
+    public BlockState getPolymerBlockState(BlockState state) {
+        return Blocks.BARRIER.getDefaultState();
     }
 }
