@@ -1,15 +1,14 @@
 package eu.midnightdust.motschen.decorative.entity.client.renderer;
 
-import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.entity.BeachBallEntity;
 import eu.midnightdust.motschen.decorative.entity.client.model.BeachBallModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
-import net.minecraft.client.render.entity.feature.SlimeOverlayFeatureRenderer;
-import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
+
+import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 
 @Environment(EnvType.CLIENT)
 public class BeachBallRenderer extends MobEntityRenderer<BeachBallEntity, BeachBallModel> {
@@ -20,6 +19,6 @@ public class BeachBallRenderer extends MobEntityRenderer<BeachBallEntity, BeachB
 
     @Override
     public Identifier getTexture(BeachBallEntity entity) {
-        return new Identifier(DecorativeMain.MOD_ID, "textures/entity/beach_ball.png");
+        return id("textures/entity/beach_ball.png");
     }
 }

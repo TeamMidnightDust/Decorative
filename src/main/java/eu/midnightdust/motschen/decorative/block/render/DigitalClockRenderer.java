@@ -1,16 +1,15 @@
 package eu.midnightdust.motschen.decorative.block.render;
 
-import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.block.blockentity.DigitalClockBlockEntity;
 import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 
 import java.time.LocalTime;
 
@@ -68,10 +67,10 @@ public class DigitalClockRenderer implements BlockEntityRenderer<DigitalClockBlo
         matrices.translate(blockEntity.getX(),0.35,blockEntity.getZ());
 
         matrices.scale(0.025f, 0.025f, 0.025f);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.getFacing()));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(blockEntity.getFacing()));
         matrices.translate(0,0,-0.1);
-        matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180));
-        textRenderer.draw(getTime(), 0, 0, 16382457, false, matrices.peek().getPositionMatrix(), vertexConsumers, false, 0, light);
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180));
+        textRenderer.draw(getTime(), 0, 0, 16382457, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.POLYGON_OFFSET, 0, light);
         matrices.pop();
     }
 }

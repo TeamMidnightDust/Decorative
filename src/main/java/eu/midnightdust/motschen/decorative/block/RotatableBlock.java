@@ -1,6 +1,7 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,14 +14,13 @@ import net.minecraft.util.math.Direction;
 public class RotatableBlock extends HorizontalFacingBlock {
 
     public RotatableBlock() {
-        super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
-                .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
+        return super.getPlacementState(itemPlacementContext).with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite());
     }
 
     @Override
@@ -28,4 +28,8 @@ public class RotatableBlock extends HorizontalFacingBlock {
         builder.add(FACING);
     }
 
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return null;
+    }
 }

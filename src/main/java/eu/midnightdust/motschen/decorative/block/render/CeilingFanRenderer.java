@@ -11,8 +11,10 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.ColorHelper;
+import net.minecraft.util.math.RotationAxis;
+
+import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 
 @Environment(EnvType.CLIENT)
 public class CeilingFanRenderer implements BlockEntityRenderer<CeilingFanBlockEntity> {
@@ -31,10 +33,10 @@ public class CeilingFanRenderer implements BlockEntityRenderer<CeilingFanBlockEn
     @Override
     public void render(CeilingFanBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
-        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(new Identifier("decorative:textures/block/ceilingfan.png")));
+        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(id("textures/block/ceilingfan.png")));
         matrices.translate(0.5,0.31,0.5);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.getRot()));
-        blades.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(blockEntity.getRot()));
+        blades.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, ColorHelper.Argb.fromFloats(1.0F, 1.0F, 1.0F, 1.0F));
         matrices.pop();
     }
 }

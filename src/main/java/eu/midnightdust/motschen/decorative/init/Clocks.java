@@ -1,12 +1,10 @@
 package eu.midnightdust.motschen.decorative.init;
 
-import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.block.DigitalClock;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+
+import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
+import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerFurniture;
 
 public class Clocks {
     public static Block WhiteDigitalClock = new DigitalClock();
@@ -27,37 +25,21 @@ public class Clocks {
     public static Block BlackDigitalClock = new DigitalClock();
 
     public static void init() {
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"white_digital_clock"), WhiteDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"white_digital_clock"), new BlockItem(WhiteDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"orange_digital_clock"), OrangeDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"orange_digital_clock"), new BlockItem(OrangeDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"magenta_digital_clock"), MagentaDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"magenta_digital_clock"), new BlockItem(MagentaDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"light_blue_digital_clock"), LightBlueDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"light_blue_digital_clock"), new BlockItem(LightBlueDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"yellow_digital_clock"), YellowDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"yellow_digital_clock"), new BlockItem(YellowDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"lime_digital_clock"), LimeDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"lime_digital_clock"), new BlockItem(LimeDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"pink_digital_clock"), PinkDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"pink_digital_clock"), new BlockItem(PinkDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"gray_digital_clock"), GrayDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"gray_digital_clock"), new BlockItem(GrayDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"light_gray_digital_clock"), LightGrayDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"light_gray_digital_clock"), new BlockItem(LightGrayDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"cyan_digital_clock"), CyanDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"cyan_digital_clock"), new BlockItem(CyanDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"purple_digital_clock"), PurpleDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"purple_digital_clock"), new BlockItem(PurpleDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"blue_digital_clock"), BlueDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"blue_digital_clock"), new BlockItem(BlueDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"brown_digital_clock"), BrownDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"brown_digital_clock"), new BlockItem(BrownDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"green_digital_clock"), GreenDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"green_digital_clock"), new BlockItem(GreenDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"red_digital_clock"), RedDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"red_digital_clock"), new BlockItem(RedDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"black_digital_clock"), BlackDigitalClock);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"black_digital_clock"), new BlockItem(BlackDigitalClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
+        registerFurniture(id("white_digital_clock"), WhiteDigitalClock);
+        registerFurniture(id("orange_digital_clock"), OrangeDigitalClock);
+        registerFurniture(id("magenta_digital_clock"), MagentaDigitalClock);
+        registerFurniture(id("light_blue_digital_clock"), LightBlueDigitalClock);
+        registerFurniture(id("yellow_digital_clock"), YellowDigitalClock);
+        registerFurniture(id("lime_digital_clock"), LimeDigitalClock);
+        registerFurniture(id("pink_digital_clock"), PinkDigitalClock);
+        registerFurniture(id("gray_digital_clock"), GrayDigitalClock);
+        registerFurniture(id("light_gray_digital_clock"), LightGrayDigitalClock);
+        registerFurniture(id("cyan_digital_clock"), CyanDigitalClock);
+        registerFurniture(id("purple_digital_clock"), PurpleDigitalClock);
+        registerFurniture(id("blue_digital_clock"), BlueDigitalClock);
+        registerFurniture(id("brown_digital_clock"), BrownDigitalClock);
+        registerFurniture(id("green_digital_clock"), GreenDigitalClock);
+        registerFurniture(id("red_digital_clock"), RedDigitalClock);
+        registerFurniture(id("black_digital_clock"), BlackDigitalClock);
     }
 }

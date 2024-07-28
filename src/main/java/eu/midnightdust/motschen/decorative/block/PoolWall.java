@@ -1,9 +1,16 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.blockstates.PoolShape;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.Waterloggable;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -34,7 +41,7 @@ public class PoolWall extends HorizontalFacingBlock implements Waterloggable {
 
 
     public PoolWall() {
-        super(FabricBlockSettings.copy(Blocks.STONE_STAIRS).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.STONE_STAIRS).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(SHAPE, PoolShape.STRAIGHT).with(WATERLOGGED, false));
     }
 
@@ -46,7 +53,7 @@ public class PoolWall extends HorizontalFacingBlock implements Waterloggable {
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        BlockState blockState = this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite()).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        BlockState blockState = this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite()).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
         return blockState.with(SHAPE, getPoolShape(blockState, ctx.getWorld(), blockPos));
     }
 
@@ -82,13 +89,29 @@ public class PoolWall extends HorizontalFacingBlock implements Waterloggable {
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH: switch (state.get(SHAPE)) { case STRAIGHT: return NORTH_SHAPE; case INNER_LEFT: return NORTH_WEST_CORNER_SHAPE; case INNER_RIGHT: return NORTH_EAST_CORNER_SHAPE;}
-            case EAST: switch (state.get(SHAPE)) { case STRAIGHT: return EAST_SHAPE; case INNER_LEFT: return NORTH_EAST_CORNER_SHAPE; case INNER_RIGHT: return SOUTH_EAST_CORNER_SHAPE;}
-            case SOUTH: switch (state.get(SHAPE)) { case STRAIGHT: return SOUTH_SHAPE; case INNER_LEFT: return SOUTH_EAST_CORNER_SHAPE; case INNER_RIGHT: return SOUTH_WEST_CORNER_SHAPE;}
-            case WEST: switch (state.get(SHAPE)) { case STRAIGHT: return WEST_SHAPE; case INNER_LEFT: return SOUTH_WEST_CORNER_SHAPE; case INNER_RIGHT: return NORTH_WEST_CORNER_SHAPE;}
-            default: return super.getOutlineShape(state, view, pos, context);
-        }
+        return switch (state.get(FACING)) {
+            case NORTH -> switch (state.get(SHAPE)) {
+                case STRAIGHT -> NORTH_SHAPE;
+                case INNER_LEFT -> NORTH_WEST_CORNER_SHAPE;
+                case INNER_RIGHT -> NORTH_EAST_CORNER_SHAPE;
+            };
+            case EAST -> switch (state.get(SHAPE)) {
+                case STRAIGHT -> EAST_SHAPE;
+                case INNER_LEFT -> NORTH_EAST_CORNER_SHAPE;
+                case INNER_RIGHT -> SOUTH_EAST_CORNER_SHAPE;
+            };
+            case SOUTH -> switch (state.get(SHAPE)) {
+                case STRAIGHT -> SOUTH_SHAPE;
+                case INNER_LEFT -> SOUTH_EAST_CORNER_SHAPE;
+                case INNER_RIGHT -> SOUTH_WEST_CORNER_SHAPE;
+            };
+            case WEST -> switch (state.get(SHAPE)) {
+                case STRAIGHT -> WEST_SHAPE;
+                case INNER_LEFT -> SOUTH_WEST_CORNER_SHAPE;
+                case INNER_RIGHT -> NORTH_WEST_CORNER_SHAPE;
+            };
+            default -> super.getOutlineShape(state, view, pos, context);
+        };
     }
     static {
         VoxelShape base = createCuboidShape(0, 0, 15, 16, 16, 16);
@@ -117,4 +140,8 @@ public class PoolWall extends HorizontalFacingBlock implements Waterloggable {
         return buffer[0];
     }
 
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return null;
+    }
 }

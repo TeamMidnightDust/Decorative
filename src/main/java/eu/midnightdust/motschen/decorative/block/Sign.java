@@ -1,7 +1,12 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -19,14 +24,14 @@ public class Sign extends HorizontalFacingBlock {
     private static final VoxelShape WEST_SHAPE;
 
     public Sign() {
-        super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
         return super.getPlacementState(itemPlacementContext)
-                .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
+                .with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite());
     }
 
     @Override
@@ -68,4 +73,8 @@ public class Sign extends HorizontalFacingBlock {
         return !worldView.isAir(pos.down());
     }
 
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return null;
+    }
 }

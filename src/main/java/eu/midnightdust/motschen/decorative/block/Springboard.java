@@ -1,9 +1,14 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.blockstates.Part;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -38,7 +43,7 @@ public class Springboard extends HorizontalFacingBlock {
     private static final EnumProperty<Part> PART = DecorativeMain.PART;
 
     public Springboard() {
-        super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(PART, Part.BACK));
     }
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -58,7 +63,7 @@ public class Springboard extends HorizontalFacingBlock {
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
         return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
-                .with(FACING, itemPlacementContext.getPlayerFacing())
+                .with(FACING, itemPlacementContext.getPlayerLookDirection())
                 .with(PART, Part.BACK);
     }
 
@@ -98,7 +103,7 @@ public class Springboard extends HorizontalFacingBlock {
         }
     }
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         switch (state.get(PART)) {
             case BACK: switch (state.get(FACING)) {
                 case NORTH:
@@ -145,6 +150,7 @@ public class Springboard extends HorizontalFacingBlock {
                     }
             }
         }
+        return Blocks.AIR.getDefaultState();
     }
 
     @Override
@@ -244,4 +250,8 @@ public class Springboard extends HorizontalFacingBlock {
         return !worldView.isAir(pos.down()) && worldView.getBlockState(pos.offset(state.get(FACING))) == Blocks.AIR.getDefaultState();
     }
 
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return null;
+    }
 }

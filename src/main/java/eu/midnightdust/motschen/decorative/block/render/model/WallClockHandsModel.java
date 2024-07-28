@@ -1,18 +1,25 @@
 package eu.midnightdust.motschen.decorative.block.render.model;
 
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.Model;
+import net.minecraft.client.model.ModelData;
+import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.ModelPartBuilder;
+import net.minecraft.client.model.ModelPartData;
+import net.minecraft.client.model.ModelTransform;
+import net.minecraft.client.model.TexturedModelData;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+
+import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 
 public class WallClockHandsModel extends Model {
     private final ModelPart hands;
     public final ModelPart seconds;
     public final ModelPart minutes;
     public final ModelPart hours;
-    public static final EntityModelLayer CLOCK_HANDS_MODEL_LAYER = new EntityModelLayer(new Identifier("decorative", "clock_hands"), "main");
+    public static final EntityModelLayer CLOCK_HANDS_MODEL_LAYER = new EntityModelLayer(id("clock_hands"), "main");
 
     public WallClockHandsModel(ModelPart root) {
         super(RenderLayer::getEntitySolid);
@@ -41,7 +48,7 @@ public class WallClockHandsModel extends Model {
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
-        hands.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+        hands.render(matrices, vertices, light, overlay, color);
     }
 }

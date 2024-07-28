@@ -9,37 +9,49 @@ import eu.midnightdust.motschen.decorative.blockstates.Program;
 import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import eu.midnightdust.motschen.decorative.init.*;
 import eu.midnightdust.motschen.decorative.sound.DecorativeSoundEvents;
+import eu.midnightdust.motschen.decorative.util.RegistryUtil;
 import eu.midnightdust.motschen.decorative.world.OreFeatures;
+import eu.pb4.polymer.core.api.block.SimplePolymerBlock;
+import eu.pb4.polymer.core.api.item.PolymerItemGroupUtils;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerFurniture;
+import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerGarden;
+import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerTraffic;
 
 
 public class DecorativeMain implements ModInitializer {
     public static final String MOD_ID = "decorative";
 
-    public static final ItemGroup IndoorGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "indoor"), () -> new ItemStack(DecorativeMain.Television));
-    public static final ItemGroup TrafficGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "traffic"), () -> new ItemStack(DecorativeMain.TrafficCone));
-    public static final ItemGroup GardenGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "garden"), () -> new ItemStack(LogsWithAxes.OakChoppingLog));
-    public static final ItemGroup PoolGroup = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "pool"), () -> new ItemStack(Pool.BEACH_BALL_ITEM));
+    public static ItemGroup IndoorGroup;
+    public static ItemGroup TrafficGroup;
+    public static ItemGroup GardenGroup;
+    public static ItemGroup PoolGroup;
     public static final EnumProperty<Program> PROGRAM = EnumProperty.of("program", Program.class);
     public static final EnumProperty<PoolShape> POOL_SHAPE = EnumProperty.of("shape", PoolShape.class);
     public static final EnumProperty<Part> PART = EnumProperty.of("part", Part.class);
     public static final EnumProperty<CeilingFanStage> STAGE = EnumProperty.of("stage", CeilingFanStage.class);
-    public static Block RockyAsphalt = new Block(FabricBlockSettings.copyOf(Blocks.COAL_ORE));
-    public static Block Road = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
+    public static Block RockyAsphalt = simpleBlock(Blocks.COAL_ORE);
+    public static Block Road = simpleBlock(Blocks.STONE);
     public static Block RoadWhiteShort = new RotatableBlock();
     public static Block RoadWhiteLong = new RotatableBlock();
     public static Block TrafficCone = new TrafficCone();
     public static Block Guardrail = new Guardrail();
     public static Block SignPost = new SignPost();
-    public static Block KitchenTiles = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
+    public static Block KitchenTiles = simpleBlock(Blocks.STONE);
     public static Block Television = new Television();
     public static Block OldTelevision = new OldTelevision();
     public static Block CeilingFan = new CeilingFan();
@@ -55,63 +67,76 @@ public class DecorativeMain implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        MidnightConfig.init("decorative", DecorativeConfig.class);
+        MidnightConfig.init(MOD_ID, DecorativeConfig.class);
+
+        IndoorGroup = createGroup(id("indoor"), DecorativeMain.Television);
+        TrafficGroup = createGroup(id("traffic"), DecorativeMain.TrafficCone);
+        GardenGroup = createGroup(id("garden"), LogsWithAxes.OakChoppingLog);
+        PoolGroup = createGroup(id("pool"), Pool.BEACH_BALL_ITEM);
 
         BlockEntities.init();
 
         // Traffic //
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"rocky_asphalt"), RockyAsphalt);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"rocky_asphalt"), new BlockItem(RockyAsphalt, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"road"), Road);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"road"), new BlockItem(Road, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"road_white_short"), RoadWhiteShort);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"road_white_short"), new BlockItem(RoadWhiteShort, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"road_white_long"), RoadWhiteLong);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"road_white_long"), new BlockItem(RoadWhiteLong, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"traffic_cone"), TrafficCone);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"traffic_cone"), new BlockItem(TrafficCone, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"fire_hydrant"), FireHydrant);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"fire_hydrant"), new BlockItem(FireHydrant, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"guardrail"), Guardrail);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"guardrail"), new BlockItem(Guardrail, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"sign_post"), SignPost);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"sign_post"), new BlockItem(SignPost, new Item.Settings().group(DecorativeMain.TrafficGroup)));
+        registerTraffic(id("rocky_asphalt"), RockyAsphalt);
+        registerTraffic(id("road"), Road);
+        registerTraffic(id("road_white_short"), RoadWhiteShort);
+        registerTraffic(id("road_white_long"), RoadWhiteLong);
+        registerTraffic(id("traffic_cone"), TrafficCone);
+        registerTraffic(id("fire_hydrant"), FireHydrant);
+        registerTraffic(id("guardrail"), Guardrail);
+        registerTraffic(id("sign_post"), SignPost);
         Signs.init();
 
         //Garden//
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"stone_path"), StonePath);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"stone_path"), new BlockItem(StonePath, new Item.Settings().group(DecorativeMain.GardenGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"bird_bath"), BirdBath);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"bird_bath"), new BlockItem(BirdBath, new Item.Settings().group(DecorativeMain.GardenGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"water_pump"), WaterPump);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"water_pump"), new BlockItem(WaterPump, new Item.Settings().group(DecorativeMain.GardenGroup)));
+        registerGarden(id("stone_path"), StonePath);
+        registerGarden(id("bird_bath"), BirdBath);
+        registerGarden(id("water_pump"), WaterPump);
         LogsWithAxes.init();
         Pool.init();
 
         //Furniture//
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"kitchen_tiles"), KitchenTiles);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"kitchen_tiles"), new BlockItem(KitchenTiles, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"wall_clock"), WallClock);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"wall_clock"), new BlockItem(WallClock, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"television"), Television);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"television"), new BlockItem(Television, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"old_television"), OldTelevision);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"old_television"), new BlockItem(OldTelevision, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"ceilingfan"), CeilingFan);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"ceilingfan"), new BlockItem(CeilingFan, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"shower_head"), ShowerHead);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"shower_head"), new BlockItem(ShowerHead, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"sliding_door"), SlidingDoor);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"sliding_door"), new BlockItem(SlidingDoor, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"christmas_tree"), ChristmasTree);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"christmas_tree"), new BlockItem(ChristmasTree, new Item.Settings().group(DecorativeMain.IndoorGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID,"christmas_lights"), ChristmasLights);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID,"christmas_lights"), new BlockItem(ChristmasLights, new Item.Settings().group(DecorativeMain.IndoorGroup)));
+        registerFurniture(id("kitchen_tiles"), KitchenTiles);
+        registerFurniture(id("wall_clock"), WallClock);
+        registerFurniture(id("television"), Television);
+        registerFurniture(id("old_television"), OldTelevision);
+        registerFurniture(id("ceilingfan"), CeilingFan);
+        registerFurniture(id("shower_head"), ShowerHead);
+        registerFurniture(id("sliding_door"), SlidingDoor);
+        registerFurniture(id("christmas_tree"), ChristmasTree);
+        registerFurniture(id("christmas_lights"), ChristmasLights);
 
         Lamps.init();
         DoubleLamps.init();
         Clocks.init();
         OreFeatures.init();
         new DecorativeSoundEvents();
+    }
+    public static Identifier id(String path) {
+        return Identifier.of(MOD_ID, path);
+    }
+    public static ItemGroup createGroup(Identifier id, ItemConvertible icon) {
+        ItemGroup group;
+        Text name = Text.translatable("itemGroup."+id.getNamespace()+"."+id.getPath());
+
+        if (DecorativeConfig.polymerIntegration) {
+            group = PolymerItemGroupUtils.builder().displayName(name).icon(() -> new ItemStack(icon)).entries(((displayContext, entries) -> {
+                List<ItemStack> groupItems = new ArrayList<>();
+                RegistryUtil.groupItems.stream().filter(itemEntry -> itemEntry.groupName() == name).forEach(itemEntry -> groupItems.add(itemEntry.stack()));
+                entries.addAll(groupItems);
+            })).build();
+            PolymerItemGroupUtils.registerPolymerItemGroup(id, group);
+        } else {
+            group = FabricItemGroup.builder().displayName(name).icon(() -> new ItemStack(icon)).entries(((displayContext, entries) -> {
+                List<ItemStack> groupItems = new ArrayList<>();
+                RegistryUtil.groupItems.stream().filter(itemEntry -> itemEntry.groupName() == name).forEach(itemEntry -> groupItems.add(itemEntry.stack()));
+                entries.addAll(groupItems);
+            })).build();
+            Registry.register(Registries.ITEM_GROUP, id, group);
+        }
+        return group;
+    }
+    public static Block simpleBlock(Block base) {
+        if (DecorativeConfig.polymerIntegration) return new SimplePolymerBlock(AbstractBlock.Settings.copy(base), base);
+        else return new Block(AbstractBlock.Settings.copy(base));
     }
 }

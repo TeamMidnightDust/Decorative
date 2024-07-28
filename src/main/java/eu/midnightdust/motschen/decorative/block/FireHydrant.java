@@ -1,7 +1,12 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -11,8 +16,8 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -29,32 +34,24 @@ public class FireHydrant extends HorizontalFacingBlock {
     private static final VoxelShape WEST_SHAPE;
 
     public FireHydrant() {
-        super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
-        if (!itemStack.isEmpty() && hand==Hand.MAIN_HAND) {
-            if (itemStack.getItem() == Items.BUCKET) {
-                if (!world.isClient) {
-                    ItemUsage.exchangeStack(itemStack, player, new ItemStack(Items.BUCKET));
-                    world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                }
-                return ActionResult.SUCCESS;
+    @Override
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!stack.isEmpty() && hand==Hand.MAIN_HAND && stack.getItem() == Items.BUCKET) {
+            if (!world.isClient) {
+                ItemUsage.exchangeStack(stack, player, new ItemStack(Items.BUCKET));
+                world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
-            else {
-                return ActionResult.PASS;
-            }
+            return ItemActionResult.SUCCESS;
         }
-        if (itemStack.isEmpty()) {
-            return ActionResult.PASS;
-        } return ActionResult.PASS;
+        return ItemActionResult.FAIL;
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
-                .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
+        return super.getPlacementState(itemPlacementContext).with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite());
     }
 
     @Override
@@ -63,13 +60,13 @@ public class FireHydrant extends HorizontalFacingBlock {
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH: return NORTH_SHAPE;
-            case EAST: return EAST_SHAPE;
-            case SOUTH: return SOUTH_SHAPE;
-            case WEST: return WEST_SHAPE;
-            default: return super.getOutlineShape(state, view, pos, context);
-        }
+        return switch (state.get(FACING)) {
+            case NORTH -> NORTH_SHAPE;
+            case EAST -> EAST_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case WEST -> WEST_SHAPE;
+            default -> super.getOutlineShape(state, view, pos, context);
+        };
     }
     static {
         VoxelShape shape = createCuboidShape(2.5, 0, 4, 13.5, 15.5, 12);
@@ -96,4 +93,8 @@ public class FireHydrant extends HorizontalFacingBlock {
         return !worldView.isAir(pos.down());
     }
 
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return null;
+    }
 }

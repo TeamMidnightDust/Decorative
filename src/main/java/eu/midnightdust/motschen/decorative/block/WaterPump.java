@@ -1,15 +1,24 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -28,28 +37,25 @@ public class WaterPump extends HorizontalFacingBlock {
     private static final VoxelShape WEST_SHAPE;
 
     public WaterPump() {
-        super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
-        if (!itemStack.isEmpty() && hand==Hand.MAIN_HAND) {
-            if (itemStack.getItem() == Items.BUCKET) {
-                if (!world.isClient) {
-                    ItemUsage.exchangeStack(itemStack, player, new ItemStack(Items.BUCKET));
-                    world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                }
-                return ActionResult.SUCCESS;
+    @Override
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!stack.isEmpty() && hand==Hand.MAIN_HAND && stack.getItem() == Items.BUCKET) {
+            if (!world.isClient) {
+                ItemUsage.exchangeStack(stack, player, new ItemStack(Items.BUCKET));
+                world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
-            return ActionResult.PASS;
+            return ItemActionResult.SUCCESS;
         }
-        return ActionResult.PASS;
+        return ItemActionResult.FAIL;
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
         return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
-                .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
+                .with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite());
     }
 
     @Override
@@ -91,4 +97,8 @@ public class WaterPump extends HorizontalFacingBlock {
         return !worldView.isAir(pos.down());
     }
 
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return null;
+    }
 }

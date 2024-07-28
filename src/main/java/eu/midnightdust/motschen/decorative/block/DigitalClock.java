@@ -1,9 +1,17 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.block.blockentity.DigitalClockBlockEntity;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -27,7 +35,7 @@ public class DigitalClock extends BlockWithEntity implements BlockEntityProvider
     private static final VoxelShape WEST_SHAPE;
 
     public DigitalClock() {
-        super(FabricBlockSettings.copy(Blocks.SMOOTH_QUARTZ).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.SMOOTH_QUARTZ).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
@@ -38,8 +46,14 @@ public class DigitalClock extends BlockWithEntity implements BlockEntityProvider
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockEntities.DigitalClockBlockEntity, DigitalClockBlockEntity::tick);
+        return validateTicker(type, BlockEntities.DigitalClockBlockEntity, DigitalClockBlockEntity::tick);
     }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return null;
+    }
+
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
@@ -52,19 +66,18 @@ public class DigitalClock extends BlockWithEntity implements BlockEntityProvider
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
-                .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
+        return super.getPlacementState(itemPlacementContext).with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite());
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH: return NORTH_SHAPE;
-            case EAST: return EAST_SHAPE;
-            case SOUTH: return SOUTH_SHAPE;
-            case WEST: return WEST_SHAPE;
-            default: return super.getOutlineShape(state, view, pos, context);
-        }
+        return switch (state.get(FACING)) {
+            case NORTH -> NORTH_SHAPE;
+            case EAST -> EAST_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case WEST -> WEST_SHAPE;
+            default -> super.getOutlineShape(state, view, pos, context);
+        };
     }
     static {
         VoxelShape shape = createCuboidShape(1, 0, 5, 15, 8, 13);

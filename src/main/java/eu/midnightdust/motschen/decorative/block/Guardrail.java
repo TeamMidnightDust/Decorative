@@ -1,7 +1,12 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -19,14 +24,13 @@ public class Guardrail extends HorizontalFacingBlock {
     private static final VoxelShape WEST_SHAPE;
 
     public Guardrail() {
-        super(FabricBlockSettings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
-                .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
+        return super.getPlacementState(itemPlacementContext).with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite());
     }
 
     @Override
@@ -35,13 +39,13 @@ public class Guardrail extends HorizontalFacingBlock {
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH: return NORTH_SHAPE;
-            case EAST: return EAST_SHAPE;
-            case SOUTH: return SOUTH_SHAPE;
-            case WEST: return WEST_SHAPE;
-            default: return super.getOutlineShape(state, view, pos, context);
-        }
+        return switch (state.get(FACING)) {
+            case NORTH -> NORTH_SHAPE;
+            case EAST -> EAST_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case WEST -> WEST_SHAPE;
+            default -> super.getOutlineShape(state, view, pos, context);
+        };
     }
     static {
         VoxelShape shape = createCuboidShape(0, 0, 13.3, 16, 8, 15);
@@ -68,4 +72,8 @@ public class Guardrail extends HorizontalFacingBlock {
         return !worldView.isAir(pos.down());
     }
 
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return null;
+    }
 }

@@ -1,18 +1,21 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
-public class ChristmasTree extends Block{
+public class ChristmasTree extends Block {
     private static final VoxelShape SHAPE;
 
     public ChristmasTree() {
-        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE));
     }
 
     @Override
@@ -20,8 +23,7 @@ public class ChristmasTree extends Block{
         return SHAPE;
     }
     static {
-        VoxelShape shape = createCuboidShape(0, 0, 0, 16, 32, 16);
-        SHAPE = shape;
+        SHAPE = createCuboidShape(0, 0, 0, 16, 32, 16);
     }
 
     public boolean canPlaceAt(BlockState state, WorldView worldView, BlockPos pos) {

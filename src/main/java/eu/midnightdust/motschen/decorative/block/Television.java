@@ -1,9 +1,14 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.blockstates.Program;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -11,9 +16,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -35,45 +38,21 @@ public class Television extends HorizontalFacingBlock {
     private static final EnumProperty<Program> PROGRAM = DecorativeMain.PROGRAM;
 
     public Television() {
-        super(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).luminance(createLightLevelFromBlockState()));
+        super(AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).luminance(createLightLevelFromBlockState()));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(PROGRAM, Program.OFF));
     }
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        switch (state.get(PROGRAM)) {
-            case OFF -> {
-                world.setBlockState(pos, state.with(PROGRAM, Program.NYANCAT));
-                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                return ActionResult.SUCCESS;
-            }
-            case NYANCAT -> {
-                world.setBlockState(pos, state.with(PROGRAM, Program.CREEPER));
-                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                return ActionResult.SUCCESS;
-            }
-            case CREEPER -> {
-                world.setBlockState(pos, state.with(PROGRAM, Program.CRABRAVE));
-                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                return ActionResult.SUCCESS;
-            }
-            case CRABRAVE -> {
-                world.setBlockState(pos, state.with(PROGRAM, Program.TATER));
-                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                return ActionResult.SUCCESS;
-            }
-            case TATER -> {
-                world.setBlockState(pos, state.with(PROGRAM, Program.OFF));
-                world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
-                return ActionResult.SUCCESS;
-            }
-        }
-            return ActionResult.SUCCESS;
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        world.setBlockState(pos, state.with(PROGRAM, state.get(PROGRAM).next()));
+        world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
+        return ActionResult.SUCCESS;
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
         return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
-                .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite())
+                .with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite())
                 .with(PROGRAM, Program.OFF);
     }
 
@@ -128,4 +107,8 @@ public class Television extends HorizontalFacingBlock {
     }
 
 
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return null;
+    }
 }

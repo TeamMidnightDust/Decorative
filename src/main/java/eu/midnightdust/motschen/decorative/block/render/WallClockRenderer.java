@@ -9,7 +9,8 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.ColorHelper;
+import net.minecraft.util.math.RotationAxis;
 
 import java.time.LocalTime;
 
@@ -32,27 +33,27 @@ public class WallClockRenderer implements BlockEntityRenderer<WallClockBlockEnti
 
     @Override
     public void render(WallClockBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        VertexConsumer vertex = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(new Identifier("textures/block/red_concrete.png")));
+        VertexConsumer vertex = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(Identifier.ofVanilla("textures/block/red_concrete.png")));
 
         matrices.push();
         matrices.translate(blockEntity.x,0.5,blockEntity.z);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.facing));
-        matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(LocalTime.now().getSecond() * 6));
-        handsModel.seconds.render(matrices, vertex, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(blockEntity.facing));
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(LocalTime.now().getSecond() * 6));
+        handsModel.seconds.render(matrices, vertex, light, OverlayTexture.DEFAULT_UV, ColorHelper.Argb.fromFloats(1.0F, 1.0F, 1.0F, 1.0F));
         matrices.pop();
 
         matrices.push();
         matrices.translate(blockEntity.x,0.5,blockEntity.z);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.facing));
-        matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(LocalTime.now().getMinute() * 6));
-        handsModel.minutes.render(matrices, vertex, light, OverlayTexture.DEFAULT_UV, 0.0F, 0.0F, 0.0F, 1.0F);
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(blockEntity.facing));
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(LocalTime.now().getMinute() * 6));
+        handsModel.minutes.render(matrices, vertex, light, OverlayTexture.DEFAULT_UV, ColorHelper.Argb.fromFloats(0.0F, 0.0F, 0.0F, 1.0F));
         matrices.pop();
 
         matrices.push();
         matrices.translate(blockEntity.x,0.5,blockEntity.z);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(blockEntity.facing));
-        matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(getHour12hFormat() * 30));
-        handsModel.hours.render(matrices, vertex, light, OverlayTexture.DEFAULT_UV, 0.0F, 0.0F, 0.0F, 1.0F);
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(blockEntity.facing));
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(getHour12hFormat() * 30));
+        handsModel.hours.render(matrices, vertex, light, OverlayTexture.DEFAULT_UV, ColorHelper.Argb.fromFloats(0.0F, 0.0F, 0.0F, 1.0F));
         matrices.pop();
     }
 }

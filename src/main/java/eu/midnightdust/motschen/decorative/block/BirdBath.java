@@ -1,21 +1,23 @@
 package eu.midnightdust.motschen.decorative.block;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.cauldron.CauldronBehavior;
+import net.minecraft.component.ComponentMap;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -30,36 +32,36 @@ public class BirdBath extends AbstractCauldronBlock {
     public static final IntProperty LEVEL = IntProperty.of("level",0,3);
 
     public BirdBath() {
-        super(FabricBlockSettings.copy(Blocks.WATER_CAULDRON).nonOpaque().sounds(BlockSoundGroup.STONE), CauldronBehavior.WATER_CAULDRON_BEHAVIOR);
+        super(AbstractBlock.Settings.copy(Blocks.WATER_CAULDRON).nonOpaque().sounds(BlockSoundGroup.STONE), CauldronBehavior.WATER_CAULDRON_BEHAVIOR);
     }
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
-        if (itemStack.getItem().equals(Items.WATER_BUCKET) || (itemStack.getItem().equals(Items.POTION) && PotionUtil.getPotion(itemStack).equals(Potions.WATER))) {
-            if (itemStack.getItem().equals(Items.WATER_BUCKET)) {
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (stack.getItem().equals(Items.WATER_BUCKET) || (stack.getItem().equals(Items.POTION) && stack.getComponents().contains(DataComponentTypes.POTION_CONTENTS) && stack.getComponents().get(DataComponentTypes.POTION_CONTENTS).matches(Potions.WATER))) {
+            if (stack.getItem().equals(Items.WATER_BUCKET)) {
                 world.setBlockState(pos, state.with(LEVEL, 3));
                 if (!player.isCreative()) player.setStackInHand(hand, new ItemStack(Items.BUCKET));
-                return ActionResult.SUCCESS;
+                return ItemActionResult.SUCCESS;
             }
             else if (!state.get(LEVEL).equals(3)) {
                 world.setBlockState(pos, state.with(LEVEL, state.get(LEVEL) + 1));
                 if (!player.isCreative()) player.setStackInHand(hand, new ItemStack(Items.GLASS_BOTTLE));
-                return ActionResult.SUCCESS;
+                return ItemActionResult.SUCCESS;
             }
         }
-        if (itemStack.getItem().equals(Items.BUCKET) || (itemStack.getItem().equals(Items.GLASS_BOTTLE))) {
-            if (itemStack.getItem().equals(Items.BUCKET) && state.get(LEVEL).equals(3)) {
+        if (stack.getItem().equals(Items.BUCKET) || (stack.getItem().equals(Items.GLASS_BOTTLE))) {
+            if (stack.getItem().equals(Items.BUCKET) && state.get(LEVEL).equals(3)) {
                 world.setBlockState(pos, state.with(LEVEL, 0));
                 if (!player.isCreative()) player.setStackInHand(hand, new ItemStack(Items.WATER_BUCKET));
-                return ActionResult.SUCCESS;
+                return ItemActionResult.SUCCESS;
             }
-            else if (!itemStack.getItem().equals(Items.BUCKET) && !state.get(LEVEL).equals(0)) {
+            else if (!stack.getItem().equals(Items.BUCKET) && !state.get(LEVEL).equals(0)) {
                 world.setBlockState(pos, state.with(LEVEL, state.get(LEVEL) - 1));
-                if (!player.isCreative()) player.setStackInHand(hand, PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
-                return ActionResult.SUCCESS;
+                stack.applyComponentsFrom(ComponentMap.builder().add(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.WATER)).build());
+                if (!player.isCreative()) player.setStackInHand(hand, stack);
+                return ItemActionResult.SUCCESS;
             }
         }
-        return ActionResult.FAIL;
+        return ItemActionResult.FAIL;
     }
     @Override
     public boolean isFull(BlockState state) {
@@ -70,6 +72,12 @@ public class BirdBath extends AbstractCauldronBlock {
     protected boolean canBeFilledByDripstone(Fluid fluid) {
         return fluid == Fluids.WATER;
     }
+
+    @Override
+    protected MapCodec<? extends AbstractCauldronBlock> getCodec() {
+        return null;
+    }
+
     @Override
     protected double getFluidHeight(BlockState state) {
         return (6.0D + (double)state.get(LEVEL) * 3.0D) / 16.0D;

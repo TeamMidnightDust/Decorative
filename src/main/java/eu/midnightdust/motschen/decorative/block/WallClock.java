@@ -1,9 +1,17 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.block.blockentity.WallClockBlockEntity;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -29,7 +37,7 @@ public class WallClock extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape WEST_SHAPE;
 
     public WallClock() {
-        super(FabricBlockSettings.copy(Blocks.SMOOTH_QUARTZ).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.SMOOTH_QUARTZ).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
@@ -40,8 +48,14 @@ public class WallClock extends BlockWithEntity implements BlockEntityProvider {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockEntities.WallClockBlockEntity, WallClockBlockEntity::tick);
+        return validateTicker(type, BlockEntities.WallClockBlockEntity, WallClockBlockEntity::tick);
     }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return null;
+    }
+
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
@@ -55,7 +69,7 @@ public class WallClock extends BlockWithEntity implements BlockEntityProvider {
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
         return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
-                .with(FACING, itemPlacementContext.getPlayerFacing().getOpposite());
+                .with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite());
     }
 
     @Override

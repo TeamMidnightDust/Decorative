@@ -9,9 +9,14 @@ public enum CeilingFanStage implements StringIdentifiable {
     LEVEL_3("level3");
 
     private final String name;
+    private static final CeilingFanStage[] vals = values();
 
     CeilingFanStage(String name) {
         this.name = name;
+    }
+
+    public CeilingFanStage next() {
+        return vals[(this.ordinal() + 1) % vals.length];
     }
 
     public String toString() {

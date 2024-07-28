@@ -13,7 +13,6 @@ import eu.midnightdust.motschen.decorative.init.Pool;
 import eu.midnightdust.motschen.decorative.init.Signs;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -21,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.util.DyeColor;
 
 public class DecorativeClient implements ClientModInitializer {
@@ -80,12 +80,10 @@ public class DecorativeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.WallClock);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),DecorativeMain.BirdBath);
 
-        BlockEntityRendererRegistry.register(BlockEntities.CeilingFanBlockEntity, CeilingFanRenderer::new);
-
-        BlockEntityRendererRegistry.register(BlockEntities.ChoppingLogBlockEntity, ChoppingLogBlockEntityRenderer::new);
-
-        BlockEntityRendererRegistry.register(BlockEntities.WallClockBlockEntity, WallClockRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntities.DigitalClockBlockEntity, DigitalClockRenderer::new);
+        BlockEntityRendererFactories.register(BlockEntities.CeilingFanBlockEntity, CeilingFanRenderer::new);
+        BlockEntityRendererFactories.register(BlockEntities.ChoppingLogBlockEntity, ChoppingLogBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(BlockEntities.WallClockBlockEntity, WallClockRenderer::new);
+        BlockEntityRendererFactories.register(BlockEntities.DigitalClockBlockEntity, DigitalClockRenderer::new);
     }
     public void registerBlockColor(Block block, Block templateBlock) {
         ColorProviderRegistry.BLOCK.register((type, pos, world, layer) -> {

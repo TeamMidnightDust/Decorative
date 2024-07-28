@@ -1,91 +1,65 @@
 package eu.midnightdust.motschen.decorative.init;
 
-import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.entity.BathTireEntity;
 import eu.midnightdust.motschen.decorative.item.BathTireItem;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+
+import static eu.midnightdust.motschen.decorative.DecorativeMain.PoolGroup;
+import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
+import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerItem;
 
 public class BathTires {
-    public static final EntityType<BathTireEntity> WHITE_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"white_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> ORANGE_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"orange_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> MAGENTA_BATH_TIRE=
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"magenta_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> LIGHT_BLUE_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"light_blue_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> YELLOW_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"yellow_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> LIME_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"lime_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> PINK_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"pink_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> GRAY_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"gray_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> LIGHT_GRAY_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"light_gray_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> CYAN_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"cyan_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> PURPLE_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"purple_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> BLUE_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"blue_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> BROWN_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"brown_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> GREEN_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"green_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> RED_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"red_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
-    public static final EntityType<BathTireEntity> BLACK_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"black_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
+    public static EntityType<BathTireEntity> WHITE_BATH_TIRE;
+    public static EntityType<BathTireEntity> ORANGE_BATH_TIRE;
+    public static EntityType<BathTireEntity> MAGENTA_BATH_TIRE;
+    public static EntityType<BathTireEntity> LIGHT_BLUE_BATH_TIRE;
+    public static EntityType<BathTireEntity> YELLOW_BATH_TIRE;
+    public static EntityType<BathTireEntity> LIME_BATH_TIRE;
+    public static EntityType<BathTireEntity> PINK_BATH_TIRE;
+    public static EntityType<BathTireEntity> GRAY_BATH_TIRE;
+    public static EntityType<BathTireEntity> LIGHT_GRAY_BATH_TIRE;
+    public static EntityType<BathTireEntity> CYAN_BATH_TIRE;
+    public static EntityType<BathTireEntity> PURPLE_BATH_TIRE;
+    public static EntityType<BathTireEntity> BLUE_BATH_TIRE;
+    public static EntityType<BathTireEntity> BROWN_BATH_TIRE;
+    public static EntityType<BathTireEntity> GREEN_BATH_TIRE;
+    public static EntityType<BathTireEntity> RED_BATH_TIRE;
+    public static EntityType<BathTireEntity> BLACK_BATH_TIRE;
 
-    public static final EntityType<BathTireEntity> DUCK_BATH_TIRE =
-            Registry.register(Registry.ENTITY_TYPE,new Identifier(DecorativeMain.MOD_ID,"duck_bath_tire"), FabricEntityTypeBuilder.create(SpawnGroup.AMBIENT,BathTireEntity::new).dimensions(EntityDimensions.fixed(1.5f,1)).trackable(100,4).build());
+    public static EntityType<BathTireEntity> DUCK_BATH_TIRE;
 
     public static void init() {
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"white_bath_tire"), new BathTireItem(WHITE_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(WHITE_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"orange_bath_tire"), new BathTireItem(ORANGE_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(ORANGE_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"magenta_bath_tire"), new BathTireItem(MAGENTA_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(MAGENTA_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"light_blue_bath_tire"), new BathTireItem(LIGHT_BLUE_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(LIGHT_BLUE_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"yellow_bath_tire"), new BathTireItem(YELLOW_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(YELLOW_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"lime_bath_tire"), new BathTireItem(LIME_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(LIME_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"pink_bath_tire"), new BathTireItem(PINK_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(PINK_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"gray_bath_tire"), new BathTireItem(GRAY_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(GRAY_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"light_gray_bath_tire"), new BathTireItem(LIGHT_GRAY_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(LIGHT_GRAY_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"cyan_bath_tire"), new BathTireItem(CYAN_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(CYAN_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"purple_bath_tire"), new BathTireItem(PURPLE_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(PURPLE_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"blue_bath_tire"), new BathTireItem(BLUE_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(BLUE_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"brown_bath_tire"), new BathTireItem(BROWN_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(BROWN_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"green_bath_tire"), new BathTireItem(GREEN_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(GREEN_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"red_bath_tire"), new BathTireItem(RED_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(RED_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"black_bath_tire"), new BathTireItem(BLACK_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(BLACK_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
+        WHITE_BATH_TIRE = registerBathTire(id("white_bath_tire"));
+        ORANGE_BATH_TIRE = registerBathTire(id("orange_bath_tire"));
+        MAGENTA_BATH_TIRE= registerBathTire(id("magenta_bath_tire"));
+        LIGHT_BLUE_BATH_TIRE = registerBathTire(id("light_blue_bath_tire"));
+        YELLOW_BATH_TIRE = registerBathTire(id("yellow_bath_tire"));
+        LIME_BATH_TIRE = registerBathTire(id("lime_bath_tire"));
+        PINK_BATH_TIRE = registerBathTire(id("pink_bath_tire"));
+        GRAY_BATH_TIRE = registerBathTire(id("gray_bath_tire"));
+        LIGHT_GRAY_BATH_TIRE = registerBathTire(id("light_gray_bath_tire"));
+        CYAN_BATH_TIRE = registerBathTire(id("cyan_bath_tire"));
+        PURPLE_BATH_TIRE = registerBathTire(id("purple_bath_tire"));
+        BLUE_BATH_TIRE = registerBathTire(id("blue_bath_tire"));
+        BROWN_BATH_TIRE = registerBathTire(id("brown_bath_tire"));
+        GREEN_BATH_TIRE = registerBathTire(id("green_bath_tire"));
+        RED_BATH_TIRE = registerBathTire(id("red_bath_tire"));
+        BLACK_BATH_TIRE = registerBathTire(id("black_bath_tire"));
 
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"duck_bath_tire"), new BathTireItem(DUCK_BATH_TIRE, new Item.Settings().group(DecorativeMain.PoolGroup)));
-        FabricDefaultAttributeRegistry.register(DUCK_BATH_TIRE, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
+        DUCK_BATH_TIRE = registerBathTire(id("duck_bath_tire"));
+    }
+    private static EntityType<BathTireEntity> registerBathTire(Identifier id) {
+        EntityType<BathTireEntity> entity = Registry.register(Registries.ENTITY_TYPE, id, EntityType.Builder.create(BathTireEntity::new, SpawnGroup.AMBIENT).dimensions(1.5f,1).maxTrackingRange(100).trackingTickInterval(4).build());
+        FabricDefaultAttributeRegistry.register(entity, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
+        registerItem(id, new BathTireItem(entity, new Item.Settings()), PoolGroup);
+        return entity;
     }
 }

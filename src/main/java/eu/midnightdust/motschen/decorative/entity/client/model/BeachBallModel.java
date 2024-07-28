@@ -1,17 +1,23 @@
 package eu.midnightdust.motschen.decorative.entity.client.model;
 
 import eu.midnightdust.motschen.decorative.entity.BeachBallEntity;
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.ModelData;
+import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.ModelPartBuilder;
+import net.minecraft.client.model.ModelPartData;
+import net.minecraft.client.model.ModelTransform;
+import net.minecraft.client.model.TexturedModelData;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+
+import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 
 public class BeachBallModel extends EntityModel<BeachBallEntity> {
 	private final ModelPart body;
-	public static final EntityModelLayer BEACH_BALL_MODEL_LAYER = new EntityModelLayer(new Identifier("decorative", "beach_ball"), "main");
+	public static final EntityModelLayer BEACH_BALL_MODEL_LAYER = new EntityModelLayer(id("beach_ball"), "main");
 
 	public BeachBallModel(ModelPart root) {
 		super(RenderLayer::getEntitySolid);
@@ -42,7 +48,7 @@ public class BeachBallModel extends EntityModel<BeachBallEntity> {
 	}
 
 	@Override
-	public void render(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void render(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color){
 		body.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 }

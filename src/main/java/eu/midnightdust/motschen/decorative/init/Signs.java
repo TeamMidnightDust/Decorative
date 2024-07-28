@@ -1,12 +1,10 @@
 package eu.midnightdust.motschen.decorative.init;
 
-import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.block.Sign;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+
+import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
+import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerTraffic;
 
 public class Signs {
     public static Block EmptySign = new Sign();
@@ -25,34 +23,20 @@ public class Signs {
     public static Block OnehundredtenSign = new Sign();
 
     public static void init() {
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"empty_sign"), EmptySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"empty_sign"), new BlockItem(EmptySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
+        registerTraffic(id("empty_sign"), EmptySign);
 
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"stop_sign"), StopSign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"stop_sign"), new BlockItem(StopSign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"five_sign"), FiveSign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"five_sign"), new BlockItem(FiveSign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"ten_sign"), TenSign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"ten_sign"), new BlockItem(TenSign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"twenty_sign"), TwentySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"twenty_sign"), new BlockItem(TwentySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"thirty_sign"), ThirtySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"thirty_sign"), new BlockItem(ThirtySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"forty_sign"), FortySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"forty_sign"), new BlockItem(FortySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"fifty_sign"), FiftySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"fifty_sign"), new BlockItem(FiftySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"sixty_sign"), SixtySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"sixty_sign"), new BlockItem(SixtySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"seventy_sign"), SeventySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"seventy_sign"), new BlockItem(SeventySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"eighty_sign"), EightySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"eighty_sign"), new BlockItem(EightySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"ninety_sign"), NinetySign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"ninety_sign"), new BlockItem(NinetySign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"onehundred_sign"), OnehundredSign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"onehundred_sign"), new BlockItem(OnehundredSign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
-        Registry.register(Registry.BLOCK, new Identifier(DecorativeMain.MOD_ID,"onehundredten_sign"), OnehundredtenSign);
-        Registry.register(Registry.ITEM, new Identifier(DecorativeMain.MOD_ID,"onehundredten_sign"), new BlockItem(OnehundredtenSign, new Item.Settings().group(DecorativeMain.TrafficGroup)));
+        registerTraffic(id("stop_sign"), StopSign);
+        registerTraffic(id("five_sign"), FiveSign);
+        registerTraffic(id("ten_sign"), TenSign);
+        registerTraffic(id("twenty_sign"), TwentySign);
+        registerTraffic(id("thirty_sign"), ThirtySign);
+        registerTraffic(id("forty_sign"), FortySign);
+        registerTraffic(id("fifty_sign"), FiftySign);
+        registerTraffic(id("sixty_sign"), SixtySign);
+        registerTraffic(id("seventy_sign"), SeventySign);
+        registerTraffic(id("eighty_sign"), EightySign);
+        registerTraffic(id("ninety_sign"), NinetySign);
+        registerTraffic(id("onehundred_sign"), OnehundredSign);
+        registerTraffic(id("onehundredten_sign"), OnehundredtenSign);
     }
 }
