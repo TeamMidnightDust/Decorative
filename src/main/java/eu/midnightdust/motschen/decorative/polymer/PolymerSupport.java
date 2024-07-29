@@ -8,6 +8,7 @@ import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDigitalClock
 import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDirectionalModel;
 import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDoubleLampModel;
 import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayLampModel;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayPoolWallModel;
 
 public class PolymerSupport {
     public static void init() {
@@ -19,5 +20,6 @@ public class PolymerSupport {
         ItemDisplayDoubleLampModel.initModels();
         ItemDisplayLampModel.initModels();
         ItemDisplayDirectionalModel.initModels();
+        ItemDisplayPoolWallModel.initModels();
     }
 }

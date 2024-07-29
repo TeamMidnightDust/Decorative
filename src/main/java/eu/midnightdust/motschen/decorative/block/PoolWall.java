@@ -3,7 +3,9 @@ package eu.midnightdust.motschen.decorative.block;
 import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.blockstates.PoolShape;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayPoolWallModel;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,6 +17,8 @@ import net.minecraft.block.Waterloggable;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -26,6 +30,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import org.jetbrains.annotations.Nullable;
 
 public class PoolWall extends HorizontalFacingBlock implements Waterloggable, FactoryBlock {
     public static final DirectionProperty FACING = DoorBlock.FACING;
@@ -149,6 +154,15 @@ public class PoolWall extends HorizontalFacingBlock implements Waterloggable, Fa
     // Polymer
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
-        return Blocks.STRUCTURE_VOID.getDefaultState();
+        return state.get(WATERLOGGED) ? Blocks.WATER.getDefaultState() : Blocks.BARRIER.getDefaultState();
+    }
+    @Override
+    public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
+        return Blocks.WHITE_CONCRETE.getDefaultState();
+    }
+
+    @Override
+    public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return new ItemDisplayPoolWallModel(initialBlockState);
     }
 }
