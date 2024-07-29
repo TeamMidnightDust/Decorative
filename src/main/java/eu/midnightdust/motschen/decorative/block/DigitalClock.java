@@ -3,7 +3,10 @@ package eu.midnightdust.motschen.decorative.block;
 import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.block.blockentity.DigitalClockBlockEntity;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayChristmasTreeModel;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDigitalClockModel;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -17,6 +20,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -29,7 +34,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class DigitalClock extends BlockWithEntity implements BlockEntityProvider, FactoryBlock {
-    private static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
     private static final VoxelShape SOUTH_SHAPE;
@@ -105,5 +110,18 @@ public class DigitalClock extends BlockWithEntity implements BlockEntityProvider
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
         return Blocks.BARRIER.getDefaultState();
+    }
+    @Override
+    public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
+        return Blocks.WHITE_CONCRETE.getDefaultState();
+    }
+
+    @Override
+    public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return new ItemDisplayDigitalClockModel(initialBlockState);
+    }
+    @Override
+    public boolean tickElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return true;
     }
 }

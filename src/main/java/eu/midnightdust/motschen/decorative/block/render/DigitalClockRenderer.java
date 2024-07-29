@@ -1,7 +1,6 @@
 package eu.midnightdust.motschen.decorative.block.render;
 
 import eu.midnightdust.motschen.decorative.block.blockentity.DigitalClockBlockEntity;
-import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
@@ -11,7 +10,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.RotationAxis;
 
-import java.time.LocalTime;
+import static eu.midnightdust.motschen.decorative.util.TimeUtil.getTime;
 
 @Environment(EnvType.CLIENT)
 public class DigitalClockRenderer implements BlockEntityRenderer<DigitalClockBlockEntity> {
@@ -19,45 +18,6 @@ public class DigitalClockRenderer implements BlockEntityRenderer<DigitalClockBlo
 
     public DigitalClockRenderer(BlockEntityRendererFactory.Context ctx) {
         textRenderer = ctx.getTextRenderer();
-    }
-
-    private int getHour12hFormat() {
-        int hour;
-        hour = LocalTime.now().getHour();
-        if (hour > 12) {
-            hour = hour - 12;
-        }
-        return hour;
-    }
-    private String getTime() {
-        String hour;
-        String minute;
-
-        // Hour
-        if (DecorativeConfig.timeFormat.equals(DecorativeConfig.TimeFormat.h12)) {
-            if (getHour12hFormat() <= 9) {
-                hour = "0" + getHour12hFormat();
-            } else {
-                hour = "" + getHour12hFormat();
-            }
-        }
-        else {
-            if (LocalTime.now().getHour() <= 9) {
-                hour = "0" + LocalTime.now().getHour();
-            } else {
-                hour = "" + LocalTime.now().getHour();
-            }
-        }
-
-        // Minute
-        if (LocalTime.now().getMinute() <= 9) {
-            minute = "0" + LocalTime.now().getMinute();
-        }
-        else {
-            minute = "" + LocalTime.now().getMinute();
-        }
-
-        return hour +":"+ minute;
     }
 
 

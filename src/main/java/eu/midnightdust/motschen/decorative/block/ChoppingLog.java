@@ -92,7 +92,7 @@ public class ChoppingLog extends BlockWithEntity implements BlockEntityProvider,
     }
     @Override
     public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
-        return Blocks.STONE_BUTTON.getDefaultState().with(Properties.BLOCK_FACE, BlockFace.FLOOR);
+        return getPolymerBlockState(state);
     }
 
     @Override
