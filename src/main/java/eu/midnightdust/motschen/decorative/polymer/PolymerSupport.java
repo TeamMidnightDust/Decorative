@@ -5,6 +5,7 @@ import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayCeilingFanMo
 import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayChristmasLightsModel;
 import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayChristmasTreeModel;
 import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDigitalClockModel;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDirectionalModel;
 import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDoubleLampModel;
 import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayLampModel;
 
@@ -17,5 +18,6 @@ public class PolymerSupport {
         ItemDisplayDigitalClockModel.initModels();
         ItemDisplayDoubleLampModel.initModels();
         ItemDisplayLampModel.initModels();
+        ItemDisplayDirectionalModel.initModels();
     }
 }
