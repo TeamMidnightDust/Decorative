@@ -1,7 +1,10 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import com.mojang.serialization.MapCodec;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDirectionalModel;
+import eu.midnightdust.motschen.decorative.util.ColorUtil;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -9,6 +12,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +22,11 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+
+import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 
 public class Sign extends HorizontalFacingBlock implements FactoryBlock {
     private static final VoxelShape NORTH_SHAPE;
@@ -82,5 +92,45 @@ public class Sign extends HorizontalFacingBlock implements FactoryBlock {
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
         return Blocks.BARRIER.getDefaultState();
+    }
+    @Override
+    public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
+        return Blocks.IRON_BLOCK.getDefaultState();
+    }
+
+    @Override
+    public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return new ItemDisplayDirectionalModel(initialBlockState);
+    }
+
+    public enum Type {
+        EMPTY("empty_sign"), STOP("stop_sign"),
+        FIVE("five_sign"), TEN("ten_sign"), TWENTY("twenty_sign"),
+        THIRTY("thirty_sign"), FORTY("forty_sign"), FIFTY("fifty_sign"),
+        SIXTY("sixty_sign"), SEVENTY("seventy_sign"), EIGHTY("eighty_sign"),
+        NINETY("ninety_sign"), ONEHUNDRED("onehundred_sign"), ONEHUNDREDTEN("onehundredten_sign");
+
+        private final String name;
+        private static final Sign.Type[] vals = values();
+
+        Type(String name) {
+            this.name = name;
+        }
+
+        public static Sign.Type byNumber(int id) {
+            return vals[id];
+        }
+        public static int length() {
+            return vals.length;
+        }
+
+        public String getName() {
+            return name;
+        }
+        public static Sign.Type fromBlockName(String name) {
+            return Arrays.stream(vals).filter(color -> name
+                    .replace("block.decorative.", "")
+                    .equals(color.getName())).findFirst().orElse(Type.STOP);
+        }
     }
 }
