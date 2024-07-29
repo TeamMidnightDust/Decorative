@@ -84,6 +84,6 @@ public class SlidingDoor extends DoorBlock implements FactoryBlock {
     // Polymer
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
-        return Blocks.BARRIER.getDefaultState();
+        return state.get(OPEN) ? Blocks.STRUCTURE_VOID.getDefaultState() : Blocks.BARRIER.getDefaultState();
     }
 }

@@ -44,7 +44,8 @@ public class ItemDisplayBirdBathModel extends BlockModel {
         this.main.setViewRange(0.75f * (DecorativeConfig.viewDistance / 100f));
         this.addElement(this.main);
 
-        //int color = ColorUtil.convertRgbToArgb(world.getColor(pos, BiomeColors.WATER_COLOR));
+        // TODO: Get actual biome color when it's implemented in Polymer
+        // int baseColor = ColorUtil.getWaterColor(world, pos);
         int color = ColorUtil.convertRgbToArgb(4159204);
         WATER.applyComponentsFrom(ComponentMap.builder().add(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Optional.of(Potions.WATER), Optional.of(color), List.of())).build());
         this.water = ItemDisplayElementUtil.createSimple(WATER);

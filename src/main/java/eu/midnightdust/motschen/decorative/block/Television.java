@@ -52,8 +52,8 @@ public class Television extends HorizontalFacingBlock implements FactoryBlock {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
-                .with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite())
+        return this.getDefaultState()
+                .with(FACING, itemPlacementContext.getHorizontalPlayerFacing().getOpposite())
                 .with(PROGRAM, Program.OFF);
     }
 

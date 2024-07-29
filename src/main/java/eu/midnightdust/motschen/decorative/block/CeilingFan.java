@@ -64,7 +64,7 @@ public class CeilingFan extends BlockWithEntity implements BlockEntityProvider, 
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext).with(STAGE, CeilingFanStage.OFF);
+        return this.getDefaultState().with(STAGE, CeilingFanStage.OFF);
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {

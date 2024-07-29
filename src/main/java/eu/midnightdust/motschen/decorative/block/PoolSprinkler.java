@@ -61,8 +61,8 @@ public class PoolSprinkler extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return Objects.requireNonNull(super.getPlacementState(itemPlacementContext))
-                .with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite())
+        return this.getDefaultState()
+                .with(FACING, itemPlacementContext.getHorizontalPlayerFacing().getOpposite())
                 .with(POWERED, Boolean.FALSE);
     }
 

@@ -7,12 +7,12 @@ import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerGarden;
 
 public class LogsWithAxes {
-    public static Block OakChoppingLog = new ChoppingLog();
-    public static Block SpruceChoppingLog = new ChoppingLog();
-    public static Block BirchChoppingLog = new ChoppingLog();
-    public static Block AcaciaChoppingLog = new ChoppingLog();
-    public static Block JungleChoppingLog = new ChoppingLog();
-    public static Block DarkOakChoppingLog = new ChoppingLog();
+    public static final Block OakChoppingLog = new ChoppingLog();
+    public static final Block SpruceChoppingLog = new ChoppingLog();
+    public static final Block BirchChoppingLog = new ChoppingLog();
+    public static final Block AcaciaChoppingLog = new ChoppingLog();
+    public static final Block JungleChoppingLog = new ChoppingLog();
+    public static final Block DarkOakChoppingLog = new ChoppingLog();
 
     public static void init() {
         registerGarden(id("oak_log_with_axe"), OakChoppingLog);

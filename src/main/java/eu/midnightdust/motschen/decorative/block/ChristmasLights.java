@@ -48,8 +48,8 @@ public class ChristmasLights extends HorizontalFacingBlock implements FactoryBlo
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
-        return super.getPlacementState(itemPlacementContext)
-                .with(FACING, itemPlacementContext.getPlayerLookDirection().getOpposite())
+        return this.getDefaultState()
+                .with(FACING, itemPlacementContext.getHorizontalPlayerFacing().getOpposite())
                 .with(LIT, Boolean.FALSE);
     }
 
