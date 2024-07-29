@@ -1,7 +1,7 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import com.mojang.serialization.MapCodec;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDirectionalModel;
+import eu.midnightdust.motschen.decorative.polymer.model.DirectionalItemDisplayModel;
 import eu.pb4.factorytools.api.block.FactoryBlock;
 import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.AbstractBlock;
@@ -116,6 +116,6 @@ public class FireHydrant extends HorizontalFacingBlock implements FactoryBlock {
 
     @Override
     public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
-        return new ItemDisplayDirectionalModel(initialBlockState);
+        return new DirectionalItemDisplayModel(initialBlockState);
     }
 }

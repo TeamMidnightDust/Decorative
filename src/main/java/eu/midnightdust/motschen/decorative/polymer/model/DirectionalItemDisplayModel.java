@@ -6,7 +6,6 @@ import eu.midnightdust.motschen.decorative.block.PoolSprinkler;
 import eu.midnightdust.motschen.decorative.block.ShowerHead;
 import eu.midnightdust.motschen.decorative.block.Sign;
 import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
-import eu.midnightdust.motschen.decorative.util.ColorUtil;
 import eu.pb4.factorytools.api.resourcepack.BaseItemProvider;
 import eu.pb4.factorytools.api.virtualentity.BlockModel;
 import eu.pb4.factorytools.api.virtualentity.ItemDisplayElementUtil;
@@ -23,7 +22,7 @@ import java.util.Map;
 
 import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 
-public class ItemDisplayDirectionalModel extends BlockModel {
+public class DirectionalItemDisplayModel extends BlockModel {
     private final ItemDisplayElement main;
     public static ItemStack FIRE_HYDRANT;
     public static ItemStack GUARDRAIL;
@@ -42,7 +41,7 @@ public class ItemDisplayDirectionalModel extends BlockModel {
         }
     }
 
-    public ItemDisplayDirectionalModel(BlockState state) {
+    public DirectionalItemDisplayModel(BlockState state) {
         this.main = ItemDisplayElementUtil.createSimple(getModel(state));
         this.main.setDisplaySize(1, 1);
         this.main.setScale(new Vector3f(2));

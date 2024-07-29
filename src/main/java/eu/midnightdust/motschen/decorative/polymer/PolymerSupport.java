@@ -1,17 +1,11 @@
 package eu.midnightdust.motschen.decorative.polymer;
 
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayBirdBathModel;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayCeilingFanModel;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayChristmasLightsModel;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayChristmasTreeModel;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDigitalClockModel;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDirectionalModel;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDoubleLampModel;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayLampModel;
-import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayPoolWallModel;
+import eu.midnightdust.motschen.decorative.polymer.model.*;
 
 public class PolymerSupport {
     public static void init() {
+        DirectionalItemDisplayModel.initModels();
+        SimpleItemDisplayModel.initModels();
         ItemDisplayBirdBathModel.initModels();
         ItemDisplayCeilingFanModel.initModels();
         ItemDisplayChristmasLightsModel.initModels();
@@ -19,7 +13,6 @@ public class PolymerSupport {
         ItemDisplayDigitalClockModel.initModels();
         ItemDisplayDoubleLampModel.initModels();
         ItemDisplayLampModel.initModels();
-        ItemDisplayDirectionalModel.initModels();
         ItemDisplayPoolWallModel.initModels();
     }
 }
