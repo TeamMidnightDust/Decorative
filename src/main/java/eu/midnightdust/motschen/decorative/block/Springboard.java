@@ -3,7 +3,9 @@ package eu.midnightdust.motschen.decorative.block;
 import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.DecorativeMain;
 import eu.midnightdust.motschen.decorative.blockstates.Part;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplaySpringboardModel;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -16,6 +18,8 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
@@ -29,8 +33,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-
-import java.util.Objects;
+import org.jetbrains.annotations.Nullable;
 
 public class Springboard extends HorizontalFacingBlock implements FactoryBlock {
     private static final VoxelShape NORTH_SHAPE_FRONT;
@@ -41,21 +44,19 @@ public class Springboard extends HorizontalFacingBlock implements FactoryBlock {
     private static final VoxelShape EAST_SHAPE_BACK;
     private static final VoxelShape SOUTH_SHAPE_BACK;
     private static final VoxelShape WEST_SHAPE_BACK;
-    private static final EnumProperty<Part> PART = DecorativeMain.PART;
+    public static final EnumProperty<Part> PART = DecorativeMain.PART;
 
     public Springboard() {
         super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(PART, Part.BACK));
     }
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
-            if (itemStack.isEmpty() && hand==Hand.MAIN_HAND) {
-                if (state.get(PART) == Part.FRONT) {
-                    if (player.getY() >= pos.getY() + 0.1 && player.squaredDistanceTo(pos.getX(), pos.getY(), pos.getZ()) <= 1.0) {
-                        player.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 10, 10));
-                        return ActionResult.SUCCESS;
-                    }
+            if (state.get(PART) == Part.FRONT) {
+                if (player.getY() >= pos.getY() + 0.1d && player.squaredDistanceTo(pos.getX()+0.5d, pos.getY()+0.5d, pos.getZ()+0.5d) <= 1.0d) {
+                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 10, 10));
+                    return ActionResult.SUCCESS;
                 }
             }
         }
@@ -260,5 +261,14 @@ public class Springboard extends HorizontalFacingBlock implements FactoryBlock {
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
         return Blocks.BARRIER.getDefaultState();
+    }
+    @Override
+    public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
+        return Blocks.IRON_BLOCK.getDefaultState();
+    }
+
+    @Override
+    public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return new ItemDisplaySpringboardModel(initialBlockState);
     }
 }

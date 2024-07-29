@@ -16,5 +16,6 @@ public class PolymerSupport {
         ItemDisplayLampModel.initModels();
         ItemDisplayPoolWallModel.initModels();
         ItemDisplaySlidingDoorModel.initModels();
+        ItemDisplaySpringboardModel.initModels();
     }
 }
