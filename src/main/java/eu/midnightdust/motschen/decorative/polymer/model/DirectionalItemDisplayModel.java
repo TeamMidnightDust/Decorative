@@ -5,6 +5,7 @@ import eu.midnightdust.motschen.decorative.block.Guardrail;
 import eu.midnightdust.motschen.decorative.block.PoolSprinkler;
 import eu.midnightdust.motschen.decorative.block.ShowerHead;
 import eu.midnightdust.motschen.decorative.block.Sign;
+import eu.midnightdust.motschen.decorative.block.WaterPump;
 import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import eu.pb4.factorytools.api.resourcepack.BaseItemProvider;
 import eu.pb4.factorytools.api.virtualentity.BlockModel;
@@ -25,6 +26,7 @@ import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 public class DirectionalItemDisplayModel extends BlockModel {
     private final ItemDisplayElement main;
     public static ItemStack FIRE_HYDRANT;
+    public static ItemStack WATER_PUMP;
     public static ItemStack GUARDRAIL;
     public static ItemStack POOL_SPRINKLER;
     public static ItemStack SHOWER_HEAD;
@@ -32,6 +34,7 @@ public class DirectionalItemDisplayModel extends BlockModel {
 
     public static void initModels() {
         FIRE_HYDRANT = BaseItemProvider.requestModel(id("block/fire_hydrant"));
+        WATER_PUMP = BaseItemProvider.requestModel(id("block/water_pump"));
         GUARDRAIL = BaseItemProvider.requestModel(id("block/guardrail"));
         POOL_SPRINKLER = BaseItemProvider.requestModel(id("block/pool_sprinkler"));
         SHOWER_HEAD = BaseItemProvider.requestModel(id("block/shower_head"));
@@ -61,6 +64,7 @@ public class DirectionalItemDisplayModel extends BlockModel {
     }
     public ItemStack getModel(BlockState state) {
         if (state.getBlock() instanceof FireHydrant) return FIRE_HYDRANT;
+        else if (state.getBlock() instanceof WaterPump) return WATER_PUMP;
         else if (state.getBlock() instanceof PoolSprinkler) return POOL_SPRINKLER;
         else if (state.getBlock() instanceof ShowerHead) return SHOWER_HEAD;
         else if (state.getBlock() instanceof Sign) return SIGNS.get(Sign.Type.fromBlockName(state.getBlock().getTranslationKey()).getName());
@@ -68,6 +72,7 @@ public class DirectionalItemDisplayModel extends BlockModel {
     }
     public float getRotation(BlockState state) {
         if (state.getBlock() instanceof FireHydrant) return state.get(FireHydrant.FACING).getHorizontal() * -90;
+        else if (state.getBlock() instanceof WaterPump) return state.get(WaterPump.FACING).getHorizontal() * -90 - 90;
         else if (state.getBlock() instanceof PoolSprinkler) return state.get(PoolSprinkler.FACING).getHorizontal() * -90;
         else if (state.getBlock() instanceof ShowerHead) return state.get(ShowerHead.FACING).getHorizontal() * -90 + 90;
         else if (state.getBlock() instanceof Sign) return state.get(PoolSprinkler.FACING).getHorizontal() * -90 + 180;

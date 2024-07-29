@@ -109,6 +109,7 @@ public class FireHydrant extends HorizontalFacingBlock implements FactoryBlock {
     public BlockState getPolymerBlockState(BlockState state) {
         return Blocks.BARRIER.getDefaultState();
     }
+
     @Override
     public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
         return Blocks.RED_TERRACOTTA.getDefaultState();
