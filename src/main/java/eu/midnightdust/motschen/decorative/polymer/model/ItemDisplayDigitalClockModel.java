@@ -42,7 +42,7 @@ public class ItemDisplayDigitalClockModel extends BlockModel {
         this.main.setDisplaySize(1, 1);
         this.main.setScale(new Vector3f(2));
         this.main.setRightRotation(RotationAxis.POSITIVE_Y.rotationDegrees(getRotation(state)));
-        this.main.setViewRange(0.75f * (DecorativeConfig.viewDistance / 100f));
+        this.main.setViewRange((DecorativeConfig.viewDistance / 100f));
         this.addElement(this.main);
         this.text = new TextDisplayElement(Text.of(getTime()));
         this.text.setDisplaySize(1, 1);
@@ -50,6 +50,7 @@ public class ItemDisplayDigitalClockModel extends BlockModel {
         var offset = getOffset(state);
         this.text.setOffset(new Vec3d(offset.getLeft(), -0.4d, offset.getRight()));
         this.text.setRightRotation(RotationAxis.POSITIVE_Y.rotationDegrees(getRotation(state)));
+        this.text.setViewRange(0.75f * (DecorativeConfig.viewDistance / 100f));
         this.text.setBackground(0x0000000);
         this.text.setShadow(true);
         this.addElement(this.text);
