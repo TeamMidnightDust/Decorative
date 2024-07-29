@@ -1,6 +1,8 @@
 package eu.midnightdust.motschen.decorative.block;
 
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDoubleLampModel;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,6 +14,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -28,6 +32,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
 
 public class DoubleLamp extends Block implements FactoryBlock {
     private static final VoxelShape SHAPE_TOP;
@@ -102,5 +107,14 @@ public class DoubleLamp extends Block implements FactoryBlock {
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
         return Blocks.BARRIER.getDefaultState();
+    }
+    @Override
+    public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
+        return Blocks.WHITE_WOOL.getDefaultState();
+    }
+
+    @Override
+    public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return new ItemDisplayDoubleLampModel(initialBlockState);
     }
 }

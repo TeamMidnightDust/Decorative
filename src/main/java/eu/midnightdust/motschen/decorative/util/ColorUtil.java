@@ -46,6 +46,8 @@ public class ColorUtil {
             return Arrays.stream(vals).filter(color -> name
                     .replace("block.decorative.", "")
                     .replace("_digital_clock", "")
+                    .replace("_double_lamp", "")
+                    .replace("_lamp", "")
                     .equals(color.getName())).findFirst().orElse(VanillaColor.BLACK);
         }
     }

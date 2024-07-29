@@ -28,12 +28,12 @@ import static eu.midnightdust.motschen.decorative.util.TimeUtil.getTime;
 public class ItemDisplayDigitalClockModel extends BlockModel {
     private final ItemDisplayElement main;
     private final TextDisplayElement text;
-    private static final Map<String, ItemStack> models = new HashMap<>();
+    private static final Map<String, ItemStack> MODELS = new HashMap<>();
 
     public static void initModels() {
         for (int i = 0; i < ColorUtil.VanillaColor.length(); i++) {
             String color = ColorUtil.VanillaColor.byNumber(i).getName();
-            models.put(color, BaseItemProvider.requestModel(id("block/"+color+"_digital_clock")));
+            MODELS.put(color, BaseItemProvider.requestModel(id("block/"+color+"_digital_clock")));
         }
     }
 
@@ -73,7 +73,7 @@ public class ItemDisplayDigitalClockModel extends BlockModel {
         this.text.setText(Text.of(getTime()));
     }
     public ItemStack getModel(BlockState state) {
-        return models.get(ColorUtil.VanillaColor.fromBlockName(state.getBlock().getTranslationKey()).getName());
+        return MODELS.get(ColorUtil.VanillaColor.fromBlockName(state.getBlock().getTranslationKey()).getName());
     }
     public float getRotation(BlockState state) {
         return state.get(DigitalClock.FACING).getHorizontal() * -90;
