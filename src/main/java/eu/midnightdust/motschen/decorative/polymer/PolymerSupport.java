@@ -6,6 +6,7 @@ public class PolymerSupport {
     public static void init() {
         DirectionalItemDisplayModel.initModels();
         SimpleItemDisplayModel.initModels();
+        VariedItemDisplayModel.initModels();
         ItemDisplayBirdBathModel.initModels();
         ItemDisplayCeilingFanModel.initModels();
         ItemDisplayChristmasLightsModel.initModels();
@@ -14,5 +15,6 @@ public class PolymerSupport {
         ItemDisplayDoubleLampModel.initModels();
         ItemDisplayLampModel.initModels();
         ItemDisplayPoolWallModel.initModels();
+        ItemDisplaySlidingDoorModel.initModels();
     }
 }
