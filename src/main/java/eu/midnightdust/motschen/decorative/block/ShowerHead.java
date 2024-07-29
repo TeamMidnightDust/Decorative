@@ -3,7 +3,9 @@ package eu.midnightdust.motschen.decorative.block;
 import com.mojang.serialization.MapCodec;
 import eu.midnightdust.motschen.decorative.block.blockentity.ShowerHeadBlockEntity;
 import eu.midnightdust.motschen.decorative.init.BlockEntities;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayDirectionalModel;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -19,6 +21,8 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -37,7 +41,7 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class ShowerHead extends BlockWithEntity implements BlockEntityProvider, FactoryBlock {
-    private static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty POWERED = DoorBlock.POWERED;
     private static final VoxelShape NORTH_SHAPE;
     private static final VoxelShape EAST_SHAPE;
@@ -130,6 +134,15 @@ public class ShowerHead extends BlockWithEntity implements BlockEntityProvider, 
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
         return Blocks.BARRIER.getDefaultState();
+    }
+    @Override
+    public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
+        return Blocks.IRON_BLOCK.getDefaultState();
+    }
+
+    @Override
+    public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return new ItemDisplayDirectionalModel(initialBlockState);
     }
 
 }

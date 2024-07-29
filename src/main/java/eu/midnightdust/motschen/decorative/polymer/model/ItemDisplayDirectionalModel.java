@@ -3,6 +3,7 @@ package eu.midnightdust.motschen.decorative.polymer.model;
 import eu.midnightdust.motschen.decorative.block.FireHydrant;
 import eu.midnightdust.motschen.decorative.block.Guardrail;
 import eu.midnightdust.motschen.decorative.block.PoolSprinkler;
+import eu.midnightdust.motschen.decorative.block.ShowerHead;
 import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import eu.pb4.factorytools.api.resourcepack.BaseItemProvider;
 import eu.pb4.factorytools.api.virtualentity.BlockModel;
@@ -22,11 +23,13 @@ public class ItemDisplayDirectionalModel extends BlockModel {
     public static ItemStack FIRE_HYDRANT;
     public static ItemStack GUARDRAIL;
     public static ItemStack POOL_SPRINKLER;
+    public static ItemStack SHOWER_HEAD;
 
     public static void initModels() {
         FIRE_HYDRANT = BaseItemProvider.requestModel(id("block/fire_hydrant"));
         GUARDRAIL = BaseItemProvider.requestModel(id("block/guardrail"));
         POOL_SPRINKLER = BaseItemProvider.requestModel(id("block/pool_sprinkler"));
+        SHOWER_HEAD = BaseItemProvider.requestModel(id("block/shower_head"));
     }
 
     public ItemDisplayDirectionalModel(BlockState state) {
@@ -50,11 +53,13 @@ public class ItemDisplayDirectionalModel extends BlockModel {
     public ItemStack getModel(BlockState state) {
         if (state.getBlock() instanceof FireHydrant) return FIRE_HYDRANT;
         else if (state.getBlock() instanceof PoolSprinkler) return POOL_SPRINKLER;
+        else if (state.getBlock() instanceof ShowerHead) return SHOWER_HEAD;
         else return GUARDRAIL;
     }
     public float getRotation(BlockState state) {
         if (state.getBlock() instanceof FireHydrant) return state.get(FireHydrant.FACING).getHorizontal() * -90;
         else if (state.getBlock() instanceof PoolSprinkler) return state.get(PoolSprinkler.FACING).getHorizontal() * -90;
+        else if (state.getBlock() instanceof ShowerHead) return state.get(ShowerHead.FACING).getHorizontal() * -90 + 90;
         else return state.get(Guardrail.FACING).getHorizontal() * -90;
     }
 }
