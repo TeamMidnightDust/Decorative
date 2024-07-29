@@ -149,6 +149,6 @@ public class PoolWall extends HorizontalFacingBlock implements Waterloggable, Fa
     // Polymer
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
-        return Blocks.BARRIER.getDefaultState();
+        return Blocks.STRUCTURE_VOID.getDefaultState();
     }
 }
