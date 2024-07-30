@@ -28,6 +28,10 @@
     ]
   },
 
+  "mixins": [
+    "decorative.mixins.json"
+  ],
+
   "depends": {
     "fabric": "*",
     "midnightlib": "*"

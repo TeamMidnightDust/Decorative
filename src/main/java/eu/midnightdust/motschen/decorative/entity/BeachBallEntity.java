@@ -1,6 +1,9 @@
 package eu.midnightdust.motschen.decorative.entity;
 
 import eu.midnightdust.motschen.decorative.init.Pool;
+import eu.midnightdust.motschen.decorative.polymer.entity.ItemDisplayBasedEntity;
+import eu.pb4.polymer.virtualentity.api.elements.ItemDisplayElement;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,10 +15,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.joml.Vector3f;
 
-public class BeachBallEntity extends MobEntity {
+public class BeachBallEntity extends MobEntity implements ItemDisplayBasedEntity {
     public BeachBallEntity(EntityType<? extends BeachBallEntity> entityType, World world) {
         super(entityType, world);
+        this.onCreated(this);
     }
 
     @Override
@@ -39,6 +44,27 @@ public class BeachBallEntity extends MobEntity {
     }
     @Override
     public boolean canWalkOnFluid(FluidState fluid) {
+        return true;
+    }
+    // Polymer
+    @Override
+    public ItemStack getVisualItemStack() {
+        return new ItemStack(Pool.BEACH_BALL_ITEM);
+    }
+    @Override
+    public void setItemDisplayProperties(ItemDisplayElement display) {
+        display.setInvisible(false);
+        display.setModelTransformation(ModelTransformationMode.HEAD);
+        display.setTeleportDuration(3);
+        display.setScale(new Vector3f(1f));
+        display.setTranslation(new Vector3f(0, -0.4f, 0));
+    }
+    @Override
+    public Vec3d getClientSidePosition(Vec3d vec3d) {
+        return vec3d.add(0, 0.25d, 0);
+    }
+    @Override
+    public boolean isSmall() {
         return true;
     }
 }

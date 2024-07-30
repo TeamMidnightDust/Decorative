@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "eu.midnightdust.motschen.decorative.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ArmorStandEntityAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
