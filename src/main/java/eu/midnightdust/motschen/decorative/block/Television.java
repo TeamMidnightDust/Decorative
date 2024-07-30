@@ -1,9 +1,9 @@
 package eu.midnightdust.motschen.decorative.block;
 
 import com.mojang.serialization.MapCodec;
-import eu.midnightdust.motschen.decorative.DecorativeMain;
-import eu.midnightdust.motschen.decorative.blockstates.Program;
+import eu.midnightdust.motschen.decorative.polymer.model.ItemDisplayTelevisionModel;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,11 +12,14 @@ import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -26,9 +29,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-
-import java.util.Objects;
-import java.util.function.ToIntFunction;
+import org.jetbrains.annotations.Nullable;
 
 public class Television extends HorizontalFacingBlock implements FactoryBlock {
 
@@ -36,16 +37,16 @@ public class Television extends HorizontalFacingBlock implements FactoryBlock {
     private static final VoxelShape EAST_SHAPE;
     private static final VoxelShape SOUTH_SHAPE;
     private static final VoxelShape WEST_SHAPE;
-    private static final EnumProperty<Program> PROGRAM = DecorativeMain.PROGRAM;
+    private static final BooleanProperty POWERED = Properties.POWERED;
 
     public Television() {
-        super(AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).luminance(createLightLevelFromBlockState()));
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(PROGRAM, Program.OFF));
+        super(AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE).nonOpaque().sounds(BlockSoundGroup.STONE).luminance((state) -> state.get(POWERED) ? 11 : 0));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false));
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        world.setBlockState(pos, state.with(PROGRAM, state.get(PROGRAM).next()));
+        world.setBlockState(pos, state.with(POWERED, !state.get(POWERED)));
         world.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.2f, 1.5f);
         return ActionResult.SUCCESS;
     }
@@ -53,14 +54,13 @@ public class Television extends HorizontalFacingBlock implements FactoryBlock {
     @Override
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext) {
         return this.getDefaultState()
-                .with(FACING, itemPlacementContext.getHorizontalPlayerFacing().getOpposite())
-                .with(PROGRAM, Program.OFF);
+                .with(FACING, itemPlacementContext.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
-        builder.add(PROGRAM);
+        builder.add(POWERED);
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
@@ -96,17 +96,6 @@ public class Television extends HorizontalFacingBlock implements FactoryBlock {
         return !worldView.isAir(pos.down());
     }
 
-    private static ToIntFunction<BlockState> createLightLevelFromBlockState() {
-        return (blockState) -> {
-            if (blockState.get(PROGRAM) == Program.OFF) {
-                return 0;
-            }
-            else {
-                return 11;
-            }
-        };
-    }
-
     @Override
     protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
         return null;
@@ -116,5 +105,14 @@ public class Television extends HorizontalFacingBlock implements FactoryBlock {
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
         return Blocks.BARRIER.getDefaultState();
+    }
+    @Override
+    public BlockState getPolymerBreakEventBlockState(BlockState state, ServerPlayerEntity player) {
+        return Blocks.BLACK_CONCRETE.getDefaultState();
+    }
+
+    @Override
+    public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
+        return new ItemDisplayTelevisionModel(initialBlockState);
     }
 }

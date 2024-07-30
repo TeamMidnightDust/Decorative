@@ -2,7 +2,7 @@
 	"credit": "made by Motschen",
 	"parent": "block/block",
 	"textures": {
-		"0": "decorative:entity/duck_bath_tire"
+		"0": "decorative:item/entity/duck_bath_tire"
 	},
 	"elements": [
 		{

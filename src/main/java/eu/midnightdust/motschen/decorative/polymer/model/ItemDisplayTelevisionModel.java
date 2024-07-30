@@ -1,7 +1,7 @@
 package eu.midnightdust.motschen.decorative.polymer.model;
 
-import eu.midnightdust.motschen.decorative.block.Springboard;
-import eu.midnightdust.motschen.decorative.blockstates.Part;
+import eu.midnightdust.motschen.decorative.block.OldTelevision;
+import eu.midnightdust.motschen.decorative.block.Television;
 import eu.midnightdust.motschen.decorative.config.DecorativeConfig;
 import eu.pb4.factorytools.api.resourcepack.BaseItemProvider;
 import eu.pb4.factorytools.api.virtualentity.BlockModel;
@@ -16,20 +16,22 @@ import org.joml.Vector3f;
 
 import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 
-public class ItemDisplaySpringboardModel extends BlockModel {
+public class ItemDisplayTelevisionModel extends BlockModel {
     private final ItemDisplayElement main;
-    private static ItemStack BACK;
-    private static ItemStack FRONT;
+    private static ItemStack MODERN;
+    private static ItemStack OLD_OFF;
+    private static ItemStack OLD_ON;
 
     public static void initModels() {
-        BACK = BaseItemProvider.requestModel(id("block/springboard_back"));
-        FRONT = BaseItemProvider.requestModel(id("block/springboard_front"));
+        MODERN = BaseItemProvider.requestModel(id("block/television"));
+        OLD_OFF = BaseItemProvider.requestModel(id("block/old_television_off"));
+        OLD_ON = BaseItemProvider.requestModel(id("block/old_television_on"));
     }
 
-    public ItemDisplaySpringboardModel(BlockState state) {
+    public ItemDisplayTelevisionModel(BlockState state) {
         this.main = ItemDisplayElementUtil.createSimple(getModel(state));
         this.main.setDisplaySize(1, 1);
-        this.main.setScale(new Vector3f(1));
+        this.main.setScale(new Vector3f(2));
         this.main.setRightRotation(RotationAxis.POSITIVE_Y.rotationDegrees(getRotation(state)));
         this.main.setViewRange(DecorativeConfig.viewDistance / 100f);
         this.addElement(this.main);
@@ -46,10 +48,14 @@ public class ItemDisplaySpringboardModel extends BlockModel {
         }
     }
     public ItemStack getModel(BlockState state) {
-        return state.get(Springboard.PART) == Part.BACK ? BACK : FRONT;
+        return state.getBlock() instanceof OldTelevision ?
+                (state.get(OldTelevision.POWERED) ? OLD_ON : OLD_OFF) :
+                MODERN;
     }
     public float getRotation(BlockState state) {
-        return state.get(Springboard.FACING).getHorizontal() * -90 - 90;
+        return state.getBlock() instanceof OldTelevision ?
+                state.get(OldTelevision.FACING).getHorizontal() * -90 - 180 :
+                state.get(Television.FACING).getHorizontal() * -90 - 180;
     }
 
 }

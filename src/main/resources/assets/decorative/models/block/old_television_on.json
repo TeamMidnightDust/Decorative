@@ -1,0 +1,7 @@
+{
+	"credit": "made by Motschen",
+	"parent": "decorative:block/old_television_off",
+	"textures": {
+		"4": "block/lime_terracotta"
+	}
+}
