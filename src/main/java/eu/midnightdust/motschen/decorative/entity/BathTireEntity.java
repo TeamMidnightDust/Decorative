@@ -1,10 +1,14 @@
 package eu.midnightdust.motschen.decorative.entity;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -31,5 +35,26 @@ public class BathTireEntity extends MobEntity {
             }
         }
         return super.interactAt(player, hitPos, hand);
+    }
+    @Override
+    public boolean shouldDismountUnderwater() {
+        return false;
+    }
+    @Override
+    public Vec3d getPassengerRidingPos(Entity passenger) {
+        return this.getPos().add(0,0.4d, 0);
+    }
+    @Override
+    protected void swimUpward(TagKey<Fluid> fluid) {
+        if (this.getNavigation().canSwim()) {
+            super.swimUpward(fluid);
+        } else {
+            this.setVelocity(this.getVelocity().add(0.0D, 0.7D, 0.0D));
+        }
+
+    }
+    @Override
+    public boolean canWalkOnFluid(FluidState fluid) {
+        return true;
     }
 }
