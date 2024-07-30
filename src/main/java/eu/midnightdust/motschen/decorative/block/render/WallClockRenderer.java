@@ -14,21 +14,14 @@ import net.minecraft.util.math.RotationAxis;
 
 import java.time.LocalTime;
 
+import static eu.midnightdust.motschen.decorative.util.TimeUtil.getHour12hFormat;
+
 @Environment(EnvType.CLIENT)
 public class WallClockRenderer implements BlockEntityRenderer<WallClockBlockEntity> {
     private final WallClockHandsModel handsModel;
 
     public WallClockRenderer(BlockEntityRendererFactory.Context ctx) {
         handsModel = new WallClockHandsModel(ctx.getLayerModelPart(WallClockHandsModel.CLOCK_HANDS_MODEL_LAYER));
-    }
-
-    private int getHour12hFormat() {
-        int hour;
-        hour = LocalTime.now().getHour();
-        if (hour >= 12) {
-            hour = hour - 12;
-        }
-        return hour;
     }
 
     @Override
