@@ -13,6 +13,7 @@ import net.minecraft.block.enums.DoorHinge;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.Vec3d;
 import org.joml.Vector3f;
 
 import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
@@ -21,14 +22,10 @@ public class ItemDisplaySlidingDoorModel extends BlockModel {
     private final ItemDisplayElement main;
     private static ItemStack DOOR_BOTTOM;
     private static ItemStack DOOR_TOP;
-    private static ItemStack DOOR_BOTTOM_OPEN;
-    private static ItemStack DOOR_TOP_OPEN;
 
     public static void initModels() {
         DOOR_BOTTOM = BaseItemProvider.requestModel(id("block/sliding_door_bottom"));
         DOOR_TOP = BaseItemProvider.requestModel(id("block/sliding_door_top"));
-        DOOR_BOTTOM_OPEN = BaseItemProvider.requestModel(id("block/sliding_door_bottom_open"));
-        DOOR_TOP_OPEN = BaseItemProvider.requestModel(id("block/sliding_door_top_open"));
     }
 
     public ItemDisplaySlidingDoorModel(BlockState state) {
@@ -37,6 +34,8 @@ public class ItemDisplaySlidingDoorModel extends BlockModel {
         this.main.setScale(new Vector3f(2));
         this.main.setRightRotation(RotationAxis.POSITIVE_Y.rotationDegrees(getRotation(state)));
         this.main.setViewRange(DecorativeConfig.viewDistance / 100f);
+        handleSliding(state);
+        this.main.setTeleportDuration(10);
         this.addElement(this.main);
     }
 
@@ -46,13 +45,22 @@ public class ItemDisplaySlidingDoorModel extends BlockModel {
             var state = this.blockState();
             this.main.setItem(getModel(state));
             this.main.setRightRotation(RotationAxis.POSITIVE_Y.rotationDegrees(getRotation(state)));
+            handleSliding(state);
 
             this.tick();
         }
     }
+    public void handleSliding(BlockState state) {
+        if (state.get(SlidingDoor.OPEN)) {
+            var slidingDirection = state.get(SlidingDoor.HINGE) == DoorHinge.RIGHT ?
+                    state.get(SlidingDoor.FACING).rotateYClockwise() :
+                    state.get(SlidingDoor.FACING).rotateYCounterclockwise();
+            this.main.setOffset(Vec3d.of(slidingDirection.getVector()));
+        }
+        else this.main.setOffset(Vec3d.ZERO);
+    }
     public ItemStack getModel(BlockState state) {
-        if (state.get(SlidingDoor.HALF) == DoubleBlockHalf.LOWER) return state.get(SlidingDoor.OPEN) ? DOOR_BOTTOM_OPEN : DOOR_BOTTOM;
-        else return state.get(SlidingDoor.OPEN) ? DOOR_TOP_OPEN : DOOR_TOP;
+        return (state.get(SlidingDoor.HALF) == DoubleBlockHalf.LOWER) ? DOOR_BOTTOM : DOOR_TOP;
     }
     public float getRotation(BlockState state) {
         return state.get(SlidingDoor.FACING).getHorizontal() * -90 + (state.get(SlidingDoor.HINGE) == DoorHinge.RIGHT ? 90 : -90);
