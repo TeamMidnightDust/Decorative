@@ -73,7 +73,7 @@ public class DirectionalItemDisplayModel extends BlockModel {
     public float getRotation(BlockState state) {
         if (state.getBlock() instanceof FireHydrant) return state.get(FireHydrant.FACING).getHorizontal() * -90;
         else if (state.getBlock() instanceof WaterPump) return state.get(WaterPump.FACING).getHorizontal() * -90 - 90;
-        else if (state.getBlock() instanceof PoolSprinkler) return state.get(PoolSprinkler.FACING).getHorizontal() * -90;
+        else if (state.getBlock() instanceof PoolSprinkler) return state.get(PoolSprinkler.FACING).getHorizontal() * -90 - 90;
         else if (state.getBlock() instanceof ShowerHead) return state.get(ShowerHead.FACING).getHorizontal() * -90 + 90;
         else if (state.getBlock() instanceof Sign) return state.get(PoolSprinkler.FACING).getHorizontal() * -90 + 180;
         else return state.get(Guardrail.FACING).getHorizontal() * -90;

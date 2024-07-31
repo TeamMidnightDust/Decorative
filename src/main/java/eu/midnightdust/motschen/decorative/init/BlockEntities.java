@@ -32,7 +32,8 @@ public class BlockEntities {
     }
     private static <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(Identifier id, BlockEntityType.BlockEntityFactory<T> factory, Block... blocks) {
         var blockEntity = Registry.register(Registries.BLOCK_ENTITY_TYPE, id, BlockEntityType.Builder.create(factory, blocks).build(null));
-        if (DecorativeConfig.polymerIntegration) PolymerBlockUtils.registerBlockEntity(blockEntity);
+        //if (DecorativeConfig.polymerIntegration)
+        PolymerBlockUtils.registerBlockEntity(blockEntity);
         return blockEntity;
     }
 }

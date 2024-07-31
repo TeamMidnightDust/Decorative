@@ -119,21 +119,21 @@ public class DecorativeMain implements ModInitializer {
         ItemGroup group;
         Text name = Text.translatable("itemGroup."+id.getNamespace()+"."+id.getPath());
 
-        if (DecorativeConfig.polymerIntegration) {
+        //if (DecorativeConfig.polymerIntegration) {
             group = PolymerItemGroupUtils.builder().displayName(name).icon(() -> new ItemStack(icon)).entries(((displayContext, entries) -> {
                 List<ItemStack> groupItems = new ArrayList<>();
                 RegistryUtil.groupItems.stream().filter(itemEntry -> itemEntry.groupName() == name).forEach(itemEntry -> groupItems.add(itemEntry.stack()));
                 entries.addAll(groupItems);
             })).build();
             PolymerItemGroupUtils.registerPolymerItemGroup(id, group);
-        } else {
-            group = FabricItemGroup.builder().displayName(name).icon(() -> new ItemStack(icon)).entries(((displayContext, entries) -> {
-                List<ItemStack> groupItems = new ArrayList<>();
-                RegistryUtil.groupItems.stream().filter(itemEntry -> itemEntry.groupName() == name).forEach(itemEntry -> groupItems.add(itemEntry.stack()));
-                entries.addAll(groupItems);
-            })).build();
-            Registry.register(Registries.ITEM_GROUP, id, group);
-        }
+//        } else {
+//            group = FabricItemGroup.builder().displayName(name).icon(() -> new ItemStack(icon)).entries(((displayContext, entries) -> {
+//                List<ItemStack> groupItems = new ArrayList<>();
+//                RegistryUtil.groupItems.stream().filter(itemEntry -> itemEntry.groupName() == name).forEach(itemEntry -> groupItems.add(itemEntry.stack()));
+//                entries.addAll(groupItems);
+//            })).build();
+//            Registry.register(Registries.ITEM_GROUP, id, group);
+//        }
         return group;
     }
 }
