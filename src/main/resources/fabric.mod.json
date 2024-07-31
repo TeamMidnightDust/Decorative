@@ -25,6 +25,9 @@
     ],
     "client": [
       "eu.midnightdust.motschen.decorative.DecorativeClient"
+    ],
+    "fabric-datagen": [
+      "eu.midnightdust.motschen.decorative.DecorativeDataGen"
     ]
   },
 

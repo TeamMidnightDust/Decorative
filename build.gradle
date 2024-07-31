@@ -19,6 +19,31 @@ repositories {
 	}
 	maven { url 'https://maven.nucleoid.xyz' }
 }
+loom {
+	runs {
+		//
+		// This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"
+		//
+		datagenClient {
+			inherit client
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.modid=decorative"
+
+			runDir "build/datagen"
+		}
+	}
+}
+sourceSets {
+	main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
+	}
+}
 
 dependencies {
 	//to change the versions see the gradle.properties file
