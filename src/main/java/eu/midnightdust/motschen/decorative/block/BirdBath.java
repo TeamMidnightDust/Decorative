@@ -137,6 +137,6 @@ public class BirdBath extends AbstractCauldronBlock implements FactoryBlock {
 
     @Override
     public @Nullable ElementHolder createElementHolder(ServerWorld world, BlockPos pos, BlockState initialBlockState) {
-        return new ItemDisplayBirdBathModel(initialBlockState, pos, world);
+        return new ItemDisplayBirdBathModel(initialBlockState);
     }
 }

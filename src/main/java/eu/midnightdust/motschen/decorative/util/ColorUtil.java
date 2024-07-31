@@ -1,7 +1,8 @@
 package eu.midnightdust.motschen.decorative.util;
 
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.source.BiomeCoords;
+import net.minecraft.world.chunk.Chunk;
 
 import java.util.Arrays;
 
@@ -14,8 +15,10 @@ public class ColorUtil {
 
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
     }
-    public static int getWaterColor(ServerWorld world, BlockPos pos) {
-        var biome = world.getBiome(pos);
+    public static int getWaterColor(Chunk chunk, BlockPos pos) {
+        var biome = chunk.getBiomeForNoiseGen(BiomeCoords.fromBlock(pos.getX()),
+                BiomeCoords.fromBlock(pos.getY()),
+                BiomeCoords.fromBlock(pos.getZ()));
         return biome == null ? 4159204 : biome.value().getWaterColor();
     }
 
