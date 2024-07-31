@@ -28,6 +28,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerFurniture;
 import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerGarden;
@@ -71,12 +72,12 @@ public class DecorativeMain implements ModInitializer {
         MidnightConfig.init(MOD_ID, DecorativeConfig.class);
         PolymerSupport.init();
 
-        IndoorGroup = createGroup(id("indoor"), DecorativeMain.Television);
-        TrafficGroup = createGroup(id("traffic"), DecorativeMain.TrafficCone);
-        GardenGroup = createGroup(id("garden"), LogsWithAxes.OAK_LOG_WITH_AXE);
-        PoolGroup = createGroup(id("pool"), Pool.BEACH_BALL_ITEM);
+        IndoorGroup = createGroup(id("indoor"), () -> DecorativeMain.Television);
+        TrafficGroup = createGroup(id("traffic"), () -> DecorativeMain.TrafficCone);
+        GardenGroup = createGroup(id("garden"), LogsWithAxes.TYPES::getFirst);
+        PoolGroup = createGroup(id("pool"), () -> Pool.BEACH_BALL_ITEM);
 
-        BlockEntities.init();
+
 
         // Traffic //
         registerTraffic(id("rocky_asphalt"), RockyAsphalt);
@@ -111,17 +112,18 @@ public class DecorativeMain implements ModInitializer {
         DoubleLamps.init();
         Clocks.init();
         OreFeatures.init();
+        BlockEntities.init();
         DecorativeSoundEvents.init();
     }
     public static Identifier id(String path) {
         return Identifier.of(MOD_ID, path);
     }
-    public static ItemGroup createGroup(Identifier id, ItemConvertible icon) {
+    public static ItemGroup createGroup(Identifier id, Supplier<ItemConvertible> icon) {
         ItemGroup group;
         Text name = Text.translatable("itemGroup."+id.getNamespace()+"."+id.getPath());
 
         //if (DecorativeConfig.polymerIntegration) {
-            group = PolymerItemGroupUtils.builder().displayName(name).icon(() -> new ItemStack(icon)).entries(((displayContext, entries) -> {
+            group = PolymerItemGroupUtils.builder().displayName(name).icon(() -> new ItemStack(icon.get())).entries(((displayContext, entries) -> {
                 List<ItemStack> groupItems = new ArrayList<>();
                 RegistryUtil.groupItems.stream().filter(itemEntry -> itemEntry.groupName() == name).forEach(itemEntry -> groupItems.add(itemEntry.stack()));
                 entries.addAll(groupItems);

@@ -2,7 +2,7 @@
 	"credit": "made by Motschen",
 	"parent": "decorative:item/oak_log_with_axe",
 	"textures": {
-		"0": "block/acacia_log",
-		"1": "block/acacia_log_top"
+		"0": "block/crimson_stem",
+		"1": "block/crimson_stem_top"
 	}
 }

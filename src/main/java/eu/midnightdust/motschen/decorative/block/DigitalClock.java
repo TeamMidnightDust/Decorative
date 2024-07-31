@@ -49,11 +49,6 @@ public class DigitalClock extends BlockWithEntity implements BlockEntityProvider
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new DigitalClockBlockEntity(pos, state);
     }
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return validateTicker(type, BlockEntities.DigitalClockBlockEntity, DigitalClockBlockEntity::tick);
-    }
 
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {

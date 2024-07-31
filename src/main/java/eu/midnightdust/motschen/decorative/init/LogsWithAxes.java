@@ -3,7 +3,6 @@ package eu.midnightdust.motschen.decorative.init;
 import eu.midnightdust.motschen.decorative.block.ChoppingLog;
 import net.minecraft.block.WoodType;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
@@ -15,7 +14,6 @@ import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerGard
 
 public class LogsWithAxes {
     public static final List<ChoppingLog> TYPES = new ArrayList<>();
-    public static ChoppingLog OAK_LOG_WITH_AXE;
 
     public static void init() {
         WoodType.stream().forEach(woodType -> {
@@ -27,7 +25,6 @@ public class LogsWithAxes {
             if (Registries.BLOCK.containsId(Identifier.of(logName))) {
                 var choppingLog = new ChoppingLog(Registries.BLOCK.get(Identifier.of(logName)));
                 register(id(logName + "_with_axe"), choppingLog);
-                if (logName.equals("oak_log")) OAK_LOG_WITH_AXE = choppingLog;
             }
         });
     }

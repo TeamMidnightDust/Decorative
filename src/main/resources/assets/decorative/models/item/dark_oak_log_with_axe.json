@@ -1,3 +1,8 @@
 {
-	"parent": "decorative:block/dark_oak_log_with_axe"
+	"credit": "made by Motschen",
+	"parent": "decorative:item/oak_log_with_axe",
+	"textures": {
+		"0": "block/dark_oak_log",
+		"1": "block/dark_oak_log_top"
+	}
 }
