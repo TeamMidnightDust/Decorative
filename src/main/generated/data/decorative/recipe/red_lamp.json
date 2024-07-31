@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:red_concrete"
+    },
+    "B": {
+      "item": "minecraft:black_concrete"
+    },
+    "R": {
+      "item": "minecraft:redstone_lamp"
+    }
+  },
+  "pattern": [
+    "###",
+    "#R#",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "decorative:red_lamp"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sign_post": {
+      "conditions": {
+        "items": [
+          {
+            "items": "decorative:sign_post"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "decorative:empty_sign"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sign_post"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "decorative:empty_sign"
+    ]
+  }
+}

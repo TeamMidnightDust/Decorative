@@ -73,7 +73,7 @@ public class DecorativeMain implements ModInitializer {
 
         IndoorGroup = createGroup(id("indoor"), DecorativeMain.Television);
         TrafficGroup = createGroup(id("traffic"), DecorativeMain.TrafficCone);
-        GardenGroup = createGroup(id("garden"), LogsWithAxes.OakChoppingLog);
+        GardenGroup = createGroup(id("garden"), LogsWithAxes.OAK_LOG_WITH_AXE);
         PoolGroup = createGroup(id("pool"), Pool.BEACH_BALL_ITEM);
 
         BlockEntities.init();

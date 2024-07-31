@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "decorative:rocky_asphalt"
+    },
+    {
+      "item": "decorative:road"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "decorative:road_white_long"
+  }
+}

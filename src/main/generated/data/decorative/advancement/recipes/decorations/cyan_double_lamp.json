@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cyan_lamp": {
+      "conditions": {
+        "items": [
+          {
+            "items": "decorative:cyan_lamp"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "decorative:cyan_double_lamp"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cyan_lamp"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "decorative:cyan_double_lamp"
+    ]
+  }
+}

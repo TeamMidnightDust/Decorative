@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "G": {
+      "item": "minecraft:green_stained_glass"
+    },
+    "I": {
+      "item": "minecraft:red_stained_glass"
+    },
+    "R": {
+      "item": "minecraft:redstone_lamp"
+    }
+  },
+  "pattern": [
+    "///",
+    "RRR",
+    "IGI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "decorative:christmas_lights"
+  }
+}

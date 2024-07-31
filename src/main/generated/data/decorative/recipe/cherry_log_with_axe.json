@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_axe"
+    },
+    "O": {
+      "item": "minecraft:cherry_log"
+    }
+  },
+  "pattern": [
+    "#",
+    "O"
+  ],
+  "result": {
+    "count": 1,
+    "id": "decorative:cherry_log_with_axe"
+  }
+}

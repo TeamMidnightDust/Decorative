@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:lever"
+    },
+    "G": {
+      "item": "minecraft:gray_concrete"
+    }
+  },
+  "pattern": [
+    " # ",
+    "GGG"
+  ],
+  "result": {
+    "count": 2,
+    "id": "decorative:shower_head"
+  }
+}

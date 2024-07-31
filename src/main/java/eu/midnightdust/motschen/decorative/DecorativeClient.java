@@ -57,28 +57,11 @@ public class DecorativeClient implements ClientModInitializer {
 
 
         registerBlockColor(DecorativeMain.BirdBath, Blocks.WATER);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.RoadWhiteShort);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.RoadWhiteLong);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.RoadWhiteShort,DecorativeMain.RoadWhiteLong);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.EmptySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.StopSign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.FiveSign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.TenSign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.TwentySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.ThirtySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.FortySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.FiftySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.SixtySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.SeventySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.EightySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.NinetySign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.OnehundredSign);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.OnehundredtenSign);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Signs.SIGNS.toArray(new Block[0]));
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.ChristmasTree);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.CeilingFan);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.SlidingDoor);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.WallClock);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),DecorativeMain.BirdBath);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),DecorativeMain.ChristmasTree,DecorativeMain.CeilingFan,DecorativeMain.SlidingDoor,DecorativeMain.WallClock,DecorativeMain.BirdBath);
 
         BlockEntityRendererFactories.register(BlockEntities.CeilingFanBlockEntity, CeilingFanRenderer::new);
         BlockEntityRendererFactories.register(BlockEntities.ChoppingLogBlockEntity, ChoppingLogBlockEntityRenderer::new);

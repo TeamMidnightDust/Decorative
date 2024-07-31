@@ -26,7 +26,7 @@ public class BlockEntities {
         PoolSprinklerBlockEntity = registerBlockEntity(id("pool_sprinkler_blockentity"), PoolSprinklerBlockEntity::new, Pool.PoolSprinkler);
         ShowerHeadBlockEntity = registerBlockEntity(id("shower_head_blockentity"), ShowerHeadBlockEntity::new, DecorativeMain.ShowerHead);
         CeilingFanBlockEntity = registerBlockEntity(id("ceiling_fan_blockentity"), CeilingFanBlockEntity::new, DecorativeMain.CeilingFan);
-        ChoppingLogBlockEntity = registerBlockEntity( id("chopping_log_blockentity"), ChoppingLogBlockEntity::new, LogsWithAxes.OakChoppingLog, LogsWithAxes.BirchChoppingLog, LogsWithAxes.AcaciaChoppingLog, LogsWithAxes.DarkOakChoppingLog, LogsWithAxes.JungleChoppingLog, LogsWithAxes.SpruceChoppingLog);
+        ChoppingLogBlockEntity = registerBlockEntity( id("chopping_log_blockentity"), ChoppingLogBlockEntity::new, LogsWithAxes.TYPES.toArray(new Block[0]));
         WallClockBlockEntity = registerBlockEntity(id("wall_clock_blockentity"), WallClockBlockEntity::new, DecorativeMain.WallClock);
         DigitalClockBlockEntity = registerBlockEntity(id("digital_clock_blockentity"), DigitalClockBlockEntity::new, Clocks.RedDigitalClock, Clocks.BlackDigitalClock, Clocks.BlueDigitalClock, Clocks.BrownDigitalClock, Clocks.CyanDigitalClock, Clocks.GrayDigitalClock, Clocks.GreenDigitalClock, Clocks.LightBlueDigitalClock, Clocks.LightGrayDigitalClock, Clocks.LimeDigitalClock, Clocks.MagentaDigitalClock, Clocks.OrangeDigitalClock, Clocks.PinkDigitalClock, Clocks.PurpleDigitalClock, Clocks.WhiteDigitalClock, Clocks.YellowDigitalClock);
     }

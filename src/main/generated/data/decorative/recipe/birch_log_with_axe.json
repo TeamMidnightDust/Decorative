@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_axe"
+    },
+    "O": {
+      "item": "minecraft:birch_log"
+    }
+  },
+  "pattern": [
+    "#",
+    "O"
+  ],
+  "result": {
+    "count": 1,
+    "id": "decorative:birch_log_with_axe"
+  }
+}

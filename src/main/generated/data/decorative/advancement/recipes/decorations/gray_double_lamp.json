@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gray_lamp": {
+      "conditions": {
+        "items": [
+          {
+            "items": "decorative:gray_lamp"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "decorative:gray_double_lamp"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gray_lamp"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "decorative:gray_double_lamp"
+    ]
+  }
+}

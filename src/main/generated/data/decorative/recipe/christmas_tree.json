@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_sapling"
+    },
+    "G": {
+      "item": "minecraft:green_terracotta"
+    },
+    "I": {
+      "item": "minecraft:gray_terracotta"
+    }
+  },
+  "pattern": [
+    " # ",
+    "GIG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "decorative:christmas_tree"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "decorative:empty_sign"
+  },
+  "result": {
+    "count": 1,
+    "id": "decorative:fifty_sign"
+  }
+}

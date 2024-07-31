@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "decorative:road"
-  },
-  "result": "decorative:road_white_short",
-  "count": 1
-}

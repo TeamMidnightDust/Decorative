@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:red_dye"
+    },
+    "I": {
+      "item": "decorative:sign_post"
+    },
+    "W": {
+      "item": "minecraft:white_dye"
+    }
+  },
+  "pattern": [
+    "###",
+    "#W#",
+    "#I#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "decorative:empty_sign"
+  }
+}

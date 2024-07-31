@@ -1,25 +1,38 @@
 package eu.midnightdust.motschen.decorative.init;
 
 import eu.midnightdust.motschen.decorative.block.ChoppingLog;
-import net.minecraft.block.Block;
+import net.minecraft.block.WoodType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerGarden;
 
 public class LogsWithAxes {
-    public static final Block OakChoppingLog = new ChoppingLog();
-    public static final Block SpruceChoppingLog = new ChoppingLog();
-    public static final Block BirchChoppingLog = new ChoppingLog();
-    public static final Block AcaciaChoppingLog = new ChoppingLog();
-    public static final Block JungleChoppingLog = new ChoppingLog();
-    public static final Block DarkOakChoppingLog = new ChoppingLog();
+    public static final List<ChoppingLog> TYPES = new ArrayList<>();
+    public static ChoppingLog OAK_LOG_WITH_AXE;
 
     public static void init() {
-        registerGarden(id("oak_log_with_axe"), OakChoppingLog);
-        registerGarden(id("spruce_log_with_axe"), SpruceChoppingLog);
-        registerGarden(id("birch_log_with_axe"), BirchChoppingLog);
-        registerGarden(id("acacia_log_with_axe"), AcaciaChoppingLog);
-        registerGarden(id("jungle_log_with_axe"), JungleChoppingLog);
-        registerGarden(id("dark_oak_log_with_axe"), DarkOakChoppingLog);
+        WoodType.stream().forEach(woodType -> {
+            String logName = woodType.name() + "_";
+            if (woodType.soundType() == BlockSoundGroup.NETHER_WOOD) logName += "stem";
+            else if (woodType.soundType() == BlockSoundGroup.BAMBOO_WOOD) logName += "block";
+            else logName += "log";
+
+            if (Registries.BLOCK.containsId(Identifier.of(logName))) {
+                var choppingLog = new ChoppingLog(Registries.BLOCK.get(Identifier.of(logName)));
+                register(id(logName + "_with_axe"), choppingLog);
+                if (logName.equals("oak_log")) OAK_LOG_WITH_AXE = choppingLog;
+            }
+        });
+    }
+    public static void register(Identifier id, ChoppingLog block) {
+        registerGarden(id, block);
+        TYPES.add(block);
     }
 }

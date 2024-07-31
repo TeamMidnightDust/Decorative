@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "_": {
+      "item": "minecraft:quartz_slab"
+    }
+  },
+  "pattern": [
+    " / ",
+    "_R_"
+  ],
+  "result": {
+    "count": 1,
+    "id": "decorative:ceilingfan"
+  }
+}

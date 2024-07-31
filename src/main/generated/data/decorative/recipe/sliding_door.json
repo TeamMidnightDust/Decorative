@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:white_concrete"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "pattern": [
+    "##",
+    "GG",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "id": "decorative:sliding_door"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rocky_asphalt": {
+      "conditions": {
+        "items": [
+          {
+            "items": "decorative:rocky_asphalt"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "decorative:road_white_short"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rocky_asphalt"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "decorative:road_white_short"
+    ]
+  }
+}
