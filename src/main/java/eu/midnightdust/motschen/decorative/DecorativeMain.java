@@ -17,7 +17,9 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.state.property.EnumProperty;
@@ -108,7 +110,7 @@ public class DecorativeMain implements ModInitializer {
         DoubleLamps.init();
         Clocks.init();
         OreFeatures.init();
-        new DecorativeSoundEvents();
+        DecorativeSoundEvents.init();
     }
     public static Identifier id(String path) {
         return Identifier.of(MOD_ID, path);

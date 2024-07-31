@@ -1,28 +1,13 @@
 {
     "variants": {
-        "facing=south,program=off": { "model": "decorative:block/old_television_off", "uvlock": true },
-        "facing=west,program=off":  { "model": "decorative:block/old_television_off", "uvlock": true, "y": 90 },
-        "facing=north,program=off": { "model": "decorative:block/old_television_off", "uvlock": true, "y": 180 },
-        "facing=east,program=off":  { "model": "decorative:block/old_television_off", "uvlock": true, "y": 270 },
+        "facing=south,powered=false": { "model": "decorative:block/old_television_off", "uvlock": true },
+        "facing=west,powered=false":  { "model": "decorative:block/old_television_off", "uvlock": true, "y": 90 },
+        "facing=north,powered=false": { "model": "decorative:block/old_television_off", "uvlock": true, "y": 180 },
+        "facing=east,powered=false":  { "model": "decorative:block/old_television_off", "uvlock": true, "y": 270 },
 		
-		"facing=south,program=nyancat": { "model": "decorative:block/old_television_nyancat", "uvlock": true },
-        "facing=west,program=nyancat":  { "model": "decorative:block/old_television_nyancat", "uvlock": true, "y": 90 },
-        "facing=north,program=nyancat": { "model": "decorative:block/old_television_nyancat", "uvlock": true, "y": 180 },
-        "facing=east,program=nyancat":  { "model": "decorative:block/old_television_nyancat", "uvlock": true, "y": 270 },
-		
-		"facing=south,program=creeper": { "model": "decorative:block/old_television_creeper", "uvlock": true },
-        "facing=west,program=creeper":  { "model": "decorative:block/old_television_creeper", "uvlock": true, "y": 90 },
-        "facing=north,program=creeper": { "model": "decorative:block/old_television_creeper", "uvlock": true, "y": 180 },
-        "facing=east,program=creeper":  { "model": "decorative:block/old_television_creeper", "uvlock": true, "y": 270 },
-		
-		"facing=south,program=crabrave": { "model": "decorative:block/old_television_crabrave", "uvlock": true },
-        "facing=west,program=crabrave":  { "model": "decorative:block/old_television_crabrave", "uvlock": true, "y": 90 },
-        "facing=north,program=crabrave": { "model": "decorative:block/old_television_crabrave", "uvlock": true, "y": 180 },
-        "facing=east,program=crabrave":  { "model": "decorative:block/old_television_crabrave", "uvlock": true, "y": 270 },
-		
-		"facing=south,program=tater": { "model": "decorative:block/old_television_tater", "uvlock": true },
-        "facing=west,program=tater":  { "model": "decorative:block/old_television_tater", "uvlock": true, "y": 90 },
-        "facing=north,program=tater": { "model": "decorative:block/old_television_tater", "uvlock": true, "y": 180 },
-        "facing=east,program=tater":  { "model": "decorative:block/old_television_tater", "uvlock": true, "y": 270 }
+		"facing=south,powered=true": { "model": "decorative:block/old_television_on", "uvlock": true },
+        "facing=west,powered=true":  { "model": "decorative:block/old_television_on", "uvlock": true, "y": 90 },
+        "facing=north,powered=true": { "model": "decorative:block/old_television_on", "uvlock": true, "y": 180 },
+        "facing=east,powered=true":  { "model": "decorative:block/old_television_on", "uvlock": true, "y": 270 }
     }
 }

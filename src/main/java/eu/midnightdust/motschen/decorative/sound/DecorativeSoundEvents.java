@@ -8,7 +8,11 @@ import net.minecraft.util.Identifier;
 import static eu.midnightdust.motschen.decorative.DecorativeMain.id;
 
 public class DecorativeSoundEvents {
-    public static final SoundEvent CEILINGFAN_AMBIENT = register(id("ceiling_fan.ambient"));
+    public static SoundEvent CEILINGFAN_AMBIENT;
+
+    public static void init() {
+        CEILINGFAN_AMBIENT = register(id("ceiling_fan.ambient"));
+    }
 
     private static SoundEvent register(Identifier id) {
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
