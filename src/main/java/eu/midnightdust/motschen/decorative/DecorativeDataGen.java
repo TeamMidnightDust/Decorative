@@ -2,6 +2,7 @@ package eu.midnightdust.motschen.decorative;
 
 import eu.midnightdust.motschen.decorative.datagen.LootTables;
 import eu.midnightdust.motschen.decorative.datagen.Recipes;
+import eu.midnightdust.motschen.decorative.datagen.Tags;
 import eu.midnightdust.motschen.decorative.world.OreFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -21,6 +22,7 @@ public class DecorativeDataGen implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(WorldGenData::new);
         pack.addProvider(LootTables.BlockLootTables::new);
+        pack.addProvider(Tags.Blocks::new);
         pack.addProvider(Recipes::new);
         System.out.println("Initialized dataGen");
     }

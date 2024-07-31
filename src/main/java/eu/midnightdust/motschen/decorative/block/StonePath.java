@@ -24,7 +24,7 @@ public class StonePath extends Block implements FactoryBlock {
     private static final VoxelShape SHAPE;
 
     public StonePath() {
-        super(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().sounds(BlockSoundGroup.STONE));
+        super(AbstractBlock.Settings.copy(Blocks.SHORT_GRASS).nonOpaque().sounds(BlockSoundGroup.STONE));
     }
 
     @Override

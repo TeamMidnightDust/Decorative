@@ -1,0 +1,4 @@
+// 1.21	2024-08-01T00:03:07.707245874	Decorative/Tags for minecraft:block
+f2d5d3644e53c993deebe7b145b6da3246698fba data/minecraft/tags/block/mineable/pickaxe.json
+943ffdbb1391ecf5d726ad5897b8e4b41366d8ce data/minecraft/tags/block/mineable/axe.json
+8c82b629723744035dfdff5c75a81e15d1db82c1 data/minecraft/tags/block/needs_stone_tool.json
