@@ -17,8 +17,6 @@ import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potions;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
@@ -49,9 +47,7 @@ public class ItemDisplayBirdBathModel extends BlockModel {
 
         this.water = ItemDisplayElementUtil.createSimple();
         this.water.setDisplaySize(1, 1);
-        this.water.setScale(new Vector3f(state.get(BirdBath.LEVEL) >= 2 ? 1.9f : 1.65f));
-        this.water.setOffset(new Vec3d(0d, -0.025 * (3-(state.get(BirdBath.LEVEL))), 0d));
-        this.water.setViewRange(state.get(BirdBath.LEVEL) != 0 ? (0.75f * (DecorativeConfig.viewDistance / 100f)) : 0);
+        this.water.setViewRange(0);
         this.addElement(this.water);
     }
 
@@ -59,8 +55,9 @@ public class ItemDisplayBirdBathModel extends BlockModel {
     public void notifyUpdate(HolderAttachment.UpdateType updateType) {
         if (updateType == BlockAwareAttachment.BLOCK_STATE_UPDATE) {
             var state = this.blockState();
+            this.water.setItem(getColoredWater());
             this.water.setViewRange(state.get(BirdBath.LEVEL) != 0 ? (0.75f * (DecorativeConfig.viewDistance / 100f)) : 0);
-            this.water.setScale(new Vector3f(state.get(BirdBath.LEVEL) >= 2 ? 1.9f : 1.65f));
+            this.water.setScale(new Vector3f(state.get(BirdBath.LEVEL) >= 2 ? 2f : 1.65f));
             this.water.setOffset(new Vec3d(0d, -0.025 * (3-(state.get(BirdBath.LEVEL))), 0d));
 
             this.tick();
@@ -70,7 +67,7 @@ public class ItemDisplayBirdBathModel extends BlockModel {
     protected void onAttachmentSet(HolderAttachment attachment, @Nullable HolderAttachment oldAttachment) {
         if (attachment instanceof ChunkAttachment chunkAttachment) {
             this.waterColor = ColorUtil.convertRgbToArgb(ColorUtil.getWaterColor(chunkAttachment.getChunk(), blockPos()));
-            this.water.setItem(getColoredWater());
+            this.notifyUpdate(BlockAwareAttachment.BLOCK_STATE_UPDATE);
         }
     }
     private ItemStack getColoredWater() {
