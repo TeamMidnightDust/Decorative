@@ -36,6 +36,7 @@ import static eu.midnightdust.motschen.decorative.util.RegistryUtil.registerTraf
 
 public class DecorativeMain implements ModInitializer {
     public static final String MOD_ID = "decorative";
+    public static final List<Block> BLOCKS = new ArrayList<>();
 
     public static ItemGroup IndoorGroup;
     public static ItemGroup TrafficGroup;

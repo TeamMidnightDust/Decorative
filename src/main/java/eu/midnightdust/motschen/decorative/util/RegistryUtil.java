@@ -21,6 +21,7 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import java.util.ArrayList;
 import java.util.List;
 
+import static eu.midnightdust.motschen.decorative.DecorativeMain.BLOCKS;
 import static eu.midnightdust.motschen.decorative.DecorativeMain.MOD_ID;
 
 public class RegistryUtil {
@@ -40,6 +41,7 @@ public class RegistryUtil {
     }
 
     public static void registerBlockWithItem(Identifier id, Block block, ItemGroup group) {
+        BLOCKS.add(block);
         Registry.register(Registries.BLOCK, id, block);
         registerItem(id, blockItem(block), group);
     }
