@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pink_concrete": {
+    "has_pink_wool": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:pink_concrete"
+            "items": "minecraft:pink_wool"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_pink_concrete"
+      "has_pink_wool"
     ]
   ],
   "rewards": {

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_light_gray_concrete": {
+    "has_light_gray_wool": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:light_gray_concrete"
+            "items": "minecraft:light_gray_wool"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_light_gray_concrete"
+      "has_light_gray_wool"
     ]
   ],
   "rewards": {

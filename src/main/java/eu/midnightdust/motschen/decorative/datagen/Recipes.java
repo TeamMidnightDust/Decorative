@@ -251,7 +251,7 @@ public class Recipes extends FabricRecipeProvider {
         }
         private ShapedRecipeJsonBuilder createLampRecipe(ColorUtil.VanillaColor color) {
             Block lamp = Registries.BLOCK.get(id(color.getName()+"_lamp"));
-            Block woolType = Registries.BLOCK.get(Identifier.ofVanilla(color.getName()+"_concrete"));
+            Block woolType = Registries.BLOCK.get(Identifier.ofVanilla(color.getName()+"_wool"));
             return ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, lamp)
                     .input('#', woolType)
                     .input('R', Blocks.REDSTONE_LAMP)

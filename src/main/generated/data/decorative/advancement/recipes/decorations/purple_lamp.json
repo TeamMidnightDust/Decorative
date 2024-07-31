@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_purple_concrete": {
+    "has_purple_wool": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:purple_concrete"
+            "items": "minecraft:purple_wool"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_purple_concrete"
+      "has_purple_wool"
     ]
   ],
   "rewards": {

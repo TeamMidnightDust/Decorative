@@ -7,11 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_yellow_concrete": {
+    "has_yellow_wool": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:yellow_concrete"
+            "items": "minecraft:yellow_wool"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_yellow_concrete"
+      "has_yellow_wool"
     ]
   ],
   "rewards": {

@@ -7,11 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_white_concrete": {
+    "has_white_wool": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:white_concrete"
+            "items": "minecraft:white_wool"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_white_concrete"
+      "has_white_wool"
     ]
   ],
   "rewards": {
