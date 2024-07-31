@@ -1,5 +1,6 @@
 package eu.midnightdust.motschen.decorative.sound;
 
+import eu.pb4.polymer.core.api.other.PolymerSoundEvent;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
@@ -15,6 +16,6 @@ public class DecorativeSoundEvents {
     }
 
     private static SoundEvent register(Identifier id) {
-        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
+        return Registry.register(Registries.SOUND_EVENT, id, PolymerSoundEvent.of(id, null));
     }
 }

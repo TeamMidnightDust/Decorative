@@ -3,6 +3,7 @@ package eu.midnightdust.motschen.decorative.init;
 import eu.midnightdust.motschen.decorative.block.ChoppingLog;
 import eu.midnightdust.motschen.decorative.entity.BathTireEntity;
 import eu.midnightdust.motschen.decorative.item.BathTireItem;
+import eu.pb4.polymer.core.api.entity.PolymerEntityUtils;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -63,6 +64,7 @@ public class BathTires {
     private static EntityType<BathTireEntity> registerBathTire(Identifier id) {
         EntityType<BathTireEntity> entity = Registry.register(Registries.ENTITY_TYPE, id, EntityType.Builder.create(BathTireEntity::new, SpawnGroup.AMBIENT).dimensions(1.5f,1).maxTrackingRange(100).trackingTickInterval(4).build());
         FabricDefaultAttributeRegistry.register(entity, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
+        PolymerEntityUtils.registerType(entity);
         registerItem(id, new BathTireItem(entity, new Item.Settings()), PoolGroup);
         return entity;
     }

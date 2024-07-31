@@ -5,6 +5,7 @@ import eu.midnightdust.motschen.decorative.block.PoolWall;
 import eu.midnightdust.motschen.decorative.block.Springboard;
 import eu.midnightdust.motschen.decorative.entity.BeachBallEntity;
 import eu.midnightdust.motschen.decorative.item.BathTireItem;
+import eu.pb4.polymer.core.api.entity.PolymerEntityUtils;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -39,6 +40,7 @@ public class Pool {
     private static EntityType<BeachBallEntity> registerBeachBall(Identifier id) {
         EntityType<BeachBallEntity> entity = Registry.register(Registries.ENTITY_TYPE, id, EntityType.Builder.create(BeachBallEntity::new, SpawnGroup.AMBIENT).dimensions(0.9f,0.9f).maxTrackingRange(100).trackingTickInterval(4).build());
         FabricDefaultAttributeRegistry.register(entity, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100000.0D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, -10D));
+        PolymerEntityUtils.registerType(entity);
         return entity;
     }
 }
