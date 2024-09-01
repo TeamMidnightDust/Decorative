@@ -38,7 +38,7 @@ public class Pool {
         BathTires.init();
     }
     private static EntityType<BeachBallEntity> registerBeachBall(Identifier id) {
-        EntityType<BeachBallEntity> entity = Registry.register(Registries.ENTITY_TYPE, id, EntityType.Builder.create(BeachBallEntity::new, SpawnGroup.AMBIENT).dimensions(0.9f,0.9f).maxTrackingRange(100).trackingTickInterval(4).build());
+        EntityType<BeachBallEntity> entity = Registry.register(Registries.ENTITY_TYPE, id, EntityType.Builder.create(BeachBallEntity::new, SpawnGroup.AMBIENT).dimensions(0.9f,0.9f).maxTrackingRange(100).trackingTickInterval(4).build(id.toString()));
         FabricDefaultAttributeRegistry.register(entity, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100000.0D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, -10D));
         PolymerEntityUtils.registerType(entity);
         return entity;

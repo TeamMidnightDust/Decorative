@@ -42,7 +42,7 @@ public class Recipes extends FabricRecipeProvider {
 
         private void generateCrafting(RecipeExporter exporter) {
             LogsWithAxes.TYPES.forEach(log -> createLogWithAxeRecipe(log).offerTo(exporter));
-            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Pool.BEACH_BALL_ITEM)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Pool.BEACH_BALL_ITEM, 3)
                     .input('R', Blocks.RED_CONCRETE)
                     .input('Y', Blocks.YELLOW_CONCRETE)
                     .input('B', Blocks.LIGHT_BLUE_CONCRETE)
@@ -99,19 +99,19 @@ public class Recipes extends FabricRecipeProvider {
                     .pattern("#I#")
                     .criterion(FabricRecipeProvider.hasItem(DecorativeMain.SignPost), FabricRecipeProvider.conditionsFromItem(DecorativeMain.SignPost))
                     .offerTo(exporter);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, DecorativeMain.FireHydrant)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, DecorativeMain.FireHydrant, 2)
                     .input('#', Blocks.RED_TERRACOTTA)
                     .pattern("#")
                     .pattern("#")
                     .criterion(FabricRecipeProvider.hasItem(Blocks.RED_TERRACOTTA), FabricRecipeProvider.conditionsFromItem(Blocks.RED_TERRACOTTA))
                     .offerTo(exporter);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, DecorativeMain.Guardrail)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, DecorativeMain.Guardrail, 2)
                     .input('#', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)
                     .input('I', Blocks.IRON_BARS)
                     .pattern("#I")
                     .criterion(FabricRecipeProvider.hasItem(Blocks.IRON_BARS), FabricRecipeProvider.conditionsFromItem(Blocks.IRON_BARS))
                     .offerTo(exporter);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.KitchenTiles)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.KitchenTiles, 4)
                     .input('B', Blocks.BLACK_CONCRETE)
                     .input('W', Blocks.WHITE_CONCRETE)
                     .pattern("BW")
@@ -119,7 +119,7 @@ public class Recipes extends FabricRecipeProvider {
                     .criterion(FabricRecipeProvider.hasItem(Blocks.BLACK_CONCRETE), FabricRecipeProvider.conditionsFromItem(Blocks.BLACK_CONCRETE))
                     .criterion(FabricRecipeProvider.hasItem(Blocks.WHITE_CONCRETE), FabricRecipeProvider.conditionsFromItem(Blocks.WHITE_CONCRETE))
                     .offerTo(exporter);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.KitchenTiles)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.KitchenTiles, 4)
                     .input('W', Blocks.WHITE_CONCRETE)
                     .input('B', Blocks.BLACK_CONCRETE)
                     .pattern("WB")
@@ -161,7 +161,7 @@ public class Recipes extends FabricRecipeProvider {
                     .pattern("GGG")
                     .criterion(FabricRecipeProvider.hasItem(Blocks.GRAY_CONCRETE), FabricRecipeProvider.conditionsFromItem(Blocks.GRAY_CONCRETE))
                     .offerTo(exporter);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.SignPost, 8)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.SignPost, 6)
                     .input('#', Blocks.IRON_BLOCK)
                     .pattern("#")
                     .pattern("#")
@@ -195,7 +195,7 @@ public class Recipes extends FabricRecipeProvider {
                     .pattern("##")
                     .criterion(FabricRecipeProvider.hasItem(Blocks.STONE_BUTTON), FabricRecipeProvider.conditionsFromItem(Blocks.STONE_BUTTON))
                     .offerTo(exporter);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.TrafficCone, 3)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.TrafficCone, 6)
                     .input('W', Blocks.WHITE_CONCRETE)
                     .input('O', Blocks.ORANGE_CONCRETE)
                     .pattern(" O ")
@@ -204,7 +204,7 @@ public class Recipes extends FabricRecipeProvider {
                     .criterion(FabricRecipeProvider.hasItem(Blocks.WHITE_CONCRETE), FabricRecipeProvider.conditionsFromItem(Blocks.WHITE_CONCRETE))
                     .criterion(FabricRecipeProvider.hasItem(Blocks.ORANGE_CONCRETE), FabricRecipeProvider.conditionsFromItem(Blocks.ORANGE_CONCRETE))
                     .offerTo(exporter);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.WallClock)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.WallClock, 2)
                     .input('#', Blocks.QUARTZ_BLOCK)
                     .input('C', Items.CLOCK)
                     .pattern(" # ")
@@ -212,7 +212,7 @@ public class Recipes extends FabricRecipeProvider {
                     .pattern(" # ")
                     .criterion(FabricRecipeProvider.hasItem(Items.CLOCK), FabricRecipeProvider.conditionsFromItem(Items.CLOCK))
                     .offerTo(exporter);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.WaterPump)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, DecorativeMain.WaterPump, 2)
                     .input('#', Blocks.GREEN_TERRACOTTA)
                     .pattern("#")
                     .pattern("#")
@@ -231,7 +231,7 @@ public class Recipes extends FabricRecipeProvider {
         private ShapedRecipeJsonBuilder createBathTireRecipe(ColorUtil.VanillaColor color) {
             Item bathTire = Registries.ITEM.get(id(color.getName()+"_bath_tire"));
             Block concreteType = Registries.BLOCK.get(Identifier.ofVanilla(color.getName()+"_concrete"));
-            return ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, bathTire)
+            return ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, bathTire, 3)
                     .input('#', concreteType)
                     .pattern("###")
                     .pattern("# #")
@@ -241,7 +241,7 @@ public class Recipes extends FabricRecipeProvider {
         private ShapedRecipeJsonBuilder createDigitalClockRecipe(ColorUtil.VanillaColor color) {
             Block digitalClock = Registries.BLOCK.get(id(color.getName()+"_digital_clock"));
             Block concreteType = Registries.BLOCK.get(Identifier.ofVanilla(color.getName()+"_concrete"));
-            return ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, digitalClock)
+            return ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, digitalClock, 3)
                     .input('#', concreteType)
                     .input('B', Blocks.BLACK_CONCRETE)
                     .input('C', Items.CLOCK)
@@ -252,7 +252,7 @@ public class Recipes extends FabricRecipeProvider {
         private ShapedRecipeJsonBuilder createLampRecipe(ColorUtil.VanillaColor color) {
             Block lamp = Registries.BLOCK.get(id(color.getName()+"_lamp"));
             Block woolType = Registries.BLOCK.get(Identifier.ofVanilla(color.getName()+"_wool"));
-            return ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, lamp)
+            return ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, lamp, 3)
                     .input('#', woolType)
                     .input('R', Blocks.REDSTONE_LAMP)
                     .input('B', Blocks.BLACK_CONCRETE)
@@ -273,8 +273,10 @@ public class Recipes extends FabricRecipeProvider {
 
         private void generateStonecutting(RecipeExporter exporter) {
             Signs.SIGNS.forEach(sign -> StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Signs.EmptySign), RecipeCategory.TRANSPORTATION, sign).criterion(FabricRecipeProvider.hasItem(Signs.EmptySign), FabricRecipeProvider.conditionsFromItem(Signs.EmptySign)).offerTo(exporter));
-            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(RockyAsphalt), RecipeCategory.TRANSPORTATION, DecorativeMain.Road).criterion(FabricRecipeProvider.hasItem(RockyAsphalt), FabricRecipeProvider.conditionsFromItem(RockyAsphalt)).offerTo(exporter);
-            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(RockyAsphalt, Road), RecipeCategory.TRANSPORTATION, DecorativeMain.RoadWhiteShort).criterion(FabricRecipeProvider.hasItem(RockyAsphalt), FabricRecipeProvider.conditionsFromItem(RockyAsphalt)).offerTo(exporter);
-            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(RockyAsphalt, Road), RecipeCategory.TRANSPORTATION, DecorativeMain.RoadWhiteLong).criterion(FabricRecipeProvider.hasItem(RockyAsphalt), FabricRecipeProvider.conditionsFromItem(RockyAsphalt)).offerTo(exporter);
+            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(RockyAsphalt), RecipeCategory.TRANSPORTATION, DecorativeMain.Road, 4).criterion(FabricRecipeProvider.hasItem(RockyAsphalt), FabricRecipeProvider.conditionsFromItem(RockyAsphalt)).offerTo(exporter);
+            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(RockyAsphalt), RecipeCategory.TRANSPORTATION, DecorativeMain.RoadWhiteShort, 4).criterion(FabricRecipeProvider.hasItem(RockyAsphalt), FabricRecipeProvider.conditionsFromItem(RockyAsphalt)).offerTo(exporter);
+            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(RockyAsphalt), RecipeCategory.TRANSPORTATION, DecorativeMain.RoadWhiteLong, 4).criterion(FabricRecipeProvider.hasItem(RockyAsphalt), FabricRecipeProvider.conditionsFromItem(RockyAsphalt)).offerTo(exporter);
+            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Road), RecipeCategory.TRANSPORTATION, DecorativeMain.RoadWhiteShort).criterion(FabricRecipeProvider.hasItem(Road), FabricRecipeProvider.conditionsFromItem(Road)).offerTo(exporter, "road_white_short_from_road");
+            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Road), RecipeCategory.TRANSPORTATION, DecorativeMain.RoadWhiteLong).criterion(FabricRecipeProvider.hasItem(Road), FabricRecipeProvider.conditionsFromItem(Road)).offerTo(exporter, "road_long_short_from_road");
         }
 }

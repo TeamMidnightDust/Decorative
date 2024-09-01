@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_road": {
+      "conditions": {
+        "items": [
+          {
+            "items": "decorative:road"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:road_white_short_from_road"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_road"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:road_white_short_from_road"
+    ]
+  }
+}

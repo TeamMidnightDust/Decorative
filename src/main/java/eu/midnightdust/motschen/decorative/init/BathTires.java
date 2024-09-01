@@ -62,7 +62,7 @@ public class BathTires {
         DUCK_BATH_TIRE = registerBathTire(id("duck_bath_tire"));
     }
     private static EntityType<BathTireEntity> registerBathTire(Identifier id) {
-        EntityType<BathTireEntity> entity = Registry.register(Registries.ENTITY_TYPE, id, EntityType.Builder.create(BathTireEntity::new, SpawnGroup.AMBIENT).dimensions(1.5f,1).maxTrackingRange(100).trackingTickInterval(4).build());
+        EntityType<BathTireEntity> entity = Registry.register(Registries.ENTITY_TYPE, id, EntityType.Builder.create(BathTireEntity::new, SpawnGroup.AMBIENT).dimensions(1.5f,1).maxTrackingRange(100).trackingTickInterval(4).build(id.toString()));
         FabricDefaultAttributeRegistry.register(entity, MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0D));
         PolymerEntityUtils.registerType(entity);
         registerItem(id, new BathTireItem(entity, new Item.Settings()), PoolGroup);
