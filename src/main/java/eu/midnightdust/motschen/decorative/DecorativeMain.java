@@ -77,8 +77,6 @@ public class DecorativeMain implements ModInitializer {
         GardenGroup = createGroup(id("garden"), LogsWithAxes.TYPES::getFirst);
         PoolGroup = createGroup(id("pool"), () -> Pool.BEACH_BALL_ITEM);
 
-
-
         // Traffic //
         registerTraffic(id("rocky_asphalt"), RockyAsphalt);
         registerTraffic(id("road"), Road);
@@ -130,7 +128,7 @@ public class DecorativeMain implements ModInitializer {
             })).build();
             PolymerItemGroupUtils.registerPolymerItemGroup(id, group);
 //        } else {
-//            group = FabricItemGroup.builder().displayName(name).icon(() -> new ItemStack(icon)).entries(((displayContext, entries) -> {
+//            group = FabricItemGroup.builder().displayName(name).icon(() -> new ItemStack(icon.get())).entries(((displayContext, entries) -> {
 //                List<ItemStack> groupItems = new ArrayList<>();
 //                RegistryUtil.groupItems.stream().filter(itemEntry -> itemEntry.groupName() == name).forEach(itemEntry -> groupItems.add(itemEntry.stack()));
 //                entries.addAll(groupItems);
