@@ -55,7 +55,7 @@ public class ItemDisplaySlidingDoorModel extends BlockModel {
             var slidingDirection = state.get(SlidingDoor.HINGE) == DoorHinge.RIGHT ?
                     state.get(SlidingDoor.FACING).rotateYClockwise() :
                     state.get(SlidingDoor.FACING).rotateYCounterclockwise();
-            this.main.setOffset(Vec3d.of(slidingDirection.getVector()));
+            this.main.setOffset(Vec3d.of(slidingDirection.getVector()).multiply(0.9d));
         }
         else this.main.setOffset(Vec3d.ZERO);
     }
