@@ -31,7 +31,7 @@ public class ItemDisplaySlidingDoorModel extends BlockModel {
     public ItemDisplaySlidingDoorModel(BlockState state) {
         this.main = ItemDisplayElementUtil.createSimple(getModel(state));
         this.main.setDisplaySize(1, 1);
-        this.main.setScale(new Vector3f(2));
+        this.main.setScale(new Vector3f(1.99f));
         this.main.setRightRotation(RotationAxis.POSITIVE_Y.rotationDegrees(getRotation(state)));
         this.main.setViewRange(DecorativeConfig.viewDistance / 100f);
         handleSliding(state);
