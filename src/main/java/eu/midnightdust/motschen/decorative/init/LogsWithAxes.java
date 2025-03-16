@@ -18,6 +18,7 @@ public class LogsWithAxes {
     public static void init() {
         WoodType.stream().forEach(woodType -> {
             String logName = woodType.name() + "_";
+            if (logName.contains(":")) return;
             if (woodType.soundType() == BlockSoundGroup.NETHER_WOOD) logName += "stem";
             else if (woodType.soundType() == BlockSoundGroup.BAMBOO_WOOD) logName += "block";
             else logName += "log";
